@@ -78,6 +78,7 @@
             this.mskCEP.TabIndex = 7;
             this.mskCEP.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.mskCEP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mskCEP_KeyPress);
+            this.mskCEP.Leave += new System.EventHandler(this.mskCEP_Leave);
             // 
             // label3
             // 
@@ -400,6 +401,7 @@
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnGravar
             // 
@@ -461,6 +463,7 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "frmCadastraFuncionario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SaudeMed - Cadastrar Funcionário";
             this.Load += new System.EventHandler(this.frmCadastraFuncionario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dtgDados)).EndInit();

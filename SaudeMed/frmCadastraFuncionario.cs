@@ -13,6 +13,7 @@ namespace SaudeMed
     {
 
         AcessaDados acessar = new AcessaDados();
+        DataRow LinhaSelecionada;
 
         public frmCadastraFuncionario()
         {
@@ -80,14 +81,14 @@ namespace SaudeMed
                     txNomeFuncionario.Clear();
                     mskCEP.Clear();
                     //continuar
-                    frmCadastraFuncionario_Load(sender, e); 
+                    frmCadastraFuncionario_Load(sender, e);
                 }
-                
+
             }
             catch (Exception err)
             {
 
-                MessageBox.Show(err.ToString()); ;
+                MessageBox.Show(err.Message);
             }
         }
 
@@ -142,7 +143,7 @@ namespace SaudeMed
                         this.SelectNextControl(this.ActiveControl, !e.Shift, true, true, true);
                         if (btnExcluir.Enabled || btnEditar.Enabled)
                             btnGravar.Enabled = false;
-                        else                       
+                        else
                             btnGravar.Enabled = true;
                     }
                 }
@@ -177,7 +178,10 @@ namespace SaudeMed
                     }
                     else
                     {
-                        btnGravar.Enabled = true;
+                        if (btnExcluir.Enabled || btnEditar.Enabled)
+                            btnGravar.Enabled = false;
+                        else
+                            btnGravar.Enabled = true;
                     }
                 }
             }
@@ -186,12 +190,12 @@ namespace SaudeMed
 
                 MessageBox.Show(err.Message);
             }
-            
+
         }
 
         private void btnSair_Click(object sender, EventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
 
         private void dtgDados_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -212,9 +216,13 @@ namespace SaudeMed
             mskCPF.Text = dtgDados.CurrentRow.Cells["CPF"].Value.ToString();
             mskTelefoneCelular.Text = dtgDados.CurrentRow.Cells["Tel Celular"].Value.ToString();
             mskTelefoneFixo.Text = dtgDados.CurrentRow.Cells["Tel Fixo"].Value.ToString();
+            dateAdmissao.Value = (DateTime)dtgDados.CurrentRow.Cells["DT Admissao"].Value;
+            dateDataNascimento.Value = (DateTime)dtgDados.CurrentRow.Cells["DT Nascimento"].Value;                        
+            
+            
         }
         private void LimparCampos()
-        {   
+        {
             txBairro.Clear();
             txCidade.Clear();
             txComplemento.Clear();
@@ -228,8 +236,89 @@ namespace SaudeMed
             mskCEP.Clear();
             mskCPF.Clear();
             mskTelefoneCelular.Clear();
-            mskTelefoneFixo.Clear();              
- 
+            mskTelefoneFixo.Clear();
+            dateDataNascimento.ResetText();
+            dateAdmissao.ResetText();
+            btnGravar.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnEditar.Enabled = false;
+
+        }
+
+        private void mskCEP_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                int cep = int.Parse(mskCEP.Text);
+                txEndereco.Text = acessar.RetornaLogradouroporCEP(cep);
+                txCidade.Text = acessar.RetornaCidadeporCEP(cep);
+                txBairro.Text = acessar.RetornaBairroporCEP(cep);
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult resultado = MessageBox.Show("Realizar alterações?","Aviso",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+
+                if (resultado == System.Windows.Forms.DialogResult.No)
+                {
+                    MessageBox.Show("Operação cancelada!");
+                    LimparCampos();
+                }
+                else
+                {
+                    int _idFuncionario = int.Parse(txIdFuncionario.Text);
+                    string _nome = txNomeFuncionario.Text.ToUpper();
+                    int _cep = int.Parse(mskCEP.Text);
+                    int _numero = int.Parse(txNumero.Text);
+                    string _complemento = txComplemento.Text.ToUpper();
+                    string _telfixo = mskTelefoneFixo.Text;
+                    string _telcel = mskTelefoneCelular.Text;
+                    string _cpf = mskCPF.Text;
+                    string _id = txIdentidade.Text.ToUpper();
+                    string _dtNascimento = dateDataNascimento.Value.ToShortDateString();
+                    string _dtAdmissao = dateAdmissao.Value.ToShortDateString();
+                    string _funcao = txFuncao.Text.ToUpper();
+                    string _regprof = txRegistroProfissional.Text.ToUpper();
+
+                    string _OriginalBairro = dtgDados.CurrentRow.Cells["Bairro"].Value.ToString();
+                    string _OriginalCidade = dtgDados.CurrentRow.Cells["Cidade"].Value.ToString();
+                    string _OriginalComp = dtgDados.CurrentRow.Cells["Comp"].Value.ToString();
+                    Endereco.Text = dtgDados.CurrentRow.Cells["End"].Value.ToString();
+                    txFuncao.Text = dtgDados.CurrentRow.Cells["Função"].Value.ToString();
+                    txIdentidade.Text = dtgDados.CurrentRow.Cells["Identidade"].Value.ToString();
+                    txIdFuncionario.Text = dtgDados.CurrentRow.Cells["Id"].Value.ToString();
+                    txNomeFuncionario.Text = dtgDados.CurrentRow.Cells["Nome"].Value.ToString();
+                    txNumero.Text = dtgDados.CurrentRow.Cells[5].Value.ToString();
+                    txRegistroProfissional.Text = dtgDados.CurrentRow.Cells["Reg Profissional"].Value.ToString();
+                    mskCEP.Text = dtgDados.CurrentRow.Cells["CEP"].Value.ToString();
+                    mskCPF.Text = dtgDados.CurrentRow.Cells["CPF"].Value.ToString();
+                    mskTelefoneCelular.Text = dtgDados.CurrentRow.Cells["Tel Celular"].Value.ToString();
+                    mskTelefoneFixo.Text = dtgDados.CurrentRow.Cells["Tel Fixo"].Value.ToString();
+                    dateAdmissao.Value = (DateTime)dtgDados.CurrentRow.Cells["DT Admissao"].Value;
+                    dateDataNascimento.Value = (DateTime)dtgDados.CurrentRow.Cells["DT Nascimento"].Value;
+                    
+
+
+
+
+                    frmCadastraFuncionario_Load(sender, e);
+                }
+
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+
         }
     }
 }

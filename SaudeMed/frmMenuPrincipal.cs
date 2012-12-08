@@ -25,7 +25,7 @@ namespace SaudeMed
         private void gerenciarFuncionáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCadastraFuncionario funcionarios = new frmCadastraFuncionario();
-            funcionarios.Show();
+            funcionarios.ShowDialog();
         }
     }
 }
