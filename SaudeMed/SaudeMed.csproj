@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{06CF3366-DE81-4776-A393-DD9FC023CE72}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SaudeMed</RootNamespace>
+    <AssemblyName>SaudeMed</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icone.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AcessaDados.cs" />
+    <Compile Include="BDSAUDEMEDDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BDSAUDEMEDDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente.cs" />
+    <Compile Include="ComponenteTextbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ComponenteTextbox.Designer.cs">
+      <DependentUpon>ComponenteTextbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCadastraFuncionario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCadastraFuncionario.Designer.cs">
+      <DependentUpon>frmCadastraFuncionario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCadastrarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCadastrarUsuario.Designer.cs">
+      <DependentUpon>frmCadastrarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenuPrincipal.Designer.cs">
+      <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmModelo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmModelo.Designer.cs">
+      <DependentUpon>frmModelo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Funcionario.cs" />
+    <Compile Include="ItensdeVenda.cs" />
+    <Compile Include="ItensProduto.cs" />
+    <Compile Include="Pessoa.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protudo.cs" />
+    <Compile Include="Venda.cs" />
+    <EmbeddedResource Include="ComponenteTextbox.resx">
+      <DependentUpon>ComponenteTextbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCadastraFuncionario.resx">
+      <DependentUpon>frmCadastraFuncionario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCadastrarUsuario.resx">
+      <DependentUpon>frmCadastrarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenuPrincipal.resx">
+      <DependentUpon>frmMenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmModelo.resx">
+      <DependentUpon>frmModelo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="BDSAUDEMEDDataSet1.xsc">
+      <DependentUpon>BDSAUDEMEDDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="BDSAUDEMEDDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BDSAUDEMEDDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BDSAUDEMEDDataSet1.xss">
+      <DependentUpon>BDSAUDEMEDDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sair.png" />
+    <None Include="Resources\atualizar.png" />
+    <None Include="Resources\editar.png" />
+    <None Include="Resources\salvar.gif" />
+    <None Include="Resources\confirmar.gif" />
+    <None Include="Resources\cancelar.png" />
+    <Content Include="icone.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

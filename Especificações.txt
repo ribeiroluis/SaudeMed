@@ -1,0 +1,3 @@
+fonte - Segoe UI 8,25 pt
+.Net 4.0
+icones - 24x24
