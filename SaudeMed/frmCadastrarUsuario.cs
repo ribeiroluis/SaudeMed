@@ -12,6 +12,9 @@ namespace SaudeMed
 {
     public partial class frmCadastrarUsuario : frmModelo
     {
+
+        AcessaDados acessar = new AcessaDados();
+
         public frmCadastrarUsuario()
         {
             InitializeComponent();
@@ -23,6 +26,11 @@ namespace SaudeMed
             this.fUNCIONARIOTableAdapter.Fill(this.bDSAUDEMEDDataSet.FUNCIONARIO);
             // TODO: This line of code loads data into the 'bDSAUDEMEDDataSet.FUNCIONARIO' table. You can move, or remove it, as needed.
             //this.fUNCIONARIOTableAdapter.Fill(this.bDSAUDEMEDDataSet.FUNCIONARIO);
+
+            int idfuncionario = (int)cbFuncionario.SelectedValue;
+
+            acessar.DadosUsuarios(idfuncionario);
+
         }
     }
 }

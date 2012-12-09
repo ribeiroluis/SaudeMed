@@ -72,11 +72,17 @@ namespace SaudeMed
             funcionario.DeletarFuncionario(idfuncionario);
         }
 
-        public string[] DadosUsuarios(int idfuncioanrio)
+        public string[] DadosUsuarios(int idfuncionario)
         {
-            string[] dados = new string[5];
-            dados[0] = idfuncioanrio.ToString();
-            dados[0] = 
+            USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
+            string[] dados = new string[6];
+            dados[0] = usuarios.RetornaIdUsuario(idfuncionario).ToString();
+            dados[1] = idfuncionario.ToString();
+            dados[2] = usuarios.RetornaLogin(idfuncionario).ToString();
+            dados[3] = usuarios.RetornaLogin(idfuncionario).ToString();
+            dados[4] = usuarios.RetornaSenha(idfuncionario).ToString();
+            dados[5] = usuarios.RetornaPermissaototal(idfuncionario).ToString();
+            return dados;
         }
 
     }

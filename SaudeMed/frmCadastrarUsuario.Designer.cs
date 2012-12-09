@@ -201,7 +201,6 @@
             this.tableAdapterManager.ITENSDEVENDATableAdapter = null;
             this.tableAdapterManager.PRODUTOTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = SaudeMed.BDSAUDEMEDDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.URUARIOSTableAdapter = null;
             this.tableAdapterManager.VENDATableAdapter = null;
             // 
             // textBox4
