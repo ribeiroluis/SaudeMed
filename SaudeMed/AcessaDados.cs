@@ -57,16 +57,13 @@ namespace SaudeMed
             funcionario.Inserir(nome, cep, numero, comp, telfixo, telcel, cpf, id, dtnascimento, admissao, funcao, regprofissional);
         }
 
-        public void Editar(string nome, int cep, int numero, string comp, string telfixo, string telcel, string cpf, string identidade, DateTime dtnascimento, DateTime admissao, 
-            string funcao, string regprofissional, int idfuncionario, int originalID, string Originalnome, int Originalcep, int Originalnumero, string Originalcomp, 
-            string Originaltelfixo, string Originaltelcel, string Originalcpf, string Originalidentidade, DateTime Originaldtnascimento, 
-            DateTime Originaladmissao, string Originalfuncao, string Originalregprofissional)
+        public void Editar(string nome, int cep, int numero, string comp, string telfixo, string telcel, string cpf, string identidade, string dtnascimento, string admissao, 
+            string funcao, string regprofissional, int idfuncionario, int originalID)
         {
             FUNCIONARIOTableAdapter funcionario = new FUNCIONARIOTableAdapter();
-            //funcionario.Update(nome,cep,numero,comp,telfixo,telcel,cpf,id,dtnascimento,admissao,funcao,regprofissional,
-            funcionario.Update(nome, cep, numero, comp, telfixo, telcel, cpf, identidade, dtnascimento, admissao, funcao, regprofissional, originalID, Originalnome,
-                Originalcep, Originalnumero, Originalcomp, Originaltelfixo, Originaltelcel,Originalcpf, Originalidentidade, Originaldtnascimento, Originaladmissao,
-                Originalfuncao, Originalregprofissional);
+            funcionario.AtualizarFuncionario(nome, cep, numero, comp, telfixo, telcel, cpf, identidade, dtnascimento, admissao, funcao, 
+                regprofissional, originalID);
+            
         }
 
         public void Excluir(int idfuncionario)

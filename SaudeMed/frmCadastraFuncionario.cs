@@ -81,9 +81,8 @@ namespace SaudeMed
                     string _regprof = txRegistroProfissional.Text.ToUpper();
                     acessar.Gravar(_nome, _cep, _numero, _complemento, _telfixo, _telcel, _cpf, _id, _dtNascimento, _dtAdmissao, _funcao, _regprof);
                     btnGravar.Enabled = false;
-                    txNomeFuncionario.Clear();
-                    mskCEP.Clear();
-                    //continuar
+                    LimparCampos();
+                    MessageBox.Show("Dados salvos com sucesso!");
                     frmCadastraFuncionario_Load(sender, e);
                 }
 
@@ -214,7 +213,7 @@ namespace SaudeMed
             txIdentidade.Text = dtgDados.CurrentRow.Cells["Identidade"].Value.ToString();
             txIdFuncionario.Text = dtgDados.CurrentRow.Cells["Id"].Value.ToString();
             txNomeFuncionario.Text = dtgDados.CurrentRow.Cells["Nome"].Value.ToString();
-            txNumero.Text = dtgDados.CurrentRow.Cells[5].Value.ToString();
+            txNumero.Text = dtgDados.CurrentRow.Cells["Nº"].Value.ToString();
             txRegistroProfissional.Text = dtgDados.CurrentRow.Cells["Reg Profissional"].Value.ToString();
             mskCEP.Text = dtgDados.CurrentRow.Cells["CEP"].Value.ToString();
             mskCPF.Text = dtgDados.CurrentRow.Cells["CPF"].Value.ToString();
@@ -287,31 +286,15 @@ namespace SaudeMed
                     string _telcel = mskTelefoneCelular.Text;
                     string _cpf = mskCPF.Text;
                     string _identidade = txIdentidade.Text.ToUpper();
-                    DateTime _dtNascimento = (DateTime)dateDataNascimento.Value; ;
-                    DateTime _dtAdmissao = (DateTime)dateAdmissao.Value;
+                    string _dtNascimento = dateDataNascimento.Value.ToShortDateString();
+                    string _dtAdmissao = dateAdmissao.Value.ToShortDateString();
                     string _funcao = txFuncao.Text.ToUpper();
-                    string _regprof = txRegistroProfissional.Text.ToUpper();
-
-                    string _OriginalBairro = dtgDados.CurrentRow.Cells["Bairro"].Value.ToString();
-                    string _OriginalCidade = dtgDados.CurrentRow.Cells["Cidade"].Value.ToString();
-                    string _OriginalComp = dtgDados.CurrentRow.Cells["Comp"].Value.ToString();
-                    string _OriginalEndereco = dtgDados.CurrentRow.Cells["End"].Value.ToString();
-                    string _OriginalFuncao = dtgDados.CurrentRow.Cells["Função"].Value.ToString();
-                    string _OriginalIdentidade = dtgDados.CurrentRow.Cells["Identidade"].Value.ToString();
-                    int _OriginalID = int.Parse(dtgDados.CurrentRow.Cells["Id"].Value.ToString());
-                    string _OriginalNome = dtgDados.CurrentRow.Cells["Nome"].Value.ToString();
-                    int _OriginalNumero = int.Parse(dtgDados.CurrentRow.Cells[5].Value.ToString());
-                    string _OriginalRegProfissional = dtgDados.CurrentRow.Cells["Reg Profissional"].Value.ToString();
-                    int _OriginalCEP = int.Parse(dtgDados.CurrentRow.Cells["CEP"].Value.ToString());
-                    string _OriginalCPF = dtgDados.CurrentRow.Cells["CPF"].Value.ToString();
-                    string _OriginalTelCelular = dtgDados.CurrentRow.Cells["Tel Celular"].Value.ToString();
-                    string _OriginalTelFixo = dtgDados.CurrentRow.Cells["Tel Fixo"].Value.ToString();
-                    DateTime _OriginalDataAdmissao = (DateTime)dtgDados.CurrentRow.Cells["DT Admissao"].Value;
-                    DateTime _OriginalDataNascimento = (DateTime)dtgDados.CurrentRow.Cells["DT Nascimento"].Value;
+                    string _regprof = txRegistroProfissional.Text.ToUpper();                   
+                    int _OriginalID = int.Parse(dtgDados.CurrentRow.Cells["Id"].Value.ToString());                    
                     acessar.Editar(_nome, _cep, _numero, _complemento, _telfixo, _telcel, _cpf, _identidade, _dtNascimento, _dtAdmissao, _funcao, _regprof,
-                        _idFuncionario, _OriginalID, _OriginalNome, _OriginalCEP, _OriginalNumero, _OriginalComp, _OriginalTelFixo, _OriginalTelCelular,
-                        _OriginalCPF, _OriginalIdentidade, _OriginalDataNascimento, _OriginalDataAdmissao, _OriginalFuncao, _OriginalRegProfissional);                    
-                    frmCadastraFuncionario_Load(sender, e);                    
+                        _idFuncionario, _OriginalID);                    
+                    frmCadastraFuncionario_Load(sender, e);
+                    LimparCampos();
                 }
 
             }
@@ -327,8 +310,19 @@ namespace SaudeMed
         {
             try
             {
-                int id = int.Parse(dtgDados.CurrentRow.Cells["Id"].Value.ToString());
-                acessar.Excluir(id);
+                DialogResult resultado = MessageBox.Show("Deseja realmente excluir o registro?", "Ateção", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                if (resultado == System.Windows.Forms.DialogResult.No)
+                {
+                    MessageBox.Show("Operação cancelada!");
+                    LimparCampos();
+                }
+                else
+                {
+                    int id = int.Parse(dtgDados.CurrentRow.Cells["Id"].Value.ToString());
+                    acessar.Excluir(id);
+                    frmCadastraFuncionario_Load(sender, e);
+                    LimparCampos();
+                }
                 
             }
             catch (Exception err)
