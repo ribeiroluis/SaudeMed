@@ -370,9 +370,9 @@
             this.btnListar.Image = global::SaudeMed.Properties.Resources.atualizar;
             this.btnListar.Location = new System.Drawing.Point(284, 5);
             this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(88, 36);
+            this.btnListar.Size = new System.Drawing.Size(94, 36);
             this.btnListar.TabIndex = 4;
-            this.btnListar.Text = "Listar";
+            this.btnListar.Text = "Atualizar";
             this.btnListar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnListar.UseVisualStyleBackColor = true;
             this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
@@ -389,6 +389,7 @@
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnEditar
             // 

@@ -16,7 +16,7 @@
     <Shape ID="DesignTable:VENDA" ZOrder="17" X="604" Y="70" Height="190" Width="181" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="143" />
     <Shape ID="DesignTable:BUSCPAPORCEP" ZOrder="6" X="1133" Y="475" Height="156" Width="234" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="109" />
     <Shape ID="DesignTable:URUARIOS" ZOrder="7" X="865" Y="353" Height="156" Width="204" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="109" />
-    <Shape ID="DesignTable:FUNCIONARIO" ZOrder="1" X="1455" Y="70" Height="362" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="273" />
+    <Shape ID="DesignTable:FUNCIONARIO" ZOrder="1" X="1455" Y="70" Height="476" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="273" />
     <Shape ID="DesignTable:ViewTabelaFuncionarios" ZOrder="2" X="1751" Y="70" Height="275" Width="280" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="228" />
   </Shapes>
   <Connectors>

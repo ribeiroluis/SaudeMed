@@ -69,5 +69,11 @@ namespace SaudeMed
                 Originalfuncao, Originalregprofissional);
         }
 
+        public void Excluir(int idfuncionario)
+        {
+            FUNCIONARIOTableAdapter funcionario = new FUNCIONARIOTableAdapter();
+            funcionario.DeletarFuncionario(idfuncionario);
+        }
+
     }
 }
