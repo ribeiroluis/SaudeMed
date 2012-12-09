@@ -45,6 +45,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.fUNCIONARIOTableAdapter = new SaudeMed.BDSAUDEMEDDataSetTableAdapters.FUNCIONARIOTableAdapter();
             this.tableAdapterManager = new SaudeMed.BDSAUDEMEDDataSetTableAdapters.TableAdapterManager();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fUNCIONARIOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bDSAUDEMEDDataSet)).BeginInit();
             this.SuspendLayout();
@@ -146,7 +148,6 @@
             this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnConfirmar.UseVisualStyleBackColor = true;
-            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // btnCancelar
             // 
@@ -203,11 +204,30 @@
             this.tableAdapterManager.URUARIOSTableAdapter = null;
             this.tableAdapterManager.VENDATableAdapter = null;
             // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(123, 25);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(34, 25);
+            this.textBox4.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(94, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(23, 17);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "ID:";
+            // 
             // frmCadastrarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(491, 407);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnCancelar);
@@ -220,8 +240,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbFuncionario);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "frmCadastrarUsuario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SaudeMed - Gerenciar Usuario";
             this.Load += new System.EventHandler(this.frmCadastrarUsuario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.fUNCIONARIOBindingSource)).EndInit();
@@ -249,5 +271,7 @@
         private System.Windows.Forms.BindingSource fUNCIONARIOBindingSource;
         private BDSAUDEMEDDataSetTableAdapters.FUNCIONARIOTableAdapter fUNCIONARIOTableAdapter;
         private BDSAUDEMEDDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -10862,11 +10862,18 @@ SELECT IDUSUARIO, IDFUNCIONARIO, LOGIN, SENHA, PERMICAOTOTAL FROM URUARIOS WHERE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT IDUSUARIO, IDFUNCIONARIO, LOGIN, SENHA, PERMICAOTOTAL FROM dbo.URUARIOS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        @parameter AS PARAMETRO\r\nFROM            URUARIOS\r\nWHERE        (ID" +
+                "FUNCIONARIO = @idfuncionario)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@parameter", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idfuncionario", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDFUNCIONARIO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11106,6 +11113,46 @@ SELECT IDUSUARIO, IDFUNCIONARIO, LOGIN, SENHA, PERMICAOTOTAL FROM URUARIOS WHERE
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(global::System.Nullable<int> IDFUNCIONARIO, string LOGIN, string SENHA, global::System.Nullable<bool> PERMICAOTOTAL, int Original_IDUSUARIO, global::System.Nullable<int> Original_IDFUNCIONARIO, string Original_LOGIN, string Original_SENHA, global::System.Nullable<bool> Original_PERMICAOTOTAL) {
             return this.Update(IDFUNCIONARIO, LOGIN, SENHA, PERMICAOTOTAL, Original_IDUSUARIO, Original_IDFUNCIONARIO, Original_LOGIN, Original_SENHA, Original_PERMICAOTOTAL, Original_IDUSUARIO);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual object RetornaDadoSolicitado(string parameter, global::System.Nullable<int> idfuncionario) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            if ((parameter == null)) {
+                throw new global::System.ArgumentNullException("parameter");
+            }
+            else {
+                command.Parameters[0].Value = ((string)(parameter));
+            }
+            if ((idfuncionario.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(idfuncionario.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
