@@ -291,19 +291,19 @@ namespace SaudeMed
                     string _OriginalBairro = dtgDados.CurrentRow.Cells["Bairro"].Value.ToString();
                     string _OriginalCidade = dtgDados.CurrentRow.Cells["Cidade"].Value.ToString();
                     string _OriginalComp = dtgDados.CurrentRow.Cells["Comp"].Value.ToString();
-                    Endereco.Text = dtgDados.CurrentRow.Cells["End"].Value.ToString();
-                    txFuncao.Text = dtgDados.CurrentRow.Cells["Função"].Value.ToString();
-                    txIdentidade.Text = dtgDados.CurrentRow.Cells["Identidade"].Value.ToString();
-                    txIdFuncionario.Text = dtgDados.CurrentRow.Cells["Id"].Value.ToString();
-                    txNomeFuncionario.Text = dtgDados.CurrentRow.Cells["Nome"].Value.ToString();
-                    txNumero.Text = dtgDados.CurrentRow.Cells[5].Value.ToString();
-                    txRegistroProfissional.Text = dtgDados.CurrentRow.Cells["Reg Profissional"].Value.ToString();
-                    mskCEP.Text = dtgDados.CurrentRow.Cells["CEP"].Value.ToString();
-                    mskCPF.Text = dtgDados.CurrentRow.Cells["CPF"].Value.ToString();
-                    mskTelefoneCelular.Text = dtgDados.CurrentRow.Cells["Tel Celular"].Value.ToString();
-                    mskTelefoneFixo.Text = dtgDados.CurrentRow.Cells["Tel Fixo"].Value.ToString();
-                    dateAdmissao.Value = (DateTime)dtgDados.CurrentRow.Cells["DT Admissao"].Value;
-                    dateDataNascimento.Value = (DateTime)dtgDados.CurrentRow.Cells["DT Nascimento"].Value;
+                    string _OriginalEndereco = dtgDados.CurrentRow.Cells["End"].Value.ToString();
+                    string _OriginalFuncao = dtgDados.CurrentRow.Cells["Função"].Value.ToString();
+                    string _OriginalIdentidade = dtgDados.CurrentRow.Cells["Identidade"].Value.ToString();
+                    int _OriginalID = int.Parse(dtgDados.CurrentRow.Cells["Id"].Value.ToString());
+                    string _OriginalNome = dtgDados.CurrentRow.Cells["Nome"].Value.ToString();
+                    int _OriginalNumero = int.Parse(dtgDados.CurrentRow.Cells[5].Value.ToString());
+                    string _OriginalRegProfissional = dtgDados.CurrentRow.Cells["Reg Profissional"].Value.ToString();
+                    string _OriginalCEP = dtgDados.CurrentRow.Cells["CEP"].Value.ToString();
+                    string _OriginalCPF = dtgDados.CurrentRow.Cells["CPF"].Value.ToString();
+                    string _OriginalTelCelular = dtgDados.CurrentRow.Cells["Tel Celular"].Value.ToString();
+                    string _OriginalTelFixo = dtgDados.CurrentRow.Cells["Tel Fixo"].Value.ToString();
+                    DateTime _OriginalDataAdmissao = (DateTime)dtgDados.CurrentRow.Cells["DT Admissao"].Value;
+                    DateTime _OriginalDataNascimento = (DateTime)dtgDados.CurrentRow.Cells["DT Nascimento"].Value;
                     
 
 
