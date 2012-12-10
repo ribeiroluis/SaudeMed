@@ -15,8 +15,8 @@ namespace SaudeMed
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmMenuPrincipal());
-            Application.Run(new frmCadastrarUsuario());
+            Application.Run(new frmMenuPrincipal());
+            //Application.Run(new frmCadastrarUsuario());
         }
     }
 }

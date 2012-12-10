@@ -19,7 +19,7 @@ namespace SaudeMed
         private void gerenciarUsuáriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCadastrarUsuario usuarios = new frmCadastrarUsuario();            
-            usuarios.Show();
+            usuarios.ShowDialog();
         }
 
         private void gerenciarFuncionáriosToolStripMenuItem_Click(object sender, EventArgs e)

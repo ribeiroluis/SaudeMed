@@ -85,5 +85,21 @@ namespace SaudeMed
             return dados;
         }
 
+        public int RetornaseUsuarioCadastrado(int idfuncionairo)
+        {
+            USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
+            var idusuario = usuarios.RetornaIdUsuario(idfuncionairo);
+            if (idusuario == null)
+                return 0;
+            else
+                return 1;
+        }
+        public string RetornaLoginUsuario(int idfuncionario)
+        {
+            USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
+            string login = usuarios.RetornaIdUsuario(idfuncionario).ToString();
+            return login;
+        }
+
     }
 }

@@ -34,14 +34,14 @@
             this.fUNCIONARIOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bDSAUDEMEDDataSet = new SaudeMed.BDSAUDEMEDDataSet();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txLogin = new System.Windows.Forms.TextBox();
+            this.txSenha = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txConfirmarSenha = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbControleTotal = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.fUNCIONARIOTableAdapter = new SaudeMed.BDSAUDEMEDDataSetTableAdapters.FUNCIONARIOTableAdapter();
             this.tableAdapterManager = new SaudeMed.BDSAUDEMEDDataSetTableAdapters.TableAdapterManager();
@@ -71,6 +71,7 @@
             this.cbFuncionario.Size = new System.Drawing.Size(278, 25);
             this.cbFuncionario.TabIndex = 1;
             this.cbFuncionario.ValueMember = "IDFUNCIONARIO";
+            this.cbFuncionario.SelectedValueChanged += new System.EventHandler(this.cbFuncionario_SelectedValueChanged);
             // 
             // fUNCIONARIOBindingSource
             // 
@@ -91,22 +92,22 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Login:";
             // 
-            // textBox1
+            // txLogin
             // 
-            this.textBox1.Location = new System.Drawing.Point(123, 126);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(278, 25);
-            this.textBox1.TabIndex = 3;
+            this.txLogin.Location = new System.Drawing.Point(123, 126);
+            this.txLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txLogin.Name = "txLogin";
+            this.txLogin.Size = new System.Drawing.Size(278, 25);
+            this.txLogin.TabIndex = 3;
             // 
-            // textBox2
+            // txSenha
             // 
-            this.textBox2.Location = new System.Drawing.Point(123, 159);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(140, 25);
-            this.textBox2.TabIndex = 4;
+            this.txSenha.Location = new System.Drawing.Point(123, 159);
+            this.txSenha.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txSenha.Name = "txSenha";
+            this.txSenha.PasswordChar = '*';
+            this.txSenha.Size = new System.Drawing.Size(140, 25);
+            this.txSenha.TabIndex = 4;
             // 
             // label3
             // 
@@ -117,14 +118,14 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Senha:";
             // 
-            // textBox3
+            // txConfirmarSenha
             // 
-            this.textBox3.Location = new System.Drawing.Point(123, 192);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.PasswordChar = '*';
-            this.textBox3.Size = new System.Drawing.Size(140, 25);
-            this.textBox3.TabIndex = 5;
+            this.txConfirmarSenha.Location = new System.Drawing.Point(123, 192);
+            this.txConfirmarSenha.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txConfirmarSenha.Name = "txConfirmarSenha";
+            this.txConfirmarSenha.PasswordChar = '*';
+            this.txConfirmarSenha.Size = new System.Drawing.Size(140, 25);
+            this.txConfirmarSenha.TabIndex = 5;
             // 
             // label4
             // 
@@ -148,6 +149,7 @@
             this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // btnCancelar
             // 
@@ -161,20 +163,21 @@
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // comboBox2
+            // cbControleTotal
             // 
-            this.comboBox2.DisplayMember = "IDFUNCIONARIO";
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "SIM",
-            "NAO"});
-            this.comboBox2.Location = new System.Drawing.Point(123, 93);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(94, 25);
-            this.comboBox2.TabIndex = 2;
-            this.comboBox2.ValueMember = "IDFUNCIONARIO";
+            this.cbControleTotal.DisplayMember = "IDFUNCIONARIO";
+            this.cbControleTotal.FormattingEnabled = true;
+            this.cbControleTotal.Items.AddRange(new object[] {
+            "NAO",
+            "SIM"});
+            this.cbControleTotal.Location = new System.Drawing.Point(123, 93);
+            this.cbControleTotal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbControleTotal.Name = "cbControleTotal";
+            this.cbControleTotal.Size = new System.Drawing.Size(94, 25);
+            this.cbControleTotal.TabIndex = 2;
+            this.cbControleTotal.ValueMember = "IDFUNCIONARIO";
             // 
             // label5
             // 
@@ -201,6 +204,7 @@
             this.tableAdapterManager.ITENSDEVENDATableAdapter = null;
             this.tableAdapterManager.PRODUTOTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = SaudeMed.BDSAUDEMEDDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.USUARIOSTableAdapter = null;
             this.tableAdapterManager.VENDATableAdapter = null;
             // 
             // textBox4
@@ -227,19 +231,19 @@
             this.ClientSize = new System.Drawing.Size(491, 407);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cbControleTotal);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txConfirmarSenha);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txSenha);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txLogin);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbFuncionario);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "frmCadastrarUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -257,14 +261,14 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbFuncionario;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txLogin;
+        private System.Windows.Forms.TextBox txSenha;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txConfirmarSenha;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbControleTotal;
         private System.Windows.Forms.Label label5;
         private BDSAUDEMEDDataSet bDSAUDEMEDDataSet;
         private System.Windows.Forms.BindingSource fUNCIONARIOBindingSource;
