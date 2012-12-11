@@ -11,9 +11,12 @@ namespace SaudeMed
 {
     public partial class frmMenuPrincipal : frmModelo
     {
-        public frmMenuPrincipal()
+        bool acessoTotal;
+        public frmMenuPrincipal(bool acesso)
         {
             InitializeComponent();
+            acessoTotal = acesso;
+            LiberaAcessos();
         }
 
         private void gerenciarUsuáriosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -26,6 +29,22 @@ namespace SaudeMed
         {
             frmCadastraFuncionario funcionarios = new frmCadastraFuncionario();
             funcionarios.ShowDialog();
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void LiberaAcessos()
+        {
+            if (acessoTotal == false)
+            {
+                SubMenuFechamentoDia.Enabled = false;
+                SubMenuGerenciarFuncionarios.Enabled = false;
+                SubMenuGerenciarProdutos.Enabled = false;
+                SubMenuGerenciarUsuarios.Enabled = false;
+                SubMenuQuantItens.Enabled = false;
+            }
         }
     }
 }

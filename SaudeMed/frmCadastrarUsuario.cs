@@ -20,68 +20,62 @@ namespace SaudeMed
             InitializeComponent();
         }
 
-        private void frmCadastrarUsuario_Load(object sender, EventArgs e)
-        {
-
-            try
-            {
-                // TODO: This line of code loads data into the 'bDSAUDEMEDDataSet.FUNCIONARIO' table. You can move, or remove it, as needed.
-                this.fUNCIONARIOTableAdapter.Fill(this.bDSAUDEMEDDataSet.FUNCIONARIO);
-                // TODO: This line of code loads data into the 'bDSAUDEMEDDataSet.FUNCIONARIO' table. You can move, or remove it, as needed.
-                //this.fUNCIONARIOTableAdapter.Fill(this.bDSAUDEMEDDataSet.FUNCIONARIO);
-
-                int _idfuncionario = (int)cbFuncionario.SelectedValue;
-
-                if (acessar.RetornaseUsuarioCadastrado(_idfuncionario) == 0)
-                {
-                    MessageBox.Show("Usuario não cadastrado, cadastre-o!");
-                }
-                else
-                {
-                    txLogin.Text = acessar.RetornaLoginUsuario(_idfuncionario);
-                    //cbControleTotal.SelectedValue = acessar.login
-                }
-            }
-            catch (Exception err)
-            {
-
-                MessageBox.Show(err.ToString());
-            }
-        }
-
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            DialogResult resultado = MessageBox.Show("Deseja descartar as alterações?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (resultado == System.Windows.Forms.DialogResult.Yes)
-            {
-                this.Close();
-            }
+            this.Close();
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
 
-        }
-
-        public void GravarUsuario()
-        {
-
-        }
-
-        public void AlterarUsuario()
-        {
-
-        }
-
-        private void cbFuncionario_SelectedValueChanged(object sender, EventArgs e)
-        {
             try
             {
-                int _idfuncionario = (int)cbFuncionario.SelectedValue;
-
-                if (acessar.RetornaseUsuarioCadastrado(_idfuncionario) == 0)
+                if (txSenha.Text.Equals(txConfirmarSenha.Text))
                 {
-                    MessageBox.Show("Usuario não cadastrado, cadastre-o!");
+                    if (acessar.Usuarios_RetornaLoginUsuario(txLogin.Text))
+                    {
+                        if (cbControleTotal.SelectedItem.ToString().Equals("SIM"))
+                        {
+                            DialogResult Resultado2 = MessageBox.Show("Liberar total acesso?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                            if (Resultado2 == System.Windows.Forms.DialogResult.Yes)
+                            {
+                                acessar.Usuarios_Editar((int)cb_fucionario.SelectedValue, txLogin.Text, txSenha.Text, true);
+                            }
+                            else
+                            {
+                                acessar.Usuarios_Editar((int)cb_fucionario.SelectedValue, txLogin.Text, txSenha.Text, false);
+                            }
+                            //fim if5
+                        }//fim if4
+                        else
+                        {
+                            acessar.Usuarios_Editar((int)cb_fucionario.SelectedValue, txLogin.Text, txSenha.Text, false);
+                        }
+                    }//fim if3
+                    //fim if 
+                    else
+                    {
+                        if (cbControleTotal.SelectedItem.ToString().Equals("SIM"))
+                        {
+                            DialogResult Resultado3 = MessageBox.Show("Liberar total acesso?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                            if (Resultado3 == System.Windows.Forms.DialogResult.Yes)
+                            {
+                                acessar.Usuarios_Gravar((int)cb_fucionario.SelectedValue, txLogin.Text, txSenha.Text, true);
+                            }
+                            else
+                            {
+                                acessar.Usuarios_Gravar((int)cb_fucionario.SelectedValue, txLogin.Text, txSenha.Text, false);
+                            }
+                        }
+                        else
+                        {
+                            acessar.Usuarios_Gravar((int)cb_fucionario.SelectedValue, txLogin.Text, txSenha.Text, false);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Senhas não conferem, verifique!");
                 }
             }
             catch (Exception err)
@@ -89,6 +83,35 @@ namespace SaudeMed
 
                 MessageBox.Show(err.Message);
             }
+            finally
+            {
+                txLogin.Clear();
+                txConfirmarSenha.Clear();
+                txSenha.Clear();
+                cbControleTotal.Refresh();
+            }
+            
+        }
+
+        public void verificaUsuarioCadastrado()
+        {
+            txLogin.Text = acessar.Usuarios_RetornaLoginPorIDFuncionario((int)cb_fucionario.SelectedValue);
+            if (!txLogin.Text.Equals(""))
+            {
+                MessageBox.Show("Já existe este login cadastrado, para o selecionado", "Atenção");
+                txIDLogin.Text = acessar.Usuarios_RetornaIDLogin((int)cb_fucionario.SelectedValue).ToString();
+            }
+        }
+        private void frmCadastrarUsuario_Load(object sender, EventArgs e)
+        {
+            // TODO: esta linha de código carrega dados na tabela 'bDSAUDEMEDDataSet.FUNCIONARIO'. Você pode movê-la ou removê-la conforme necessário.
+            this.fUNCIONARIOTableAdapter.Fill(this.bDSAUDEMEDDataSet.FUNCIONARIO);
+            verificaUsuarioCadastrado();
+        }
+
+        private void cb_fucionario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            verificaUsuarioCadastrado();
         }
     }
 }

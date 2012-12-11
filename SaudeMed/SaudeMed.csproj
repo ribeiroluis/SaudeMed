@@ -87,6 +87,18 @@
     <Compile Include="frmModelo.Designer.cs">
       <DependentUpon>frmModelo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTelaLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTelaLogin.Designer.cs">
+      <DependentUpon>frmTelaLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTelaSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTelaSplash.Designer.cs">
+      <DependentUpon>frmTelaSplash.cs</DependentUpon>
+    </Compile>
     <Compile Include="Funcionario.cs" />
     <Compile Include="ItensdeVenda.cs" />
     <Compile Include="ItensProduto.cs" />
@@ -109,6 +121,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmModelo.resx">
       <DependentUpon>frmModelo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTelaLogin.resx">
+      <DependentUpon>frmTelaLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTelaSplash.resx">
+      <DependentUpon>frmTelaSplash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -146,6 +164,7 @@
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\1355246967_Login Manager.png" />
     <None Include="Resources\sair.png" />
     <None Include="Resources\atualizar.png" />
     <None Include="Resources\editar.png" />

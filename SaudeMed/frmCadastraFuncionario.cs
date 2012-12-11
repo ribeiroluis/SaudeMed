@@ -27,9 +27,9 @@ namespace SaudeMed
                 if (e.KeyChar == 13)
                 {
                     int cep = int.Parse(mskCEP.Text);
-                    txEndereco.Text = acessar.RetornaLogradouroporCEP(cep);
-                    txCidade.Text = acessar.RetornaCidadeporCEP(cep);
-                    txBairro.Text = acessar.RetornaBairroporCEP(cep);
+                    txEndereco.Text = acessar.Endereco_RetornaLogradouroporCEP(cep);
+                    txCidade.Text = acessar.Endereco_RetornaCidadeporCEP(cep);
+                    txBairro.Text = acessar.Endereco_RetornaLogradouroporCEP(cep);
                     this.SelectNextControl(this.ActiveControl, false, true, true, true);
                 }
             }
@@ -44,7 +44,7 @@ namespace SaudeMed
         {
             try
             {
-                dtgDados.DataSource = acessar.RetornaTabelaFuncionarios();
+                dtgDados.DataSource = acessar.ViewTabelaFuncionario_RetornaTabelaFuncionarios();
                 btnEditar.Enabled = false;
                 btnExcluir.Enabled = false;
                 btnGravar.Enabled = false;
@@ -61,7 +61,7 @@ namespace SaudeMed
         {
             try
             {
-                if (txNomeFuncionario.Text.Equals(acessar.RetornaNomeJaCadastrado(txNomeFuncionario.Text)))
+                if (txNomeFuncionario.Text.Equals(acessar.Funcionario_RetornaNomeJaCadastrado(txNomeFuncionario.Text)))
                 {
                     MessageBox.Show("Nome já casatrado, experimente editar");
                 }
@@ -79,7 +79,7 @@ namespace SaudeMed
                     string _dtAdmissao = dateAdmissao.Value.ToShortDateString();
                     string _funcao = txFuncao.Text.ToUpper();
                     string _regprof = txRegistroProfissional.Text.ToUpper();
-                    acessar.Gravar(_nome, _cep, _numero, _complemento, _telfixo, _telcel, _cpf, _id, _dtNascimento, _dtAdmissao, _funcao, _regprof);
+                    acessar.Funcionario_Gravar(_nome, _cep, _numero, _complemento, _telfixo, _telcel, _cpf, _id, _dtNascimento, _dtAdmissao, _funcao, _regprof);
                     btnGravar.Enabled = false;
                     LimparCampos();
                     MessageBox.Show("Dados salvos com sucesso!");
@@ -123,7 +123,7 @@ namespace SaudeMed
                 string nome = txNomeFuncionario.Text;
                 txNomeFuncionario.Clear();
                 txNomeFuncionario.Text = nome.ToUpper();
-                string testanome = acessar.RetornaNomeJaCadastrado(nome);
+                string testanome = acessar.Funcionario_RetornaNomeJaCadastrado(nome);
                 if (testanome.Equals(txNomeFuncionario.Text))
                 {
                     if (btnExcluir.Enabled || btnEditar.Enabled)
@@ -161,7 +161,7 @@ namespace SaudeMed
                 string nome = txNomeFuncionario.Text;
                 txNomeFuncionario.Clear();
                 txNomeFuncionario.Text = nome.ToUpper();
-                string testanome = acessar.RetornaNomeJaCadastrado(nome);
+                string testanome = acessar.Funcionario_RetornaNomeJaCadastrado(nome);
                 if (testanome.Equals(txNomeFuncionario.Text))
                 {
                     if (btnExcluir.Enabled || btnEditar.Enabled)
@@ -253,9 +253,9 @@ namespace SaudeMed
             try
             {
                 int cep = int.Parse(mskCEP.Text);
-                txEndereco.Text = acessar.RetornaLogradouroporCEP(cep);
-                txCidade.Text = acessar.RetornaCidadeporCEP(cep);
-                txBairro.Text = acessar.RetornaBairroporCEP(cep);
+                txEndereco.Text = acessar.Endereco_RetornaLogradouroporCEP(cep);
+                txCidade.Text = acessar.Endereco_RetornaCidadeporCEP(cep);
+                txBairro.Text = acessar.Endereco_RetornaBairroporCEP(cep);
             }
             catch (Exception err)
             {
@@ -291,7 +291,7 @@ namespace SaudeMed
                     string _funcao = txFuncao.Text.ToUpper();
                     string _regprof = txRegistroProfissional.Text.ToUpper();                   
                     int _OriginalID = int.Parse(dtgDados.CurrentRow.Cells["Id"].Value.ToString());                    
-                    acessar.Editar(_nome, _cep, _numero, _complemento, _telfixo, _telcel, _cpf, _identidade, _dtNascimento, _dtAdmissao, _funcao, _regprof,
+                    acessar.Funcionario_Editar(_nome, _cep, _numero, _complemento, _telfixo, _telcel, _cpf, _identidade, _dtNascimento, _dtAdmissao, _funcao, _regprof,
                         _idFuncionario, _OriginalID);                    
                     frmCadastraFuncionario_Load(sender, e);
                     LimparCampos();
@@ -319,7 +319,7 @@ namespace SaudeMed
                 else
                 {
                     int id = int.Parse(dtgDados.CurrentRow.Cells["Id"].Value.ToString());
-                    acessar.Excluir(id);
+                    acessar.Funcionario_Excluir(id);
                     frmCadastraFuncionario_Load(sender, e);
                     LimparCampos();
                 }
