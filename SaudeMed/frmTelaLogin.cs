@@ -21,7 +21,17 @@ namespace SaudeMed
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            acessar.usu
+            if (acessar.Usuarios_RetornaUsuarioValido(txLogin.Text, txSenha.Text))
+            {
+                bool acesso = acessar.Usuarios_RetornaAcessoUsuario(txLogin.Text);
+                int IdFuncionario = acessar.Usuarios_RetornaIDFuncionario(txLogin.Text);
+                this.Visible = false;
+                frmMenuPrincipal menu = new frmMenuPrincipal(acesso, IdFuncionario);
+                menu.ShowDialog();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Usuário ou senha incorreta!");
         }
     }
 }

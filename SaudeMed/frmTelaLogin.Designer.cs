@@ -33,8 +33,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txLogin = new System.Windows.Forms.TextBox();
+            this.txSenha = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,28 +93,28 @@
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // textBox1
+            // txLogin
             // 
-            this.textBox1.Location = new System.Drawing.Point(153, 56);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(163, 25);
-            this.textBox1.TabIndex = 12;
+            this.txLogin.Location = new System.Drawing.Point(153, 56);
+            this.txLogin.Name = "txLogin";
+            this.txLogin.Size = new System.Drawing.Size(163, 25);
+            this.txLogin.TabIndex = 12;
             // 
-            // textBox2
+            // txSenha
             // 
-            this.textBox2.Location = new System.Drawing.Point(153, 130);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PasswordChar = '*';
-            this.textBox2.Size = new System.Drawing.Size(163, 25);
-            this.textBox2.TabIndex = 13;
+            this.txSenha.Location = new System.Drawing.Point(153, 130);
+            this.txSenha.Name = "txSenha";
+            this.txSenha.PasswordChar = '*';
+            this.txSenha.Size = new System.Drawing.Size(163, 25);
+            this.txSenha.TabIndex = 13;
             // 
             // frmTelaLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 287);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txSenha);
+            this.Controls.Add(this.txLogin);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.label2);
@@ -138,7 +138,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnConfirmar;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txLogin;
+        private System.Windows.Forms.TextBox txSenha;
     }
 }

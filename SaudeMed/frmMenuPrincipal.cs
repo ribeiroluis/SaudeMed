@@ -12,7 +12,7 @@ namespace SaudeMed
     public partial class frmMenuPrincipal : frmModelo
     {
         bool acessoTotal;
-        public frmMenuPrincipal(bool acesso)
+        public frmMenuPrincipal(bool acesso, int idFuncionario)
         {
             InitializeComponent();
             acessoTotal = acesso;

@@ -19,13 +19,19 @@ namespace SaudeMed
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (progressBar1.Value < 100)
-                progressBar1.Value += 2;
+                progressBar1.Value += 5;
             else if (progressBar1.Value == 100)
+            {
                 this.Visible = false;
+                timer1.Enabled = false;
+                telaLogin();
+            }
         }
         private void telaLogin()
         {
- 
+            frmTelaLogin login = new frmTelaLogin();
+            login.ShowDialog();
+            this.Close();
         }
     }
 }
