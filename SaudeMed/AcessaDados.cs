@@ -13,7 +13,7 @@ namespace SaudeMed
         {
             ENDERECOTableAdapter endereco = new ENDERECOTableAdapter();
             string logradouro = endereco.PesquisaLogradouroPorCEP(cep);
-            return logradouro; 
+            return logradouro;
         }
 
         public string Endereco_RetornaCidadeporCEP(int cep)
@@ -32,16 +32,16 @@ namespace SaudeMed
         public string Funcionario_RetornaNomeJaCadastrado(string nome)
         {
             nome = nome.ToUpper();
-            nome = "%" + nome +"%";
+            nome = "%" + nome + "%";
             FUNCIONARIOTableAdapter funcionario = new FUNCIONARIOTableAdapter();
             string NomedaTabela = "";
             var pesquisa = funcionario.RetornarNomeFuncionario(nome);
-            if ( pesquisa != null)
+            if (pesquisa != null)
             {
                 NomedaTabela = pesquisa.ToString();
             }
             return NomedaTabela;
-            
+
         }
         public DataTable ViewTabelaFuncionario_RetornaTabelaFuncionarios()
         {
@@ -57,13 +57,13 @@ namespace SaudeMed
             funcionario.Inserir(nome, cep, numero, comp, telfixo, telcel, cpf, id, dtnascimento, admissao, funcao, regprofissional);
         }
 
-        public void Funcionario_Editar(string nome, int cep, int numero, string comp, string telfixo, string telcel, string cpf, string identidade, string dtnascimento, string admissao, 
+        public void Funcionario_Editar(string nome, int cep, int numero, string comp, string telfixo, string telcel, string cpf, string identidade, string dtnascimento, string admissao,
             string funcao, string regprofissional, int idfuncionario, int originalID)
         {
             FUNCIONARIOTableAdapter funcionario = new FUNCIONARIOTableAdapter();
-            funcionario.AtualizarFuncionario(nome, cep, numero, comp, telfixo, telcel, cpf, identidade, dtnascimento, admissao, funcao, 
+            funcionario.AtualizarFuncionario(nome, cep, numero, comp, telfixo, telcel, cpf, identidade, dtnascimento, admissao, funcao,
                 regprofissional, originalID);
-            
+
         }
 
         public void Funcionario_Excluir(int idfuncionario)
@@ -101,7 +101,7 @@ namespace SaudeMed
             USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
             usuarios.Insert(idfuncionario, login, senha, acesso);
         }
-        
+
         public void Usuarios_Editar(int idfuncionario, string login, string senha, bool acesso)
         {
             USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
@@ -124,7 +124,7 @@ namespace SaudeMed
         }
         public bool Usuarios_RetornaUsuarioValido(string login, string senha)
         {
-            USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();            
+            USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
             string _senha = usuarios.RetornaSenhaUsuario(login).ToString();
             if (_senha.Equals(senha))
             {
@@ -151,5 +151,41 @@ namespace SaudeMed
             return valor;
         }
 
+        public DataTable Produtos_RetornaDescricao()
+        {
+            PRODUTOTableAdapter produtos = new PRODUTOTableAdapter();
+            DataTable tabela = new DataTable();
+            tabela = produtos.GetData();
+            return tabela;
+        }
+
+        public DataTable ItensProduto_RetornaLote(int idproduto)
+        {
+            ITEMPRODUTOTableAdapter item = new ITEMPRODUTOTableAdapter();
+            DataTable tabela = new DataTable();
+            tabela = item.RetornaDataTableLotes(idproduto);
+            return tabela;
+        }
+        
+        public DataTable Produtos_RetornaDatatableBuscaCodBarras(string _codbarras)
+        {
+            PRODUTOTableAdapter produtos = new PRODUTOTableAdapter();
+            DataTable tabela = new DataTable();
+            tabela = produtos.RetornaDataTableConsultaCodBarras(_codbarras);
+            return tabela;
+        }
+
+        public bool Produtos_RetornaSeExisteCodBarras(string _codbarras)
+        {
+            PRODUTOTableAdapter produto = new PRODUTOTableAdapter();
+            var testa = produto.RetornaCodigodeBarras(_codbarras);
+            if (testa == null)
+                return false;
+            else
+                return true;
+                  
+        }
     }
 }
+        
+        

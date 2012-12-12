@@ -87,6 +87,12 @@
     <Compile Include="frmModelo.Designer.cs">
       <DependentUpon>frmModelo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmProdutos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProdutos.Designer.cs">
+      <DependentUpon>frmProdutos.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTelaLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmModelo.resx">
       <DependentUpon>frmModelo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProdutos.resx">
+      <DependentUpon>frmProdutos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTelaLogin.resx">
       <DependentUpon>frmTelaLogin.cs</DependentUpon>
