@@ -22,6 +22,7 @@ namespace SaudeMed
             string cidade = endereco.RetornaCidadePorCEP(cep);
             return cidade;
         }
+
         public string Endereco_RetornaBairroporCEP(int cep)
         {
             ENDERECOTableAdapter endereco = new ENDERECOTableAdapter();
@@ -43,6 +44,7 @@ namespace SaudeMed
             return NomedaTabela;
 
         }
+
         public DataTable ViewTabelaFuncionario_RetornaTabelaFuncionarios()
         {
             ViewTabelaFuncionariosTableAdapter tabelafuncionarios = new ViewTabelaFuncionariosTableAdapter();
@@ -96,6 +98,7 @@ namespace SaudeMed
             else
                 return true;
         }
+
         public void Usuarios_Gravar(int idfuncionario, string login, string senha, bool acesso)
         {
             USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
@@ -107,6 +110,7 @@ namespace SaudeMed
             USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
             usuarios.Atualizar(idfuncionario, senha, acesso, login);
         }
+
         public string Usuarios_RetornaLoginPorIDFuncionario(int idfuncionario)
         {
             USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
@@ -116,12 +120,14 @@ namespace SaudeMed
             else
                 return teste.ToString();
         }
+
         public int Usuarios_RetornaIDLogin(int idfuncionario)
         {
             USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
             int valor = (int)usuarios.RetornaIdUsuario(idfuncionario);
             return valor;
         }
+
         public bool Usuarios_RetornaUsuarioValido(string login, string senha)
         {
             USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
@@ -133,6 +139,7 @@ namespace SaudeMed
             else
                 return false;
         }
+
         public bool Usuarios_RetornaAcessoUsuario(string login)
         {
             USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
@@ -144,6 +151,7 @@ namespace SaudeMed
             else
                 return false;
         }
+
         public int Usuarios_RetornaIDFuncionario(string login)
         {
             USUARIOSTableAdapter usuarios = new USUARIOSTableAdapter();
@@ -201,6 +209,14 @@ namespace SaudeMed
             PRODUTOTableAdapter produtos = new PRODUTOTableAdapter();
             produtos.AtualizarProduto(descricao, codbarras, precompra, precovenda, descmaximo, idproduto);
         }
+
+        public void Produtos_InserirNovo(string descricao, string codbarras, float precompra, float prevenda, float descmaximo)
+        {
+            PRODUTOTableAdapter produto = new PRODUTOTableAdapter();
+            produto.Insert(descricao, codbarras,precompra,prevenda, descmaximo);
+        }
+
+
     }
 }
         

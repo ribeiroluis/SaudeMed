@@ -15,9 +15,9 @@ namespace SaudeMed
         DataTable TabelaRecebida;
         DataRow Linhas;
         
-
-
-        public frmProdutos()
+        #region Produtos
+        
+        public frmProdutos(int idFuncionario)
         {
             InitializeComponent();
             this.ActiveControl = txCodigoBarras;
@@ -32,12 +32,12 @@ namespace SaudeMed
                 {
                     if (txCodigoBarras.Equals(""))
                     {
-                        this.ActiveControl = txDescricao;
+                        //this.ActiveControl = txDescricao;
 
                     }
                     else
                     {
-                        string _codbarras = txCodigoBarras.Text;
+                        string _codbarras = txCodigoBarras.Text.ToUpper();
 
                         if (acessar.Produtos_RetornaSeExisteCodBarras(_codbarras))
                         {
@@ -46,7 +46,7 @@ namespace SaudeMed
                         else
                         {
                             LiberaCampos();
-                            this.ActiveControl = txDescricao;
+                            //this.ActiveControl = txDescricao;
                         }
                     }
                 }
@@ -65,12 +65,12 @@ namespace SaudeMed
             {
                 if (txCodigoBarras.Equals(""))
                 {
-                    this.ActiveControl = txDescricao;
+                    //this.ActiveControl = txDescricao;
                 }                
                 else
                 {
 
-                    string _codbarras = txCodigoBarras.Text;
+                    string _codbarras = txCodigoBarras.Text.ToUpper();
 
                     if (acessar.Produtos_RetornaSeExisteCodBarras(_codbarras))
                     {
@@ -79,7 +79,7 @@ namespace SaudeMed
                     else
                     {
                         LiberaCampos();
-                        this.ActiveControl = txDescricao;
+                        //this.ActiveControl = txDescricao;
                     }
                 }
             }
@@ -96,7 +96,7 @@ namespace SaudeMed
             
             try
             {
-                string _descricao = txDescricao.Text;
+                string _descricao = txDescricao.Text.ToUpper();
                 if (acessar.Produtos_RetornaSeExisteDescricao(_descricao))
                 {
                     PreencheCamposDescricao(_descricao);
@@ -104,7 +104,7 @@ namespace SaudeMed
                 else
                 {
                     LiberaCampos();
-                    this.ActiveControl = txCompra;
+                    //this.ActiveControl = txCompra;
 
                     if (TestaseExiste())
                         btnIncluir.Text = "Salvar";
@@ -117,40 +117,100 @@ namespace SaudeMed
             }
         }       
 
+        private void txDescricao_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    string _descricao = txDescricao.Text.ToUpper();
+                    if (acessar.Produtos_RetornaSeExisteDescricao(_descricao))
+                    {
+                        PreencheCamposDescricao(_descricao);
+                    }
+                    else
+                    {
+                        LiberaCampos();
+                        //this.ActiveControl = txCompra;
+                    }
+                }
+                catch (Exception err)
+                {
+
+                    MessageBox.Show(err.Message);
+                }
+            }   
+        }
+
         private void btnEditar_Click(object sender, EventArgs e)
-        {            
-            LiberaCampos();
-            btnIncluir.Text = "Salvar";
+        {
+            try
+            {
+                LiberaCampos();
+                btnIncluir.Text = "Salvar";
+                //this.ActiveControl = btnIncluir;
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
         }
 
         private void BloqueiaCampos()
         {
-            txDescricao.Enabled = false;
-            txPrecoVenda.Enabled = false;
-            txDescontoMaximo.Enabled = false;
-            txCompra.Enabled = false;
-            txCodigoBarras.Enabled = false;
-            btnEditar.Enabled = true;
-            btnIncluir.Enabled = false;
+            try
+            {
+                txDescricao.Enabled = false;
+                txPrecoVenda.Enabled = false;
+                txDescontoMaximo.Enabled = false;
+                txCompra.Enabled = false;
+                txCodigoBarras.Enabled = false;
+                btnEditar.Enabled = true;
+                btnIncluir.Enabled = false;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);   
+            }
         }
 
         private void LiberaCampos()
         {
-            txDescricao.Enabled = true;
-            txPrecoVenda.Enabled = true;
-            txCodigoBarras.Enabled = true;
-            txCompra.Enabled = true;
-            btnIncluir.Enabled = true;
-            btnIncluir.Text = "Incluir";
-            btnEditar.Enabled = false;            
+            try
+            {
+                txDescricao.Enabled = true;
+                txPrecoVenda.Enabled = true;
+                txCodigoBarras.Enabled = true;
+                txCompra.Enabled = true;
+                btnIncluir.Enabled = true;
+                btnIncluir.Text = "Incluir";
+                btnEditar.Enabled = false;            
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);                
+            }
+            
         }
 
         private void frmProdutos_Load(object sender, EventArgs e)
         {
-            txDescricao.AutoCompleteCustomSource.Clear();
-            // TODO: esta linha de código carrega dados na tabela 'bDSAUDEMEDDataSet.ViewTabelaItensProduto'. Você pode movê-la ou removê-la conforme necessário.
-            this.viewTabelaItensProdutoTableAdapter.Fill(this.bDSAUDEMEDDataSet.ViewTabelaItensProduto);
-            GeraCustomSource();
+            try
+            {
+
+                txDescricao.AutoCompleteCustomSource.Clear();
+                // TODO: esta linha de código carrega dados na tabela 'bDSAUDEMEDDataSet.ViewTabelaItensProduto'. Você pode movê-la ou removê-la conforme necessário.
+                this.viewTabelaItensProdutoTableAdapter.Fill(this.bDSAUDEMEDDataSet.ViewTabelaItensProduto);
+                GeraCustomSource();
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }         
+
         }
 
         private void GeraCustomSource()
@@ -175,24 +235,46 @@ namespace SaudeMed
 
         private void btnIncluir_Click(object sender, EventArgs e)
         {
-            if (TestaseExiste())
+            try
             {
-                MessageBox.Show("Test");
+                if (TestaseExiste())
+                {
+                    int idProduto = int.Parse(txIdProduto.Text);
+                    string descricao = txDescricao.Text.ToUpper();
+                    string codbarras = txCodigoBarras.Text.ToUpper();
+                    if (codbarras.Equals(""))
+                        codbarras = "##########";
+                    float compra = float.Parse(txCompra.Text);
+                    float venda = float.Parse(txPrecoVenda.Text);
+                    float desconto = venda - compra;
+                    acessar.Produtos_AtualizarProduto(idProduto, descricao, codbarras, compra, venda, desconto);
+                    btnListar_Click(sender, e);
+                }
+                else
+                {
+                    string descricao = txDescricao.Text.ToUpper();
+                    string codbarras = txCodigoBarras.Text.ToUpper();
+                    if (codbarras.Equals(""))
+                        codbarras = "##########";
+                    float compra = float.Parse(txCompra.Text);
+                    float venda = float.Parse(txPrecoVenda.Text);
+                    float desconto = venda - compra;
+                    acessar.Produtos_InserirNovo(descricao, codbarras, compra, venda, desconto);
+                    btnListar_Click(sender, e);
+                }
 
-                int idProduto = int.Parse(txIdProduto.Text);
-                string descricao = txDescricao.Text;
-                string codbarras = txCodigoBarras.Text;
-                float compra = float.Parse(txCompra.Text);
-                float venda = float.Parse(txPrecoVenda.Text);
-                float desconto = venda - compra;
-                acessar.Produtos_AtualizarProduto(idProduto, descricao, codbarras, compra, venda, desconto);
-                btnListar_Click(sender, e);
+                //this.ActiveControl = txCodigoBarras;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
             }
         }
 
         private void btnListar_Click(object sender, EventArgs e)
         {
             LiberaCampos();
+            btnIncluir.Enabled = false;
             txCodigoBarras.Clear();
             txDescricao.Clear();
             txIdProduto.Clear();
@@ -204,71 +286,68 @@ namespace SaudeMed
 
         private void PreencheCamposCodBarras(string Codbarras)
         {
-            TabelaRecebida = acessar.Produtos_RetornaDatatableBuscaCodBarras(Codbarras);
-            Linhas = TabelaRecebida.Rows[0];
+            try
+            {
+                TabelaRecebida = acessar.Produtos_RetornaDatatableBuscaCodBarras(Codbarras);
+                Linhas = TabelaRecebida.Rows[0];
 
-            txIdProduto.Text = Linhas[0].ToString();
-            txDescricao.Text = Linhas[1].ToString();
-            txCodigoBarras.Text = Linhas[2].ToString();
-            
-            float valor = float.Parse(Linhas[3].ToString());
-            txCompra.Text = valor.ToString("f2");
-            
-            valor = float.Parse(Linhas[4].ToString());
-            txPrecoVenda.Text = valor.ToString("f2");
+                txIdProduto.Text = Linhas[0].ToString();
+                txDescricao.Text = Linhas[1].ToString();
+                txCodigoBarras.Text = Linhas[2].ToString();
 
-            valor = float.Parse(Linhas[5].ToString());
-            txDescontoMaximo.Text = valor.ToString("f2");
+                float valor = float.Parse(Linhas[3].ToString());
+                txCompra.Text = valor.ToString("f2");
+
+                valor = float.Parse(Linhas[4].ToString());
+                txPrecoVenda.Text = valor.ToString("f2");
+
+                valor = float.Parse(Linhas[5].ToString());
+                txDescontoMaximo.Text = valor.ToString("f2");
+
+                BloqueiaCampos();
+                //this.ActiveControl = txLote;
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
             
-            BloqueiaCampos();
-            this.ActiveControl = txLote;
+            
         }
 
         private void PreencheCamposDescricao(string descricao)
         {
-            TabelaRecebida = acessar.Produtos_RetornaDatatableDescricao(descricao);
-            Linhas = TabelaRecebida.Rows[0];
-            txIdProduto.Text = Linhas[0].ToString();
-            txDescricao.Text = Linhas[1].ToString();
-            txCodigoBarras.Text = Linhas[2].ToString();
-
-            float valor = float.Parse(Linhas[3].ToString());
-            txCompra.Text = valor.ToString("f2");
-
-            valor = float.Parse(Linhas[4].ToString());
-            txPrecoVenda.Text = valor.ToString("f2");
-
-            valor = float.Parse(Linhas[5].ToString());
-            txDescontoMaximo.Text = valor.ToString("f2");
-            
-            BloqueiaCampos();
-            this.ActiveControl = txLote;
-        }
-        private void txDescricao_KeyDown(object sender, KeyEventArgs e)
-        {
-
-            if (e.KeyCode == Keys.Enter)
+            try
             {
-                try
-                {
-                    string _descricao = txDescricao.Text;
-                    if (acessar.Produtos_RetornaSeExisteDescricao(_descricao))
-                    {
-                        PreencheCamposDescricao(_descricao);
-                    }
-                    else
-                    {
-                        LiberaCampos();
-                        this.ActiveControl = txCompra;
-                    }
-                }
-                catch (Exception err)
-                {
+                TabelaRecebida = acessar.Produtos_RetornaDatatableDescricao(descricao);
+                Linhas = TabelaRecebida.Rows[0];
 
-                    MessageBox.Show(err.Message);
-                }
-            }   
+                txIdProduto.Text = Linhas[0].ToString();
+                txDescricao.Text = Linhas[1].ToString();
+                txCodigoBarras.Text = Linhas[2].ToString();
+
+                float valor = float.Parse(Linhas[3].ToString());
+                txCompra.Text = valor.ToString("f2");
+
+                valor = float.Parse(Linhas[4].ToString());
+                txPrecoVenda.Text = valor.ToString("f2");
+
+                valor = float.Parse(Linhas[5].ToString());
+                txDescontoMaximo.Text = valor.ToString("f2");
+
+                BloqueiaCampos();
+               // this.ActiveControl = txLote;
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+            
         }
+
+        
 
         private bool TestaseExiste()
         {
@@ -277,5 +356,43 @@ namespace SaudeMed
             else
                 return true;
         }
+
+        private void txCompra_Leave(object sender, EventArgs e)
+        {
+            this.ActiveControl = txPrecoVenda;
+        }
+        
+        private void txCompra_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.ActiveControl = txPrecoVenda;
+        }
+
+        private void txPrecoVenda_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.ActiveControl = btnIncluir;
+        }
+
+        private void txPrecoVenda_Leave(object sender, EventArgs e)
+        {
+            this.ActiveControl = btnIncluir;
+        }
+
+
+        #endregion Produtos
+
+        
+
+        
+
+        
+
+        
+
+        #region ItensProduto
+        
+
+        #endregion ItensProduto
     }
 }

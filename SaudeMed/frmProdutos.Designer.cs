@@ -33,9 +33,12 @@
             this.txIdProduto = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txDescontoMaximo = new System.Windows.Forms.TextBox();
+            this.btnEditar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnListar = new System.Windows.Forms.Button();
             this.txPrecoVenda = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnIncluir = new System.Windows.Forms.Button();
             this.txCompra = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,12 +46,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txCodigoBarras = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.txQuantidade = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.DateValidade = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.txLote = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.txIdItemProtudo = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -64,13 +71,6 @@
             this.bDSAUDEMEDDataSet = new SaudeMed.BDSAUDEMEDDataSet();
             this.viewTabelaItensProdutoTableAdapter = new SaudeMed.BDSAUDEMEDDataSetTableAdapters.ViewTabelaItensProdutoTableAdapter();
             this.tableAdapterManager = new SaudeMed.BDSAUDEMEDDataSetTableAdapters.TableAdapterManager();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnListar = new System.Windows.Forms.Button();
-            this.btnIncluir = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -127,6 +127,19 @@
             this.txDescontoMaximo.Size = new System.Drawing.Size(116, 25);
             this.txDescontoMaximo.TabIndex = 11;
             // 
+            // btnEditar
+            // 
+            this.btnEditar.Enabled = false;
+            this.btnEditar.Image = global::SaudeMed.Properties.Resources.editar;
+            this.btnEditar.Location = new System.Drawing.Point(493, 95);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(88, 36);
+            this.btnEditar.TabIndex = 9;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -136,12 +149,26 @@
             this.label10.TabIndex = 10;
             this.label10.Text = "Desconto máximo:";
             // 
+            // btnListar
+            // 
+            this.btnListar.Image = global::SaudeMed.Properties.Resources.clear;
+            this.btnListar.Location = new System.Drawing.Point(587, 95);
+            this.btnListar.Name = "btnListar";
+            this.btnListar.Size = new System.Drawing.Size(94, 36);
+            this.btnListar.TabIndex = 8;
+            this.btnListar.Text = "Limpar";
+            this.btnListar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnListar.UseVisualStyleBackColor = true;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
+            // 
             // txPrecoVenda
             // 
             this.txPrecoVenda.Location = new System.Drawing.Point(133, 102);
             this.txPrecoVenda.Name = "txPrecoVenda";
             this.txPrecoVenda.Size = new System.Drawing.Size(93, 25);
             this.txPrecoVenda.TabIndex = 9;
+            this.txPrecoVenda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txPrecoVenda_KeyDown);
+            this.txPrecoVenda.Leave += new System.EventHandler(this.txPrecoVenda_Leave);
             // 
             // label9
             // 
@@ -152,12 +179,27 @@
             this.label9.TabIndex = 8;
             this.label9.Text = "Preço Venda:";
             // 
+            // btnIncluir
+            // 
+            this.btnIncluir.Enabled = false;
+            this.btnIncluir.Image = global::SaudeMed.Properties.Resources.salvar;
+            this.btnIncluir.Location = new System.Drawing.Point(399, 95);
+            this.btnIncluir.Name = "btnIncluir";
+            this.btnIncluir.Size = new System.Drawing.Size(88, 36);
+            this.btnIncluir.TabIndex = 5;
+            this.btnIncluir.Text = "Incluir";
+            this.btnIncluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnIncluir.UseVisualStyleBackColor = true;
+            this.btnIncluir.Click += new System.EventHandler(this.btnIncluir_Click);
+            // 
             // txCompra
             // 
             this.txCompra.Location = new System.Drawing.Point(6, 102);
             this.txCompra.Name = "txCompra";
             this.txCompra.Size = new System.Drawing.Size(93, 25);
             this.txCompra.TabIndex = 7;
+            this.txCompra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txCompra_KeyDown);
+            this.txCompra.Leave += new System.EventHandler(this.txCompra_Leave);
             // 
             // label4
             // 
@@ -227,12 +269,37 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Medicamento Item";
             // 
+            // button4
+            // 
+            this.button4.Enabled = false;
+            this.button4.Image = global::SaudeMed.Properties.Resources.cancelar;
+            this.button4.Location = new System.Drawing.Point(117, 88);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(88, 36);
+            this.button4.TabIndex = 10;
+            this.button4.Text = "Excluir";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
             // txQuantidade
             // 
             this.txQuantidade.Location = new System.Drawing.Point(471, 44);
             this.txQuantidade.Name = "txQuantidade";
             this.txQuantidade.Size = new System.Drawing.Size(112, 25);
             this.txQuantidade.TabIndex = 9;
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Image = global::SaudeMed.Properties.Resources.editar;
+            this.button2.Location = new System.Drawing.Point(229, 88);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(88, 36);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Editar";
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // label8
             // 
@@ -242,6 +309,18 @@
             this.label8.Size = new System.Drawing.Size(79, 17);
             this.label8.TabIndex = 8;
             this.label8.Text = "Quantidade:";
+            // 
+            // button3
+            // 
+            this.button3.Image = global::SaudeMed.Properties.Resources.clear;
+            this.button3.Location = new System.Drawing.Point(338, 88);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(94, 36);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "Limpar";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.btnListar_Click);
             // 
             // label7
             // 
@@ -276,6 +355,19 @@
             this.txLote.Name = "txLote";
             this.txLote.Size = new System.Drawing.Size(112, 25);
             this.txLote.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Image = global::SaudeMed.Properties.Resources.salvar;
+            this.button1.Location = new System.Drawing.Point(10, 88);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(88, 36);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Incluir";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnIncluir_Click);
             // 
             // txIdItemProtudo
             // 
@@ -395,94 +487,6 @@
             this.tableAdapterManager.UpdateOrder = SaudeMed.BDSAUDEMEDDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.USUARIOSTableAdapter = null;
             this.tableAdapterManager.VENDATableAdapter = null;
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Enabled = false;
-            this.btnEditar.Image = global::SaudeMed.Properties.Resources.editar;
-            this.btnEditar.Location = new System.Drawing.Point(493, 95);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(88, 36);
-            this.btnEditar.TabIndex = 9;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnListar
-            // 
-            this.btnListar.Image = global::SaudeMed.Properties.Resources.clear;
-            this.btnListar.Location = new System.Drawing.Point(587, 95);
-            this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(94, 36);
-            this.btnListar.TabIndex = 8;
-            this.btnListar.Text = "Limpar";
-            this.btnListar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnListar.UseVisualStyleBackColor = true;
-            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
-            // 
-            // btnIncluir
-            // 
-            this.btnIncluir.Enabled = false;
-            this.btnIncluir.Image = global::SaudeMed.Properties.Resources.salvar;
-            this.btnIncluir.Location = new System.Drawing.Point(399, 95);
-            this.btnIncluir.Name = "btnIncluir";
-            this.btnIncluir.Size = new System.Drawing.Size(88, 36);
-            this.btnIncluir.TabIndex = 5;
-            this.btnIncluir.Text = "Incluir";
-            this.btnIncluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnIncluir.UseVisualStyleBackColor = true;
-            this.btnIncluir.Click += new System.EventHandler(this.btnIncluir_Click);
-            // 
-            // button1
-            // 
-            this.button1.Enabled = false;
-            this.button1.Image = global::SaudeMed.Properties.Resources.salvar;
-            this.button1.Location = new System.Drawing.Point(10, 88);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 36);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Incluir";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnIncluir_Click);
-            // 
-            // button2
-            // 
-            this.button2.Enabled = false;
-            this.button2.Image = global::SaudeMed.Properties.Resources.editar;
-            this.button2.Location = new System.Drawing.Point(229, 88);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 36);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Editar";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // button3
-            // 
-            this.button3.Image = global::SaudeMed.Properties.Resources.clear;
-            this.button3.Location = new System.Drawing.Point(338, 88);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 36);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Limpar";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.btnListar_Click);
-            // 
-            // button4
-            // 
-            this.button4.Enabled = false;
-            this.button4.Image = global::SaudeMed.Properties.Resources.cancelar;
-            this.button4.Location = new System.Drawing.Point(117, 88);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(88, 36);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Excluir";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // frmProdutos
             // 
