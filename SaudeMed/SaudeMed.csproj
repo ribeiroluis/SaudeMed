@@ -51,6 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcessaDados.cs" />
+    <Compile Include="BDSAUDEMEDDataSet1.cs">
+      <DependentUpon>BDSAUDEMEDDataSet1.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="BDSAUDEMEDDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -173,6 +177,7 @@
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\clear.png" />
     <None Include="Resources\1355246967_Login Manager.png" />
     <None Include="Resources\sair.png" />
     <None Include="Resources\atualizar.png" />

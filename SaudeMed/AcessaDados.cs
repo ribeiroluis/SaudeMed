@@ -159,12 +159,12 @@ namespace SaudeMed
             return tabela;
         }
 
-        public DataTable ItensProduto_RetornaLote(int idproduto)
+        public DataTable Produtos_RetornaDatatableDescricao(string descricao)
         {
-            ITEMPRODUTOTableAdapter item = new ITEMPRODUTOTableAdapter();
-            DataTable tabela = new DataTable();
-            tabela = item.RetornaDataTableLotes(idproduto);
+            PRODUTOTableAdapter produto = new PRODUTOTableAdapter();
+            DataTable tabela = produto.RetornaDataTableDescricao(descricao);
             return tabela;
+
         }
         
         public DataTable Produtos_RetornaDatatableBuscaCodBarras(string _codbarras)
@@ -182,8 +182,24 @@ namespace SaudeMed
             if (testa == null)
                 return false;
             else
-                return true;
-                  
+                return true;                  
+        }
+
+        public bool Produtos_RetornaSeExisteDescricao(string descricao)
+        {
+            PRODUTOTableAdapter produto = new PRODUTOTableAdapter();
+            var testa = produto.RetornaSeExisteDescricao(descricao);
+            if (testa == null)
+                return false;
+            else
+                return true;                   
+        }
+
+        public void Produtos_AtualizarProduto(int idproduto, string descricao, string codbarras, float precompra,            
+            float precovenda, float descmaximo)
+        {
+            PRODUTOTableAdapter produtos = new PRODUTOTableAdapter();
+            produtos.AtualizarProduto(descricao, codbarras, precompra, precovenda, descmaximo, idproduto);
         }
     }
 }
