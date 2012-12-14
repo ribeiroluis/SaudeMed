@@ -167,6 +167,31 @@ namespace SaudeMed
             return tabela;
         }
 
+        public DataTable ItensProduto_RetornaLotes()
+        {
+            ITEMPRODUTOTableAdapter item = new ITEMPRODUTOTableAdapter();
+            DataTable tabela = item.GetData();
+            return tabela;
+        }
+
+        public bool ItensProduto_RetornaSeExisteLote(string lote)
+        {
+            ITEMPRODUTOTableAdapter item = new ITEMPRODUTOTableAdapter();
+            var teste = item.RetornaLote(lote);
+            if (teste == null)
+                return false;
+            else
+                return true;
+        }
+
+        public DataTable ItensProduto_RetornaDataTablePorLote(string lote, int idproduto)
+        {
+            ITEMPRODUTOTableAdapter item = new ITEMPRODUTOTableAdapter();
+            DataTable tabela = item.RetornaDatatablePorLoteEIdProduto(lote, idproduto);
+            return tabela;
+        }
+
+
         public DataTable Produtos_RetornaDatatableDescricao(string descricao)
         {
             PRODUTOTableAdapter produto = new PRODUTOTableAdapter();

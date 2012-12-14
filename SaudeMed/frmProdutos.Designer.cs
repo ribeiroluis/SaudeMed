@@ -46,16 +46,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txCodigoBarras = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnExcluirItens = new System.Windows.Forms.Button();
             this.txQuantidade = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnEditarItens = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnLimparItens = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.DateValidade = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
             this.txLote = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnIncluirItens = new System.Windows.Forms.Button();
             this.txIdItemProtudo = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -163,6 +163,7 @@
             // 
             // txPrecoVenda
             // 
+            this.txPrecoVenda.Enabled = false;
             this.txPrecoVenda.Location = new System.Drawing.Point(133, 102);
             this.txPrecoVenda.Name = "txPrecoVenda";
             this.txPrecoVenda.Size = new System.Drawing.Size(93, 25);
@@ -194,6 +195,7 @@
             // 
             // txCompra
             // 
+            this.txCompra.Enabled = false;
             this.txCompra.Location = new System.Drawing.Point(6, 102);
             this.txCompra.Name = "txCompra";
             this.txCompra.Size = new System.Drawing.Size(93, 25);
@@ -223,12 +225,12 @@
             // 
             this.txDescricao.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txDescricao.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txDescricao.Enabled = false;
             this.txDescricao.Location = new System.Drawing.Point(188, 44);
             this.txDescricao.Name = "txDescricao";
             this.txDescricao.Size = new System.Drawing.Size(592, 25);
             this.txDescricao.TabIndex = 4;
             this.txDescricao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txDescricao_KeyDown);
-            this.txDescricao.Leave += new System.EventHandler(this.txDescricao_Leave);
             // 
             // label2
             // 
@@ -246,20 +248,19 @@
             this.txCodigoBarras.Size = new System.Drawing.Size(121, 25);
             this.txCodigoBarras.TabIndex = 2;
             this.txCodigoBarras.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txCodigoBarras_KeyPress);
-            this.txCodigoBarras.Leave += new System.EventHandler(this.txCodigoBarras_Leave);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.btnExcluirItens);
             this.groupBox2.Controls.Add(this.txQuantidade);
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.btnEditarItens);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.btnLimparItens);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.DateValidade);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txLote);
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.BtnIncluirItens);
             this.groupBox2.Controls.Add(this.txIdItemProtudo);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(12, 155);
@@ -269,17 +270,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Medicamento Item";
             // 
-            // button4
+            // btnExcluirItens
             // 
-            this.button4.Enabled = false;
-            this.button4.Image = global::SaudeMed.Properties.Resources.cancelar;
-            this.button4.Location = new System.Drawing.Point(117, 88);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(88, 36);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Excluir";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnExcluirItens.Enabled = false;
+            this.btnExcluirItens.Image = global::SaudeMed.Properties.Resources.cancelar;
+            this.btnExcluirItens.Location = new System.Drawing.Point(117, 88);
+            this.btnExcluirItens.Name = "btnExcluirItens";
+            this.btnExcluirItens.Size = new System.Drawing.Size(88, 36);
+            this.btnExcluirItens.TabIndex = 10;
+            this.btnExcluirItens.Text = "Excluir";
+            this.btnExcluirItens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExcluirItens.UseVisualStyleBackColor = true;
             // 
             // txQuantidade
             // 
@@ -287,19 +288,20 @@
             this.txQuantidade.Name = "txQuantidade";
             this.txQuantidade.Size = new System.Drawing.Size(112, 25);
             this.txQuantidade.TabIndex = 9;
+            this.txQuantidade.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txQuantidade_KeyDown);
             // 
-            // button2
+            // btnEditarItens
             // 
-            this.button2.Enabled = false;
-            this.button2.Image = global::SaudeMed.Properties.Resources.editar;
-            this.button2.Location = new System.Drawing.Point(229, 88);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 36);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Editar";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.btnEditar_Click);
+            this.btnEditarItens.Enabled = false;
+            this.btnEditarItens.Image = global::SaudeMed.Properties.Resources.editar;
+            this.btnEditarItens.Location = new System.Drawing.Point(229, 88);
+            this.btnEditarItens.Name = "btnEditarItens";
+            this.btnEditarItens.Size = new System.Drawing.Size(88, 36);
+            this.btnEditarItens.TabIndex = 9;
+            this.btnEditarItens.Text = "Editar";
+            this.btnEditarItens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditarItens.UseVisualStyleBackColor = true;
+            this.btnEditarItens.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // label8
             // 
@@ -310,17 +312,18 @@
             this.label8.TabIndex = 8;
             this.label8.Text = "Quantidade:";
             // 
-            // button3
+            // btnLimparItens
             // 
-            this.button3.Image = global::SaudeMed.Properties.Resources.clear;
-            this.button3.Location = new System.Drawing.Point(338, 88);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 36);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "Limpar";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.btnListar_Click);
+            this.btnLimparItens.Enabled = false;
+            this.btnLimparItens.Image = global::SaudeMed.Properties.Resources.clear;
+            this.btnLimparItens.Location = new System.Drawing.Point(338, 88);
+            this.btnLimparItens.Name = "btnLimparItens";
+            this.btnLimparItens.Size = new System.Drawing.Size(94, 36);
+            this.btnLimparItens.TabIndex = 8;
+            this.btnLimparItens.Text = "Limpar";
+            this.btnLimparItens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLimparItens.UseVisualStyleBackColor = true;
+            this.btnLimparItens.Click += new System.EventHandler(this.btnListar_Click);
             // 
             // label7
             // 
@@ -337,6 +340,7 @@
             this.DateValidade.Name = "DateValidade";
             this.DateValidade.Size = new System.Drawing.Size(277, 25);
             this.DateValidade.TabIndex = 6;
+            this.DateValidade.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DateValidade_KeyDown);
             // 
             // label5
             // 
@@ -355,19 +359,20 @@
             this.txLote.Name = "txLote";
             this.txLote.Size = new System.Drawing.Size(112, 25);
             this.txLote.TabIndex = 2;
+            this.txLote.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txLote_KeyDown);
             // 
-            // button1
+            // BtnIncluirItens
             // 
-            this.button1.Enabled = false;
-            this.button1.Image = global::SaudeMed.Properties.Resources.salvar;
-            this.button1.Location = new System.Drawing.Point(10, 88);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 36);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Incluir";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnIncluir_Click);
+            this.BtnIncluirItens.Enabled = false;
+            this.BtnIncluirItens.Image = global::SaudeMed.Properties.Resources.salvar;
+            this.BtnIncluirItens.Location = new System.Drawing.Point(10, 88);
+            this.BtnIncluirItens.Name = "BtnIncluirItens";
+            this.BtnIncluirItens.Size = new System.Drawing.Size(88, 36);
+            this.BtnIncluirItens.TabIndex = 5;
+            this.BtnIncluirItens.Text = "Incluir";
+            this.BtnIncluirItens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnIncluirItens.UseVisualStyleBackColor = true;
+            this.BtnIncluirItens.Click += new System.EventHandler(this.btnIncluir_Click);
             // 
             // txIdItemProtudo
             // 
@@ -550,9 +555,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn qUANTIDADEDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pRECOCOMPRADataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pRECOVENDADataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnExcluirItens;
+        private System.Windows.Forms.Button btnEditarItens;
+        private System.Windows.Forms.Button btnLimparItens;
+        private System.Windows.Forms.Button BtnIncluirItens;
     }
 }
