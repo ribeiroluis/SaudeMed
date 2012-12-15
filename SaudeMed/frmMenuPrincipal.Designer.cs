@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubMenuGerenciarFuncionarios = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +41,9 @@
             this.SubMenuQuantItens = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lbNomeUsuario = new System.Windows.Forms.Label();
+            this.lbDataHora = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +92,7 @@
             this.SubMenuGerenciarProdutos.Name = "SubMenuGerenciarProdutos";
             this.SubMenuGerenciarProdutos.Size = new System.Drawing.Size(195, 22);
             this.SubMenuGerenciarProdutos.Text = "Gerenciar Produtos";
+            this.SubMenuGerenciarProdutos.Click += new System.EventHandler(this.SubMenuGerenciarProdutos_Click);
             // 
             // toolStripSeparator1
             // 
@@ -134,6 +139,30 @@
             this.sobreToolStripMenuItem.Size = new System.Drawing.Size(49, 19);
             this.sobreToolStripMenuItem.Text = "Sobre";
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // lbNomeUsuario
+            // 
+            this.lbNomeUsuario.AutoSize = true;
+            this.lbNomeUsuario.Location = new System.Drawing.Point(12, 535);
+            this.lbNomeUsuario.Name = "lbNomeUsuario";
+            this.lbNomeUsuario.Size = new System.Drawing.Size(62, 17);
+            this.lbNomeUsuario.TabIndex = 1;
+            this.lbNomeUsuario.Text = "Olá ?????";
+            // 
+            // lbDataHora
+            // 
+            this.lbDataHora.AutoSize = true;
+            this.lbDataHora.Location = new System.Drawing.Point(476, 535);
+            this.lbDataHora.Name = "lbDataHora";
+            this.lbDataHora.Size = new System.Drawing.Size(62, 17);
+            this.lbDataHora.TabIndex = 2;
+            this.lbDataHora.Text = "Olá ?????";
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -141,6 +170,8 @@
             this.BackgroundImage = global::SaudeMed.Properties.Resources.logo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.lbDataHora);
+            this.Controls.Add(this.lbNomeUsuario);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -171,5 +202,8 @@
         private System.Windows.Forms.ToolStripMenuItem sobreToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lbNomeUsuario;
+        private System.Windows.Forms.Label lbDataHora;
     }
 }

@@ -14,13 +14,15 @@ namespace SaudeMed
         AcessaDados acessar = new AcessaDados();
         DataTable TabelaRecebida;
         DataRow Linhas;
-        
+        int IDFUNCIONARIO;
+
         #region Produtos
-        
+
         public frmProdutos(int idFuncionario)
         {
             InitializeComponent();
             this.ActiveControl = txCodigoBarras;
+            IDFUNCIONARIO = idFuncionario;
 
         }
 
@@ -48,7 +50,7 @@ namespace SaudeMed
                         }
                         else
                         {
-                            LiberaCampos();                            
+                            LiberaCampos();
                             this.ActiveControl = txDescricao;
                         }
                     }
@@ -99,7 +101,7 @@ namespace SaudeMed
 
                     MessageBox.Show(err.Message);
                 }
-            }   
+            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -131,7 +133,7 @@ namespace SaudeMed
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message);   
+                MessageBox.Show(err.Message);
             }
         }
 
@@ -149,9 +151,9 @@ namespace SaudeMed
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message);                
+                MessageBox.Show(err.Message);
             }
-            
+
         }
 
         private void frmProdutos_Load(object sender, EventArgs e)
@@ -170,7 +172,7 @@ namespace SaudeMed
             {
 
                 MessageBox.Show(err.Message);
-            }         
+            }
 
         }
 
@@ -246,6 +248,7 @@ namespace SaudeMed
         private void btnListar_Click(object sender, EventArgs e)
         {
             //LiberaCampos();
+            btnLimparItens_Click(sender, e);
             BloqueiaCampos();
             txCodigoBarras.Enabled = true;
             btnIncluir.Enabled = false;
@@ -262,7 +265,7 @@ namespace SaudeMed
         {
             try
             {
-                TabelaRecebida = new DataTable();                
+                TabelaRecebida = new DataTable();
                 TabelaRecebida = acessar.Produtos_RetornaDatatableBuscaCodBarras(Codbarras);
                 Linhas = TabelaRecebida.Rows[0];
 
@@ -287,8 +290,8 @@ namespace SaudeMed
 
                 MessageBox.Show(err.Message);
             }
-            
-            
+
+
         }
 
         private void PreencheCamposDescricao(string descricao)
@@ -312,17 +315,17 @@ namespace SaudeMed
                 txDescontoMaximo.Text = valor.ToString("f2");
 
                 BloqueiaCampos();
-               // this.ActiveControl = txLote;
+                // this.ActiveControl = txLote;
             }
             catch (Exception err)
             {
 
                 MessageBox.Show(err.Message);
             }
-            
+
         }
 
-        
+
 
         private bool TestaseExiste()
         {
@@ -340,18 +343,18 @@ namespace SaudeMed
         private void txPrecoVenda_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-             this.ActiveControl = btnIncluir;
+                this.ActiveControl = btnIncluir;
         }
 
         #endregion Produtos
 
-        
 
-        
 
-        
 
-        
+
+
+
+
 
         #region ItensProduto
 
@@ -380,12 +383,12 @@ namespace SaudeMed
             {
                 if (TestaSeExiteLote())
                 {
-                    PreencheCamposItens();                    
+                    PreencheCamposItens(txLote.Text, int.Parse(txIdProduto.Text));
                     btnEditarItens.Enabled = true;
                     btnExcluirItens.Enabled = true;
                 }
                 else
-                {   
+                {
                     LiberaCamposItens();
                     this.ActiveControl = DateValidade;
                 }
@@ -407,18 +410,19 @@ namespace SaudeMed
             {
                 MessageBox.Show(err.Message);
                 return false;
-            }            
+            }
         }
 
-        private void PreencheCamposItens()
+        private void PreencheCamposItens(string lote, int idproduto)
         {
             try
             {
                 BloqueiaCamposItens();
                 TabelaRecebida = new DataTable();
-                TabelaRecebida = acessar.ItensProduto_RetornaDataTablePorLote(txLote.Text, int.Parse(txIdProduto.Text));                
+                TabelaRecebida = acessar.ItensProduto_RetornaDataTablePorLote(lote, idproduto);
                 Linhas = TabelaRecebida.Rows[0];
                 txIdItemProtudo.Text = Linhas[0].ToString();
+                txLote.Text = Linhas[2].ToString();
                 DateValidade.Value = (DateTime)Linhas[3];
                 txQuantidade.Text = Linhas[4].ToString();
             }
@@ -454,7 +458,7 @@ namespace SaudeMed
             DateValidade.Enabled = false;
             //DateValidade.Refresh();
             btnEditarItens.Enabled = true;
-            btnExcluirItens.Enabled = false;            
+            btnExcluirItens.Enabled = false;
             BtnIncluirItens.Enabled = false;
 
         }
@@ -464,8 +468,7 @@ namespace SaudeMed
             txLote.Enabled = true;
             txQuantidade.Enabled = true;
             DateValidade.Enabled = true;
-            btnEditarItens.Enabled = false;
-            btnExcluirItens.Enabled = false;
+            btnEditarItens.Enabled = false;            
             BtnIncluirItens.Enabled = true;
         }
 
@@ -477,7 +480,7 @@ namespace SaudeMed
                 string _lote = txLote.Text;
                 DateTime _validade = DateValidade.Value;
                 int _quantidade = int.Parse(txQuantidade.Text);
-                
+
 
                 if (TestaSeExiteLote())
                 {
@@ -498,11 +501,13 @@ namespace SaudeMed
                 {
                     acessar.ItensProduto_Incluir(_idProduto, _lote, _validade, _quantidade);
                     MessageBox.Show("Item inserido com sucesso!");
-                    frmProdutos_Load(sender, e);
                 }
+                frmProdutos_Load(sender, e);
                 BtnIncluirItens.Text = "Incluir";
+                BtnIncluirItens.Enabled = false;
                 btnLimparItens_Click(sender, e);
-                
+                this.ActiveControl = txLote;
+
             }
             catch (Exception err)
             {
@@ -517,36 +522,70 @@ namespace SaudeMed
             btnExcluirItens.Enabled = true;
             LiberaCamposItens();
         }
-        
+
         private void btnLimparItens_Click(object sender, EventArgs e)
         {
             txLote.Clear();
+            txIdItemProtudo.Clear();
             txQuantidade.Clear();
             btnEditarItens.Enabled = false;
             btnExcluirItens.Enabled = false;
         }
 
-        
-        
-        #endregion ItensProduto       
-
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
+            try
+            {
+                PreencheCamposDescricao(dtgDadosProdutos.CurrentRow.Cells[2].Value.ToString());
+                PreencheCamposItens(dtgDadosProdutos.CurrentRow.Cells[3].Value.ToString(), int.Parse(txIdProduto.Text));
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
         }
 
-        
+        private void btnExcluirItens_Click(object sender, EventArgs e)
+        {
 
-        
+            try
+            {
+                if (TestaSeExiteLote())
+                {
+                    DialogResult resultato = MessageBox.Show("Deseja exluir o item do estoque" +
+                        "\nA exlusão eliminará todos os itens salvos deste lote solicitado", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                    if (resultato == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        int _idProduto = int.Parse(txIdProduto.Text);
+                        int _quantidade = int.Parse(txQuantidade.Text);
+                        int _idItemProduto = int.Parse(txIdItemProtudo.Text);
 
-        
 
-        
+                        frmMotivoExclusao excluir = new frmMotivoExclusao(_idProduto, _idItemProduto, _quantidade, IDFUNCIONARIO);
+                        excluir.ShowDialog();
+                       
+                        acessar.ItensProduto_Excluir(_idItemProduto);
+                        MessageBox.Show("Excluído com sucesso!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cancelado pelo usuário");
+                    }
+                    frmProdutos_Load(sender, e);
+                    BtnIncluirItens.Text = "Incluir";
+                    BtnIncluirItens.Enabled = false;
+                    btnExcluirItens.Enabled = false;
+                    btnLimparItens_Click(sender, e);
+                    this.ActiveControl = txLote;
+                }
+            }
+            catch (Exception err)
+            {
 
-        
-
-       
-
-        
+                MessageBox.Show(err.Message);
+            }
+        }
+        #endregion ItensProduto
     }
 }

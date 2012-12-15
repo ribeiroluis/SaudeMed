@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      Microsoft SQL Server 2008                    */
-/* Created on:     05/12/2012 16:30:50                          */
+/* Created on:     15/12/2012 16:32:01                          */
 /*==============================================================*/
 
 
@@ -69,9 +69,16 @@ go
 
 if exists (select 1
    from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
-   where r.fkeyid = object_id('URUARIOS') and o.name = 'FK_URUARIOS_REFERENCE_FUNCIONA')
-alter table URUARIOS
-   drop constraint FK_URUARIOS_REFERENCE_FUNCIONA
+   where r.fkeyid = object_id('PRODUTOSDESCARTADOS') and o.name = 'FK_PRODUTOS_REFERENCE_PRODUTO')
+alter table PRODUTOSDESCARTADOS
+   drop constraint FK_PRODUTOS_REFERENCE_PRODUTO
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('PRODUTOSDESCARTADOS') and o.name = 'FK_PRODUTOS_REFERENCE_FUNCIONA')
+alter table PRODUTOSDESCARTADOS
+   drop constraint FK_PRODUTOS_REFERENCE_FUNCIONA
 go
 
 if exists (select 1
@@ -155,9 +162,16 @@ go
 
 if exists (select 1
             from  sysobjects
-           where  id = object_id('URUARIOS')
+           where  id = object_id('PRODUTOSDESCARTADOS')
             and   type = 'U')
-   drop table URUARIOS
+   drop table PRODUTOSDESCARTADOS
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('USUARIOS')
+            and   type = 'U')
+   drop table USUARIOS
 go
 
 if exists (select 1
@@ -252,9 +266,9 @@ create table FUNCIONARIO (
    NUMERO               int                  null,
    COMPLEMENTO          varchar(20)          null
       constraint CKC_COMPLEMENTO_FUNCIONA check (COMPLEMENTO is null or (COMPLEMENTO = upper(COMPLEMENTO))),
-   TELEFONEFIXO         int                  null,
-   TELEFONECELULAR      int                  null,
-   CPF                  int                  null,
+   TELEFONEFIXO         varchar(10)          null,
+   TELEFONECELULAR      varchar(10)          null,
+   CPF                  varchar(11)          null,
    IDENTIDADE           varchar(20)          null
       constraint CKC_IDENTIDADE_FUNCIONA check (IDENTIDADE is null or (IDENTIDADE = upper(IDENTIDADE))),
    DTNASCIMENTO         date                 null,
@@ -272,7 +286,7 @@ go
 create table ITEMPRODUTO (
    IDITEM               int                  identity(1,1),
    IDPRODUTO            int                  null,
-   LOTE                 int                  not null,
+   LOTE                 varchar(20)          not null,
    VALIDADE             date                 not null,
    QUANTIDADE           int                  null,
    constraint PK_ITEMPRODUTO primary key (IDITEM)
@@ -301,7 +315,7 @@ create table PRODUTO (
    IDPRODUTO            int                  identity(1,1),
    DESCRICAO            varchar(500)         not null
       constraint CKC_DESCRICAO_PRODUTO check (DESCRICAO = upper(DESCRICAO)),
-   CODBARRAS            int                  null,
+   CODBARRAS            varchar(50)          null,
    PRECOCOMPRA          float                not null,
    PRECOVENDA           float                not null,
    DESCONTOMAXIMO       float                not null,
@@ -310,14 +324,30 @@ create table PRODUTO (
 go
 
 /*==============================================================*/
-/* Table: URUARIOS                                              */
+/* Table: PRODUTOSDESCARTADOS                                   */
 /*==============================================================*/
-create table URUARIOS (
+create table PRODUTOSDESCARTADOS (
+   IDEXCLUSAO           int                  identity(1,1),
+   IDPRODUTO            int                  not null,
+   IDITEM               int                  not null,
+   QUANTIDADE           int                  not null,
+   DATA                 date                 not null,
+   IDFUNCIONARIO        int                  not null,
+   MOTIVO               varchar(250)         not null,
+   constraint PK_PRODUTOSDESCARTADOS primary key (IDEXCLUSAO)
+)
+go
+
+/*==============================================================*/
+/* Table: USUARIOS                                              */
+/*==============================================================*/
+create table USUARIOS (
    IDUSUARIO            int                  identity(1,1),
    IDFUNCIONARIO        int                  null,
    LOGIN                varchar(20)          null,
    SENHA                varchar(8)           null,
-   constraint PK_URUARIOS primary key (IDUSUARIO)
+   PERMICAOTOTAL        bit                  null,
+   constraint PK_USUARIOS primary key (IDUSUARIO)
 )
 go
 
@@ -381,8 +411,13 @@ alter table ITENSDEVENDA
       references VENDA (IDVENDA)
 go
 
-alter table URUARIOS
-   add constraint FK_URUARIOS_REFERENCE_FUNCIONA foreign key (IDFUNCIONARIO)
+alter table PRODUTOSDESCARTADOS
+   add constraint FK_PRODUTOS_REFERENCE_PRODUTO foreign key (IDPRODUTO)
+      references PRODUTO (IDPRODUTO)
+go
+
+alter table PRODUTOSDESCARTADOS
+   add constraint FK_PRODUTOS_REFERENCE_FUNCIONA foreign key (IDFUNCIONARIO)
       references FUNCIONARIO (IDFUNCIONARIO)
 go
 

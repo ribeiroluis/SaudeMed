@@ -159,6 +159,17 @@ namespace SaudeMed
             return valor;
         }
 
+        public string Usuarios_RetornaNome(int idfuncionario)
+        {
+            FUNCIONARIOTableAdapter fun = new FUNCIONARIOTableAdapter();
+            var teste = fun.RetornaNomeFuncionarioporId(idfuncionario);
+            if (teste == null)
+                return "";
+            else
+                return teste.ToString();
+            
+        }
+
         public DataTable Produtos_RetornaDescricao()
         {
             PRODUTOTableAdapter produtos = new PRODUTOTableAdapter();
@@ -204,6 +215,17 @@ namespace SaudeMed
             item.AtualizarLote(data.ToShortDateString(), quantidade, iditemproduto);
         }
 
+        public void ItensDescartados_InsereExclusao(int idproduto, int iditem, int quantidade, DateTime data, int idfuncionario, string motivo)
+        {
+            PRODUTOSDESCARTADOSTableAdapter produto = new PRODUTOSDESCARTADOSTableAdapter();
+            produto.Insert(idproduto, iditem, quantidade, data, idfuncionario, motivo);
+        }
+
+        public void ItensProduto_Excluir(int idItemProduto)
+        {
+            ITEMPRODUTOTableAdapter item = new ITEMPRODUTOTableAdapter();
+            item.DeletarPorItemIdProduto(idItemProduto);
+        }
 
         public DataTable Produtos_RetornaDatatableDescricao(string descricao)
         {

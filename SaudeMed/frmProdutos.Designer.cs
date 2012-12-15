@@ -279,6 +279,7 @@
             this.btnExcluirItens.Text = "Excluir";
             this.btnExcluirItens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExcluirItens.UseVisualStyleBackColor = true;
+            this.btnExcluirItens.Click += new System.EventHandler(this.btnExcluirItens_Click);
             // 
             // txQuantidade
             // 

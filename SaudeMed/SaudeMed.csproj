@@ -91,6 +91,12 @@
     <Compile Include="frmModelo.Designer.cs">
       <DependentUpon>frmModelo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMotivoExclusao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMotivoExclusao.Designer.cs">
+      <DependentUpon>frmMotivoExclusao.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProdutos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmModelo.resx">
       <DependentUpon>frmModelo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMotivoExclusao.resx">
+      <DependentUpon>frmMotivoExclusao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProdutos.resx">
       <DependentUpon>frmProdutos.cs</DependentUpon>

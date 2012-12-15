@@ -28,7 +28,8 @@ namespace SaudeMed
                     bool acesso = acessar.Usuarios_RetornaAcessoUsuario(txLogin.Text);
                     int IdFuncionario = acessar.Usuarios_RetornaIDFuncionario(txLogin.Text);
                     this.Visible = false;
-                    frmMenuPrincipal menu = new frmMenuPrincipal(acesso, IdFuncionario);
+                    string nome = acessar.Usuarios_RetornaNome(IdFuncionario);
+                    frmMenuPrincipal menu = new frmMenuPrincipal(acesso, IdFuncionario, nome);
                     menu.ShowDialog();
                     this.Close();
                 }

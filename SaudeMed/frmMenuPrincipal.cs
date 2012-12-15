@@ -12,11 +12,16 @@ namespace SaudeMed
     public partial class frmMenuPrincipal : frmModelo
     {
         bool acessoTotal;
-        public frmMenuPrincipal(bool acesso, int idFuncionario)
+        int IDFUNCIONARIO;
+        AcessaDados acessar = new AcessaDados();
+
+        public frmMenuPrincipal(bool acesso, int idFuncionario, string nome)
         {
             InitializeComponent();
             acessoTotal = acesso;
             LiberaAcessos();
+            IDFUNCIONARIO = idFuncionario;
+            lbNomeUsuario.Text = "Olá  " + nome;
         }
 
         private void gerenciarUsuáriosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -45,6 +50,18 @@ namespace SaudeMed
                 SubMenuGerenciarUsuarios.Enabled = false;
                 SubMenuQuantItens.Enabled = false;
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            DateTime hora = DateTime.Now;
+            lbDataHora.Text = hora.ToLongDateString() + " - "+hora.ToLongTimeString();
+        }
+
+        private void SubMenuGerenciarProdutos_Click(object sender, EventArgs e)
+        {
+            frmProdutos produtos = new frmProdutos(IDFUNCIONARIO);
+            produtos.ShowDialog();
         }
     }
 }
