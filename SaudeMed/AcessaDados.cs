@@ -184,11 +184,24 @@ namespace SaudeMed
                 return true;
         }
 
+        public void ItensProduto_Incluir(int idproduto, string lote, DateTime validade, int quantidade)
+        {
+            ITEMPRODUTOTableAdapter item = new ITEMPRODUTOTableAdapter();
+            item.Insert(idproduto, lote, validade, quantidade);
+        }
+
+
         public DataTable ItensProduto_RetornaDataTablePorLote(string lote, int idproduto)
         {
             ITEMPRODUTOTableAdapter item = new ITEMPRODUTOTableAdapter();
             DataTable tabela = item.RetornaDatatablePorLoteEIdProduto(lote, idproduto);
             return tabela;
+        }
+
+        public void ItensProduto_AtualizarLote(DateTime data, int quantidade, int iditemproduto)
+        {
+            ITEMPRODUTOTableAdapter item = new ITEMPRODUTOTableAdapter();
+            item.AtualizarLote(data.ToShortDateString(), quantidade, iditemproduto);
         }
 
 

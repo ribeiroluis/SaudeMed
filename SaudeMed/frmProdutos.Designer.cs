@@ -58,7 +58,7 @@
             this.BtnIncluirItens = new System.Windows.Forms.Button();
             this.txIdItemProtudo = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgDadosProdutos = new System.Windows.Forms.DataGridView();
             this.iDITEMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cODBARRASDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dESCRICAODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,7 +73,7 @@
             this.tableAdapterManager = new SaudeMed.BDSAUDEMEDDataSetTableAdapters.TableAdapterManager();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgDadosProdutos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewTabelaItensProdutoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bDSAUDEMEDDataSet)).BeginInit();
             this.SuspendLayout();
@@ -169,7 +169,6 @@
             this.txPrecoVenda.Size = new System.Drawing.Size(93, 25);
             this.txPrecoVenda.TabIndex = 9;
             this.txPrecoVenda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txPrecoVenda_KeyDown);
-            this.txPrecoVenda.Leave += new System.EventHandler(this.txPrecoVenda_Leave);
             // 
             // label9
             // 
@@ -201,7 +200,6 @@
             this.txCompra.Size = new System.Drawing.Size(93, 25);
             this.txCompra.TabIndex = 7;
             this.txCompra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txCompra_KeyDown);
-            this.txCompra.Leave += new System.EventHandler(this.txCompra_Leave);
             // 
             // label4
             // 
@@ -301,7 +299,7 @@
             this.btnEditarItens.Text = "Editar";
             this.btnEditarItens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnEditarItens.UseVisualStyleBackColor = true;
-            this.btnEditarItens.Click += new System.EventHandler(this.btnEditar_Click);
+            this.btnEditarItens.Click += new System.EventHandler(this.btnEditarItens_Click);
             // 
             // label8
             // 
@@ -314,7 +312,6 @@
             // 
             // btnLimparItens
             // 
-            this.btnLimparItens.Enabled = false;
             this.btnLimparItens.Image = global::SaudeMed.Properties.Resources.clear;
             this.btnLimparItens.Location = new System.Drawing.Point(338, 88);
             this.btnLimparItens.Name = "btnLimparItens";
@@ -323,7 +320,7 @@
             this.btnLimparItens.Text = "Limpar";
             this.btnLimparItens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLimparItens.UseVisualStyleBackColor = true;
-            this.btnLimparItens.Click += new System.EventHandler(this.btnListar_Click);
+            this.btnLimparItens.Click += new System.EventHandler(this.btnLimparItens_Click);
             // 
             // label7
             // 
@@ -372,7 +369,7 @@
             this.BtnIncluirItens.Text = "Incluir";
             this.BtnIncluirItens.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnIncluirItens.UseVisualStyleBackColor = true;
-            this.BtnIncluirItens.Click += new System.EventHandler(this.btnIncluir_Click);
+            this.BtnIncluirItens.Click += new System.EventHandler(this.BtnIncluirItens_Click);
             // 
             // txIdItemProtudo
             // 
@@ -392,13 +389,13 @@
             this.label6.TabIndex = 0;
             this.label6.Text = "Id:";
             // 
-            // dataGridView1
+            // dtgDadosProdutos
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dtgDadosProdutos.AllowUserToAddRows = false;
+            this.dtgDadosProdutos.AllowUserToDeleteRows = false;
+            this.dtgDadosProdutos.AutoGenerateColumns = false;
+            this.dtgDadosProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgDadosProdutos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.iDITEMDataGridViewTextBoxColumn,
             this.cODBARRASDataGridViewTextBoxColumn,
             this.dESCRICAODataGridViewTextBoxColumn,
@@ -407,12 +404,13 @@
             this.qUANTIDADEDataGridViewTextBoxColumn,
             this.pRECOCOMPRADataGridViewTextBoxColumn,
             this.pRECOVENDADataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.viewTabelaItensProdutoBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 291);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(811, 264);
-            this.dataGridView1.TabIndex = 10;
+            this.dtgDadosProdutos.DataSource = this.viewTabelaItensProdutoBindingSource;
+            this.dtgDadosProdutos.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dtgDadosProdutos.Location = new System.Drawing.Point(0, 291);
+            this.dtgDadosProdutos.Name = "dtgDadosProdutos";
+            this.dtgDadosProdutos.Size = new System.Drawing.Size(811, 264);
+            this.dtgDadosProdutos.TabIndex = 10;
+            this.dtgDadosProdutos.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
             // iDITEMDataGridViewTextBoxColumn
             // 
@@ -498,7 +496,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 555);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgDadosProdutos);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmProdutos";
@@ -508,7 +506,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgDadosProdutos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewTabelaItensProdutoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bDSAUDEMEDDataSet)).EndInit();
             this.ResumeLayout(false);
@@ -542,7 +540,7 @@
         private System.Windows.Forms.Button btnListar;
         private System.Windows.Forms.Button btnIncluir;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgDadosProdutos;
         private BDSAUDEMEDDataSet bDSAUDEMEDDataSet;
         private System.Windows.Forms.BindingSource viewTabelaItensProdutoBindingSource;
         private BDSAUDEMEDDataSetTableAdapters.ViewTabelaItensProdutoTableAdapter viewTabelaItensProdutoTableAdapter;
