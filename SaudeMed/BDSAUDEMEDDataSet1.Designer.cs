@@ -13230,7 +13230,7 @@ SELECT IDITEM, IDPRODUTO, LOTE, VALIDADE, QUANTIDADE FROM ITEMPRODUTO WHERE (IDI
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT IDITEM, IDPRODUTO, LOTE, VALIDADE, QUANTIDADE FROM dbo.ITEMPRODUTO";
@@ -13250,16 +13250,24 @@ SELECT IDITEM, IDPRODUTO, LOTE, VALIDADE, QUANTIDADE FROM ITEMPRODUTO WHERE (IDI
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@iditem", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDITEM", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT        IDITEM, LOTE, VALIDADE, QUANTIDADE\r\nFROM            ITEMPRODUTO\r\nWH" +
-                "ERE        (LOTE = @lote) AND (IDPRODUTO = @idproduto)";
+            this._commandCollection[3].CommandText = "SELECT        LOTE, IDITEM, IDPRODUTO, VALIDADE, QUANTIDADE\r\nFROM            ITEM" +
+                "PRODUTO\r\nWHERE        (IDPRODUTO = @idproduto)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@lote", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "LOTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idproduto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDPRODUTO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT        LOTE\r\nFROM            ITEMPRODUTO\r\nWHERE        (LOTE = @lote)";
+            this._commandCollection[4].CommandText = "SELECT        IDITEM, LOTE, VALIDADE, QUANTIDADE\r\nFROM            ITEMPRODUTO\r\nWH" +
+                "ERE        (LOTE = @lote) AND (IDPRODUTO = @idproduto)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@lote", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "LOTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idproduto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDPRODUTO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "SELECT        LOTE\r\nFROM            ITEMPRODUTO\r\nWHERE        (LOTE = @lote) AND " +
+                "(IDPRODUTO = @idproduto)";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@lote", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "LOTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idproduto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDPRODUTO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13290,8 +13298,25 @@ SELECT IDITEM, IDPRODUTO, LOTE, VALIDADE, QUANTIDADE FROM ITEMPRODUTO WHERE (IDI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual BDSAUDEMEDDataSet.ITEMPRODUTODataTable RetornaDatatablePorLoteEIdProduto(string lote, global::System.Nullable<int> idproduto) {
+        public virtual BDSAUDEMEDDataSet.ITEMPRODUTODataTable RetornaDataTableLotePorIDProduto(global::System.Nullable<int> idproduto) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((idproduto.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(idproduto.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            BDSAUDEMEDDataSet.ITEMPRODUTODataTable dataTable = new BDSAUDEMEDDataSet.ITEMPRODUTODataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual BDSAUDEMEDDataSet.ITEMPRODUTODataTable RetornaDatatablePorLoteEIdProduto(string lote, global::System.Nullable<int> idproduto) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((lote == null)) {
                 throw new global::System.ArgumentNullException("lote");
             }
@@ -13559,13 +13584,19 @@ SELECT IDITEM, IDPRODUTO, LOTE, VALIDADE, QUANTIDADE FROM ITEMPRODUTO WHERE (IDI
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual string RetornaLote(string lote) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+        public virtual object RetornaLote(string lote, global::System.Nullable<int> idproduto) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             if ((lote == null)) {
                 throw new global::System.ArgumentNullException("lote");
             }
             else {
                 command.Parameters[0].Value = ((string)(lote));
+            }
+            if ((idproduto.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(idproduto.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -13586,7 +13617,7 @@ SELECT IDITEM, IDPRODUTO, LOTE, VALIDADE, QUANTIDADE FROM ITEMPRODUTO WHERE (IDI
                 return null;
             }
             else {
-                return ((string)(returnValue));
+                return ((object)(returnValue));
             }
         }
     }

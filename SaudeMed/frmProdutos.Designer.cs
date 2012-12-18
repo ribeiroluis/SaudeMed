@@ -283,6 +283,7 @@
             // 
             // txQuantidade
             // 
+            this.txQuantidade.Enabled = false;
             this.txQuantidade.Location = new System.Drawing.Point(471, 44);
             this.txQuantidade.Name = "txQuantidade";
             this.txQuantidade.Size = new System.Drawing.Size(112, 25);
@@ -334,6 +335,7 @@
             // 
             // DateValidade
             // 
+            this.DateValidade.Enabled = false;
             this.DateValidade.Location = new System.Drawing.Point(179, 44);
             this.DateValidade.Name = "DateValidade";
             this.DateValidade.Size = new System.Drawing.Size(277, 25);
@@ -353,6 +355,7 @@
             // 
             this.txLote.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txLote.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txLote.Enabled = false;
             this.txLote.Location = new System.Drawing.Point(61, 44);
             this.txLote.Name = "txLote";
             this.txLote.Size = new System.Drawing.Size(112, 25);

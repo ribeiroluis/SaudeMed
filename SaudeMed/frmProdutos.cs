@@ -159,14 +159,11 @@ namespace SaudeMed
         private void frmProdutos_Load(object sender, EventArgs e)
         {
             try
-            {
-
-                txDescricao.AutoCompleteCustomSource.Clear();
+            {   
                 // TODO: esta linha de código carrega dados na tabela 'bDSAUDEMEDDataSet.ViewTabelaItensProduto'. Você pode movê-la ou removê-la conforme necessário.
                 this.viewTabelaItensProdutoTableAdapter.Fill(this.bDSAUDEMEDDataSet.ViewTabelaItensProduto);
+                txDescricao.AutoCompleteCustomSource.Clear();
                 GeraCustomSource();
-                txLote.AutoCompleteCustomSource.Clear();
-                GeracustomSourceLote();
             }
             catch (Exception err)
             {
@@ -248,10 +245,13 @@ namespace SaudeMed
         private void btnListar_Click(object sender, EventArgs e)
         {
             //LiberaCampos();
-            btnLimparItens_Click(sender, e);
-            BloqueiaCampos();
+            //BloqueiaCampos();
             txCodigoBarras.Enabled = true;
             btnIncluir.Enabled = false;
+            btnEditar.Enabled = false;
+            txDescricao.Enabled = false;
+            txPrecoVenda.Enabled = false;
+            txCompra.Enabled = false;
             txCodigoBarras.Clear();
             txDescricao.Clear();
             txIdProduto.Clear();
@@ -259,6 +259,14 @@ namespace SaudeMed
             txPrecoVenda.Clear();
             txDescontoMaximo.Clear();
             frmProdutos_Load(sender, e);
+            txLote.Enabled = false;
+            txQuantidade.Enabled = false;
+            DateValidade.Enabled = false;
+            this.ActiveControl = txCodigoBarras;
+            txLote.Clear();
+            txQuantidade.Clear();
+            txIdItemProtudo.Clear();
+            btnEditarItens.Enabled = false;
         }
 
         private void PreencheCamposCodBarras(string Codbarras)
@@ -362,7 +370,8 @@ namespace SaudeMed
         {
             try
             {
-                DataTable table = acessar.ItensProduto_RetornaLotes();
+                txLote.AutoCompleteCustomSource.Clear();
+                DataTable table = acessar.ItensProduto_RetornaLotes(int.Parse(txIdProduto.Text));
 
                 foreach (DataRow row in table.Rows)
                 {
@@ -401,7 +410,7 @@ namespace SaudeMed
         {
             try
             {
-                if (acessar.ItensProduto_RetornaSeExisteLote(txLote.Text))
+                if (acessar.ItensProduto_RetornaSeExisteLote(txLote.Text, int.Parse(txIdProduto.Text)))
                     return true;
                 else
                     return false;
@@ -465,6 +474,7 @@ namespace SaudeMed
 
         private void LiberaCamposItens()
         {
+            this.ActiveControl = txLote;
             txLote.Enabled = true;
             txQuantidade.Enabled = true;
             DateValidade.Enabled = true;
@@ -502,6 +512,7 @@ namespace SaudeMed
                     acessar.ItensProduto_Incluir(_idProduto, _lote, _validade, _quantidade);
                     MessageBox.Show("Item inserido com sucesso!");
                 }
+                GeracustomSourceLote();
                 frmProdutos_Load(sender, e);
                 BtnIncluirItens.Text = "Incluir";
                 BtnIncluirItens.Enabled = false;
@@ -530,6 +541,10 @@ namespace SaudeMed
             txQuantidade.Clear();
             btnEditarItens.Enabled = false;
             btnExcluirItens.Enabled = false;
+            txLote.Enabled = true;
+            txQuantidade.Enabled = true;
+            DateValidade.Enabled = true;
+            this.ActiveControl = txLote;
         }
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -572,12 +587,13 @@ namespace SaudeMed
                     {
                         MessageBox.Show("Cancelado pelo usuário");
                     }
-                    frmProdutos_Load(sender, e);
+                    GeracustomSourceLote();
                     BtnIncluirItens.Text = "Incluir";
                     BtnIncluirItens.Enabled = false;
                     btnExcluirItens.Enabled = false;
                     btnLimparItens_Click(sender, e);
                     this.ActiveControl = txLote;
+                    frmProdutos_Load(sender, e);
                 }
             }
             catch (Exception err)
