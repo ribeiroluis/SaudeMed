@@ -97,6 +97,12 @@
     <Compile Include="frmMotivoExclusao.Designer.cs">
       <DependentUpon>frmMotivoExclusao.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPesquisaCEP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPesquisaCEP.Designer.cs">
+      <DependentUpon>frmPesquisaCEP.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProdutos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,12 @@
     </Compile>
     <Compile Include="frmTelaSplash.Designer.cs">
       <DependentUpon>frmTelaSplash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTelaVendas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTelaVendas.Designer.cs">
+      <DependentUpon>frmTelaVendas.cs</DependentUpon>
     </Compile>
     <Compile Include="Funcionario.cs" />
     <Compile Include="ItensdeVenda.cs" />
@@ -141,6 +153,9 @@
     <EmbeddedResource Include="frmMotivoExclusao.resx">
       <DependentUpon>frmMotivoExclusao.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPesquisaCEP.resx">
+      <DependentUpon>frmPesquisaCEP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProdutos.resx">
       <DependentUpon>frmProdutos.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTelaSplash.resx">
       <DependentUpon>frmTelaSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTelaVendas.resx">
+      <DependentUpon>frmTelaVendas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

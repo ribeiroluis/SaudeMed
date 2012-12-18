@@ -276,6 +276,14 @@ namespace SaudeMed
             produto.Insert(descricao, codbarras,precompra,prevenda, descmaximo);
         }
 
+        public DataTable CEP_RetornCEPEnderecoCidadeBairroPorEndereco(string endereco)
+        {
+            string _endereco = "%" + endereco + "%";
+            BUSCPAPORCEPTableAdapter busca = new BUSCPAPORCEPTableAdapter();
+            DataTable enderecos = busca.RetornaCEPEnderecoBairroCidadePorEndereco(_endereco);
+            return enderecos;
+        }
+
 
     }
 }
