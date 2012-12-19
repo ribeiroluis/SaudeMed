@@ -177,19 +177,18 @@ namespace SaudeMed
         {
             try
             {
+                DataTable table = acessar.Produtos_RetornaDescricao();
+
+                foreach (DataRow row in table.Rows)
+                {
+                    string aux = (string)row[1];
+                    txDescricao.AutoCompleteCustomSource.Add(aux);
+                }
 
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
-            }
-
-            DataTable table = acessar.Produtos_RetornaDescricao();
-
-            foreach (DataRow row in table.Rows)
-            {
-                string aux = (string)row[1];
-                txDescricao.AutoCompleteCustomSource.Add(aux);
             }
         }
 

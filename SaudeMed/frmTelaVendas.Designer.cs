@@ -38,27 +38,27 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txTelefoneCelular = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txNomeCliente = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txCPF = new System.Windows.Forms.MaskedTextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txCEP = new System.Windows.Forms.MaskedTextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.btnLimpar = new System.Windows.Forms.Button();
             this.txCidade = new System.Windows.Forms.TextBox();
+            this.btnExcluir = new System.Windows.Forms.Button();
+            this.txCEP = new System.Windows.Forms.MaskedTextBox();
+            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnGravar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.txBairro = new System.Windows.Forms.TextBox();
+            this.txCPF = new System.Windows.Forms.MaskedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txComplemento = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.txNumero = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txEndereco = new System.Windows.Forms.TextBox();
+            this.txNomeCliente = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnLimpar = new System.Windows.Forms.Button();
-            this.btnExcluir = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnGravar = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -88,7 +88,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(754, 308);
+            this.tabPage2.Size = new System.Drawing.Size(826, 197);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -184,45 +184,51 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
             // 
-            // txNomeCliente
+            // linkLabel1
             // 
-            this.txNomeCliente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txNomeCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txNomeCliente.Enabled = false;
-            this.txNomeCliente.Location = new System.Drawing.Point(354, 43);
-            this.txNomeCliente.Name = "txNomeCliente";
-            this.txNomeCliente.Size = new System.Drawing.Size(513, 25);
-            this.txNomeCliente.TabIndex = 7;
-            this.txNomeCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txNomeCliente_KeyDown);
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(165, 71);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(14, 17);
+            this.linkLabel1.TabIndex = 40;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "?";
+            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // label4
+            // btnLimpar
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(351, 23);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Nome:";
+            this.btnLimpar.Image = global::SaudeMed.Properties.Resources.clear;
+            this.btnLimpar.Location = new System.Drawing.Point(783, 132);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(94, 36);
+            this.btnLimpar.TabIndex = 11;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
-            // txCPF
+            // txCidade
             // 
-            this.txCPF.Enabled = false;
-            this.txCPF.Location = new System.Drawing.Point(6, 91);
-            this.txCPF.Mask = "000,000,000-00";
-            this.txCPF.Name = "txCPF";
-            this.txCPF.Size = new System.Drawing.Size(100, 25);
-            this.txCPF.TabIndex = 33;
-            this.txCPF.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.txCPF.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txCPF_KeyDown);
+            this.txCidade.Location = new System.Drawing.Point(269, 139);
+            this.txCidade.Name = "txCidade";
+            this.txCidade.ReadOnly = true;
+            this.txCidade.Size = new System.Drawing.Size(198, 25);
+            this.txCidade.TabIndex = 34;
             // 
-            // label11
+            // btnExcluir
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 71);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(32, 17);
-            this.label11.TabIndex = 34;
-            this.label11.Text = "CPF:";
+            this.btnExcluir.Enabled = false;
+            this.btnExcluir.Image = global::SaudeMed.Properties.Resources.cancelar;
+            this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExcluir.Location = new System.Drawing.Point(689, 132);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(88, 36);
+            this.btnExcluir.TabIndex = 10;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // txCEP
             // 
@@ -235,22 +241,31 @@
             this.txCEP.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.txCEP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txCEP_KeyDown);
             // 
-            // label5
+            // btnEditar
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(127, 71);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 17);
-            this.label5.TabIndex = 36;
-            this.label5.Text = "CEP:";
+            this.btnEditar.Enabled = false;
+            this.btnEditar.Image = global::SaudeMed.Properties.Resources.editar;
+            this.btnEditar.Location = new System.Drawing.Point(595, 132);
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Size = new System.Drawing.Size(88, 36);
+            this.btnEditar.TabIndex = 9;
+            this.btnEditar.Text = "Editar";
+            this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // txCidade
+            // btnGravar
             // 
-            this.txCidade.Location = new System.Drawing.Point(269, 139);
-            this.txCidade.Name = "txCidade";
-            this.txCidade.ReadOnly = true;
-            this.txCidade.Size = new System.Drawing.Size(198, 25);
-            this.txCidade.TabIndex = 34;
+            this.btnGravar.Enabled = false;
+            this.btnGravar.Image = global::SaudeMed.Properties.Resources.salvar;
+            this.btnGravar.Location = new System.Drawing.Point(501, 132);
+            this.btnGravar.Name = "btnGravar";
+            this.btnGravar.Size = new System.Drawing.Size(88, 36);
+            this.btnGravar.TabIndex = 8;
+            this.btnGravar.Text = "Gravar";
+            this.btnGravar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // label8
             // 
@@ -261,6 +276,15 @@
             this.label8.TabIndex = 39;
             this.label8.Text = "Cidade:";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(127, 71);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 17);
+            this.label5.TabIndex = 36;
+            this.label5.Text = "CEP:";
+            // 
             // txBairro
             // 
             this.txBairro.Location = new System.Drawing.Point(6, 139);
@@ -268,6 +292,17 @@
             this.txBairro.ReadOnly = true;
             this.txBairro.Size = new System.Drawing.Size(243, 25);
             this.txBairro.TabIndex = 33;
+            // 
+            // txCPF
+            // 
+            this.txCPF.Enabled = false;
+            this.txCPF.Location = new System.Drawing.Point(6, 91);
+            this.txCPF.Mask = "000,000,000-00";
+            this.txCPF.Name = "txCPF";
+            this.txCPF.Size = new System.Drawing.Size(100, 25);
+            this.txCPF.TabIndex = 33;
+            this.txCPF.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.txCPF.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txCPF_KeyDown);
             // 
             // label7
             // 
@@ -296,6 +331,15 @@
             this.label6.TabIndex = 37;
             this.label6.Text = "Comp:";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 71);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(32, 17);
+            this.label11.TabIndex = 34;
+            this.label11.Text = "CPF:";
+            // 
             // txNumero
             // 
             this.txNumero.Enabled = false;
@@ -322,6 +366,17 @@
             this.txEndereco.Size = new System.Drawing.Size(411, 25);
             this.txEndereco.TabIndex = 32;
             // 
+            // txNomeCliente
+            // 
+            this.txNomeCliente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txNomeCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txNomeCliente.Enabled = false;
+            this.txNomeCliente.Location = new System.Drawing.Point(354, 43);
+            this.txNomeCliente.Name = "txNomeCliente";
+            this.txNomeCliente.Size = new System.Drawing.Size(513, 25);
+            this.txNomeCliente.TabIndex = 7;
+            this.txNomeCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txNomeCliente_KeyDown);
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -331,66 +386,14 @@
             this.label10.TabIndex = 35;
             this.label10.Text = "Endereço:";
             // 
-            // btnLimpar
+            // label4
             // 
-            this.btnLimpar.Image = global::SaudeMed.Properties.Resources.clear;
-            this.btnLimpar.Location = new System.Drawing.Point(783, 132);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(94, 36);
-            this.btnLimpar.TabIndex = 11;
-            this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLimpar.UseVisualStyleBackColor = true;
-            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
-            // 
-            // btnExcluir
-            // 
-            this.btnExcluir.Enabled = false;
-            this.btnExcluir.Image = global::SaudeMed.Properties.Resources.cancelar;
-            this.btnExcluir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExcluir.Location = new System.Drawing.Point(689, 132);
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(88, 36);
-            this.btnExcluir.TabIndex = 10;
-            this.btnExcluir.Text = "Excluir";
-            this.btnExcluir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnExcluir.UseVisualStyleBackColor = true;
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Enabled = false;
-            this.btnEditar.Image = global::SaudeMed.Properties.Resources.editar;
-            this.btnEditar.Location = new System.Drawing.Point(595, 132);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(88, 36);
-            this.btnEditar.TabIndex = 9;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEditar.UseVisualStyleBackColor = true;
-            // 
-            // btnGravar
-            // 
-            this.btnGravar.Enabled = false;
-            this.btnGravar.Image = global::SaudeMed.Properties.Resources.salvar;
-            this.btnGravar.Location = new System.Drawing.Point(501, 132);
-            this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(88, 36);
-            this.btnGravar.TabIndex = 8;
-            this.btnGravar.Text = "Gravar";
-            this.btnGravar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnGravar.UseVisualStyleBackColor = true;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(165, 71);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(14, 17);
-            this.linkLabel1.TabIndex = 40;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "?";
-            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Blue;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(351, 23);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 17);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Nome:";
             // 
             // frmTelaVendas
             // 

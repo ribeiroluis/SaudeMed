@@ -284,6 +284,49 @@ namespace SaudeMed
             return enderecos;
         }
 
+        public DataTable Cliente_RetornDataTablePorTelefone(string telefone)
+        {
+            CLIENTETableAdapter cliente = new CLIENTETableAdapter();
+            DataTable tabela = cliente.RetornaDataTableClientePorTelefone(telefone, telefone);
+            return tabela;
+
+        }
+
+        public DataTable Cliente_RetornaTabelaCliente()
+        {
+            CLIENTETableAdapter cliente = new CLIENTETableAdapter();
+            DataTable tabela = new DataTable();
+            tabela = cliente.NomeRetornaDatatable();            
+            return tabela;
+        }
+        
+        public DataTable Cliente_RetornaTabelaClientePorNome(string nome)
+        {
+            CLIENTETableAdapter cliente = new CLIENTETableAdapter();
+            DataTable tabela = new DataTable();
+            tabela = cliente.RetornaDataTablePorNome("%" + nome + "%");
+            return tabela;
+        }
+
+        public void Cliente_IserirNovoCliente(string _nome, string _cpf, string _telfixo, string _telcel, int _numero, string _comp, int _cep)
+        {
+            CLIENTETableAdapter cliente = new CLIENTETableAdapter();
+            cliente.Insert(_nome, _cpf, _telfixo, _telcel, _cep, _numero, _comp);
+        }
+
+        public void Cliente_AtualizarCliente(string _nome, string _cpf, string _telfixo, string _telcel, 
+            int _numero, string _comp, int _cep, int _idcliente)
+        {
+            CLIENTETableAdapter cliente = new CLIENTETableAdapter();
+            cliente.AtualizaCliente(_nome, _cpf, _telfixo, _telcel, _cep, _numero, _comp, _idcliente);
+        }
+
+        public void Cliente_ExcluirCliente(int idcliente)
+        {
+            CLIENTETableAdapter cliente = new CLIENTETableAdapter();
+            cliente.Delete(idcliente);
+
+        }
 
     }
 }

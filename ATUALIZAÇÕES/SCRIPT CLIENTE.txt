@@ -1,0 +1,42 @@
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('CLIENTE') and o.name = 'FK_CLIENTE_REFERENCE_ENDERECO')
+alter table CLIENTE
+   drop constraint FK_CLIENTE_REFERENCE_ENDERECO
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('VENDA') and o.name = 'FK_VENDA_REFERENCE_CLIENTE')
+alter table VENDA
+   drop constraint FK_VENDA_REFERENCE_CLIENTE
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('CLIENTE')
+            and   type = 'U')
+   drop table CLIENTE
+go
+
+/*==============================================================*/
+/* Table: CLIENTE                                               */
+/*==============================================================*/
+create table CLIENTE (
+   IDCLIENTE            int                  identity(1,1) not for replication,
+   NOME                 varchar(250)         not null
+      constraint CKC_NOME_CLIENTE check (NOME = upper(NOME)),
+   CPF                  varchar(11)          null,
+   TELEFONEFIXO         varchar(10)          null,
+   TELEFONECELULAR      varchar(10)          null,
+   CEP                  int                  null,
+   NUMERO               int                  null,
+   COMPLEMENTO          varchar(20)          null,
+   constraint PK_CLIENTE primary key (IDCLIENTE)
+)
+go
+
+alter table CLIENTE
+   add constraint FK_CLIENTE_REFERENCE_ENDERECO foreign key (CEP)
+      references ENDERECO (CEP)
+go
