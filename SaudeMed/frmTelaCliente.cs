@@ -14,6 +14,14 @@ namespace SaudeMed
 
         AcessaDados acessar = new AcessaDados();
         int IDFUNCIONARIO;
+        private string UltimoNome;
+
+        public string RetornaUltimoNome
+        {
+            get { return UltimoNome; }
+            set { UltimoNome = value; }
+        }
+
         public frmTelaCliente(int idfuncionario)
         {
             InitializeComponent();
@@ -23,6 +31,18 @@ namespace SaudeMed
         private void frmTelaVendas_Load(object sender, EventArgs e)
         {
             this.ActiveControl = txTelefoneFixo;
+        }
+
+        public void RecebeDadosClientes(string cel, string tel, string nome)
+        {
+            txTelefoneCelular.Enabled = true;
+            txTelefoneCelular.Text = cel;
+            txTelefoneFixo.Enabled = true;
+            txTelefoneFixo.Text = tel;
+            txNomeCliente.Enabled = true;
+            txNomeCliente.Text = nome.ToUpper();
+            txCEP.Enabled = true;
+            this.ActiveControl = txCEP;
         }
 
         private void txTelefoneFixo_KeyDown(object sender, KeyEventArgs e)
@@ -181,6 +201,7 @@ namespace SaudeMed
 
                 txIdCliente.Text = tabela.Rows[0][0].ToString();
                 txNomeCliente.Text = tabela.Rows[0][1].ToString();
+                UltimoNome = txNomeCliente.Text;
                 txCPF.Text = tabela.Rows[0][2].ToString();
                 txTelefoneFixo.Text = tabela.Rows[0][3].ToString();
                 txTelefoneCelular.Text = tabela.Rows[0][4].ToString();
@@ -383,6 +404,7 @@ namespace SaudeMed
                 idcliente = int.Parse(txIdCliente.Text);
 
             string nomecliente = txNomeCliente.Text.ToUpper();
+            UltimoNome = txNomeCliente.Text.ToUpper();
             string cpf = txCPF.Text;
             string telfixo = txTelefoneFixo.Text;
             string telcel = txTelefoneCelular.Text;

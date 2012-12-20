@@ -21,30 +21,34 @@ namespace SaudeMed
 
         private void txTelefoneFixo_KeyDown(object sender, KeyEventArgs e)
         {
-            try
-            {
-                if (txTelefoneFixo.Text.Equals(""))
-                {
-                    txTelefoneCelular.ReadOnly = false;
-                    this.ActiveControl = txTelefoneCelular;
-                }
-                else
-                {
-                    if (TestaClienteTelefone(txTelefoneFixo.Text))
-                    {
-                        PreencheCampos(txTelefoneFixo.Text, "");
-                    }
 
-                    else
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (txTelefoneFixo.Text.Equals(""))
                     {
                         txTelefoneCelular.ReadOnly = false;
                         this.ActiveControl = txTelefoneCelular;
                     }
+                    else
+                    {
+                        if (TestaClienteTelefone(txTelefoneFixo.Text))
+                        {
+                            PreencheCampos(txTelefoneFixo.Text, "");
+                        }
+
+                        else
+                        {
+                            txTelefoneCelular.ReadOnly = false;
+                            this.ActiveControl = txTelefoneCelular;
+                        }
+                    }
                 }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                } 
             }
         }
 
@@ -137,7 +141,6 @@ namespace SaudeMed
             {
                 DataTable tabela = new DataTable();
 
-
                 if (!telefone.Equals(""))
                 {
                     tabela = acessar.Cliente_RetornDataTablePorTelefone(telefone);
@@ -149,10 +152,11 @@ namespace SaudeMed
                 txNomeCliente.Text = tabela.Rows[0][1].ToString();
                 txTelefoneFixo.Text = tabela.Rows[0][3].ToString();
                 txTelefoneCelular.Text = tabela.Rows[0][4].ToString();
-                txIdCliente.Enabled = false;
-                txNomeCliente.Enabled = false;
-                txTelefoneFixo.Enabled = false;
-                txTelefoneCelular.Enabled = false;
+                txIdCliente.ReadOnly = true;
+                txNomeCliente.ReadOnly = true;
+                txTelefoneFixo.ReadOnly = true;
+                txTelefoneCelular.ReadOnly = true;
+                txCodBarras.ReadOnly = false;
                 this.ActiveControl = txCodBarras;
             }
             catch (Exception err)
@@ -174,7 +178,26 @@ namespace SaudeMed
                     }
                     else
                     {
-
+                        DialogResult resultado = MessageBox.Show("Cliente não cadastrado, realizar cadastro?", "Aviso", MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning);
+                        if (resultado == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            frmTelaCliente cliente = new frmTelaCliente(IdFuncionario);
+                            cliente.RecebeDadosClientes(txTelefoneCelular.Text, txTelefoneFixo.Text, txNomeCliente.Text);
+                            cliente.ShowDialog();
+                            if (TestaCliente(txNomeCliente.Text))
+                                PreencheCampos("", txNomeCliente.Text);
+                        }
+                        else
+                        {
+                            txIdCliente.Clear();
+                            txTelefoneCelular.Clear();
+                            txTelefoneFixo.Clear();
+                            txNomeCliente.Clear();
+                            txTelefoneFixo.ReadOnly = false;
+                            this.ActiveControl = txTelefoneFixo;
+                        }
+                            
                     }
                 }
                 catch (Exception err)
@@ -183,6 +206,7 @@ namespace SaudeMed
                 }
             }
         }
+
         private bool TestaCliente(string parametro)
         {
             try
@@ -202,6 +226,28 @@ namespace SaudeMed
                 return false;
             }
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmTelaCliente cliente = new frmTelaCliente(IdFuncionario);            
+            cliente.ShowDialog();
+            string nome = cliente.RetornaUltimoNome;
+
+            if (TestaCliente(nome))
+                PreencheCampos("", nome);
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            txIdCliente.Clear();
+            txTelefoneCelular.Clear();
+            txTelefoneFixo.Clear();
+            txNomeCliente.Clear();
+            txTelefoneFixo.ReadOnly = false;
+            this.ActiveControl = txTelefoneFixo;
+        }
+
+
 
 
         
