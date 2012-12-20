@@ -9,12 +9,12 @@ using System.Windows.Forms;
 
 namespace SaudeMed
 {
-    public partial class frmTelaVendas : frmModelo
+    public partial class frmTelaCliente : frmModelo
     {
 
         AcessaDados acessar = new AcessaDados();
         int IDFUNCIONARIO;
-        public frmTelaVendas(int idfuncionario)
+        public frmTelaCliente(int idfuncionario)
         {
             InitializeComponent();
             IDFUNCIONARIO = idfuncionario;
@@ -419,6 +419,7 @@ namespace SaudeMed
                 MessageBox.Show("Operação cancelada pelo usuário");
 
             btnLimpar_Click(sender, e);
-        }
+        }       
+
     }
 }

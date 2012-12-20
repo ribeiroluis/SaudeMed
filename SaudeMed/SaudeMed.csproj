@@ -121,11 +121,17 @@
     <Compile Include="frmTelaSplash.Designer.cs">
       <DependentUpon>frmTelaSplash.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTelaVendas.cs">
+    <Compile Include="frmTelaCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTelaVendas.Designer.cs">
-      <DependentUpon>frmTelaVendas.cs</DependentUpon>
+    <Compile Include="frmTelaCliente.Designer.cs">
+      <DependentUpon>frmTelaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmVendas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmVendas.Designer.cs">
+      <DependentUpon>frmVendas.cs</DependentUpon>
     </Compile>
     <Compile Include="Funcionario.cs" />
     <Compile Include="ItensdeVenda.cs" />
@@ -165,8 +171,11 @@
     <EmbeddedResource Include="frmTelaSplash.resx">
       <DependentUpon>frmTelaSplash.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTelaVendas.resx">
-      <DependentUpon>frmTelaVendas.cs</DependentUpon>
+    <EmbeddedResource Include="frmTelaCliente.resx">
+      <DependentUpon>frmTelaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmVendas.resx">
+      <DependentUpon>frmVendas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -206,6 +215,7 @@
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\1356042729_1.png" />
     <None Include="Resources\clear.png" />
     <None Include="Resources\1355246967_Login Manager.png" />
     <None Include="Resources\sair.png" />
