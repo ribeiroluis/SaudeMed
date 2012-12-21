@@ -159,9 +159,8 @@ namespace SaudeMed
         private void frmProdutos_Load(object sender, EventArgs e)
         {
             try
-            {   
-                // TODO: esta linha de código carrega dados na tabela 'bDSAUDEMEDDataSet.ViewTabelaItensProduto'. Você pode movê-la ou removê-la conforme necessário.
-                this.viewTabelaItensProdutoTableAdapter.Fill(this.bDSAUDEMEDDataSet.ViewTabelaItensProduto);
+            {
+                dtgDadosProdutos.DataSource = acessar.ItensProtutos_ViewItensProdutos();             
                 txDescricao.AutoCompleteCustomSource.Clear();
                 GeraCustomSource();
             }
@@ -602,5 +601,13 @@ namespace SaudeMed
             }
         }
         #endregion ItensProduto
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmLotes frm = new frmLotes(txDescricao.Text);
+            frm.ShowDialog();
+            txLote.Text = frm.Lote;
+            PreencheCamposItens(txLote.Text, int.Parse(txIdProduto.Text));
+        }
     }
 }

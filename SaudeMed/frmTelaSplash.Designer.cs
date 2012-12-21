@@ -48,11 +48,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(467, 274);
+            this.label1.Location = new System.Drawing.Point(400, 274);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 17);
+            this.label1.Size = new System.Drawing.Size(162, 17);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Versão: 1.0.1";
+            this.label1.Text = "Versão: 1.0.2 - 21/12/2012";
             // 
             // label2
             // 

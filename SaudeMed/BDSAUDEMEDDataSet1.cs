@@ -6,6 +6,10 @@
 }
 
 namespace SaudeMed.BDSAUDEMEDDataSetTableAdapters {
+    partial class ITEMPRODUTOTableAdapter
+    {
+    }
+
     partial class FUNCIONARIOTableAdapter
     {
     }

@@ -328,6 +328,20 @@ namespace SaudeMed
 
         }
 
+        public DataTable ItensProdutos_ViewLotesPorDescricao(string _descricao)
+        {
+            ITEMPRODUTOTableAdapter item = new ITEMPRODUTOTableAdapter();
+            DataTable tabela =  item.ViewLotesPorDescricao(_descricao);
+            return tabela;
+        }
+
+        public DataTable ItensProtutos_ViewItensProdutos()
+        {
+            ViewTabelaItensProdutoTableAdapter view = new ViewTabelaItensProdutoTableAdapter();
+            DataTable tabela = view.RetornaDadosOrdenados();
+            return tabela;
+ 
+        }
     }
 }
         

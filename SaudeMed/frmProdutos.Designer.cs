@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txIdProduto = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -46,6 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txCodigoBarras = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnExcluirItens = new System.Windows.Forms.Button();
             this.txQuantidade = new System.Windows.Forms.TextBox();
             this.btnEditarItens = new System.Windows.Forms.Button();
@@ -59,23 +59,9 @@
             this.txIdItemProtudo = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dtgDadosProdutos = new System.Windows.Forms.DataGridView();
-            this.iDITEMDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cODBARRASDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dESCRICAODataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lOTEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vALIDADEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qUANTIDADEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pRECOCOMPRADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pRECOVENDADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.viewTabelaItensProdutoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bDSAUDEMEDDataSet = new SaudeMed.BDSAUDEMEDDataSet();
-            this.viewTabelaItensProdutoTableAdapter = new SaudeMed.BDSAUDEMEDDataSetTableAdapters.ViewTabelaItensProdutoTableAdapter();
-            this.tableAdapterManager = new SaudeMed.BDSAUDEMEDDataSetTableAdapters.TableAdapterManager();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosProdutos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewTabelaItensProdutoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bDSAUDEMEDDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -249,6 +235,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.btnExcluirItens);
             this.groupBox2.Controls.Add(this.txQuantidade);
             this.groupBox2.Controls.Add(this.btnEditarItens);
@@ -268,6 +255,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Medicamento Item";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(176, 44);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(37, 25);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // btnExcluirItens
             // 
             this.btnExcluirItens.Enabled = false;
@@ -284,7 +282,7 @@
             // txQuantidade
             // 
             this.txQuantidade.Enabled = false;
-            this.txQuantidade.Location = new System.Drawing.Point(471, 44);
+            this.txQuantidade.Location = new System.Drawing.Point(570, 44);
             this.txQuantidade.Name = "txQuantidade";
             this.txQuantidade.Size = new System.Drawing.Size(112, 25);
             this.txQuantidade.TabIndex = 9;
@@ -306,7 +304,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(468, 24);
+            this.label8.Location = new System.Drawing.Point(567, 24);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(79, 17);
             this.label8.TabIndex = 8;
@@ -327,7 +325,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(185, 24);
+            this.label7.Location = new System.Drawing.Point(244, 24);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 17);
             this.label7.TabIndex = 7;
@@ -336,7 +334,7 @@
             // DateValidade
             // 
             this.DateValidade.Enabled = false;
-            this.DateValidade.Location = new System.Drawing.Point(179, 44);
+            this.DateValidade.Location = new System.Drawing.Point(247, 44);
             this.DateValidade.Name = "DateValidade";
             this.DateValidade.Size = new System.Drawing.Size(277, 25);
             this.DateValidade.TabIndex = 6;
@@ -397,103 +395,15 @@
             // 
             this.dtgDadosProdutos.AllowUserToAddRows = false;
             this.dtgDadosProdutos.AllowUserToDeleteRows = false;
-            this.dtgDadosProdutos.AutoGenerateColumns = false;
+            this.dtgDadosProdutos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dtgDadosProdutos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtgDadosProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgDadosProdutos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDITEMDataGridViewTextBoxColumn,
-            this.cODBARRASDataGridViewTextBoxColumn,
-            this.dESCRICAODataGridViewTextBoxColumn,
-            this.lOTEDataGridViewTextBoxColumn,
-            this.vALIDADEDataGridViewTextBoxColumn,
-            this.qUANTIDADEDataGridViewTextBoxColumn,
-            this.pRECOCOMPRADataGridViewTextBoxColumn,
-            this.pRECOVENDADataGridViewTextBoxColumn});
-            this.dtgDadosProdutos.DataSource = this.viewTabelaItensProdutoBindingSource;
             this.dtgDadosProdutos.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dtgDadosProdutos.Location = new System.Drawing.Point(0, 291);
             this.dtgDadosProdutos.Name = "dtgDadosProdutos";
             this.dtgDadosProdutos.Size = new System.Drawing.Size(811, 264);
             this.dtgDadosProdutos.TabIndex = 10;
             this.dtgDadosProdutos.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
-            // 
-            // iDITEMDataGridViewTextBoxColumn
-            // 
-            this.iDITEMDataGridViewTextBoxColumn.DataPropertyName = "IDITEM";
-            this.iDITEMDataGridViewTextBoxColumn.HeaderText = "IDITEM";
-            this.iDITEMDataGridViewTextBoxColumn.Name = "iDITEMDataGridViewTextBoxColumn";
-            // 
-            // cODBARRASDataGridViewTextBoxColumn
-            // 
-            this.cODBARRASDataGridViewTextBoxColumn.DataPropertyName = "CODBARRAS";
-            this.cODBARRASDataGridViewTextBoxColumn.HeaderText = "CODBARRAS";
-            this.cODBARRASDataGridViewTextBoxColumn.Name = "cODBARRASDataGridViewTextBoxColumn";
-            // 
-            // dESCRICAODataGridViewTextBoxColumn
-            // 
-            this.dESCRICAODataGridViewTextBoxColumn.DataPropertyName = "DESCRICAO";
-            this.dESCRICAODataGridViewTextBoxColumn.HeaderText = "DESCRICAO";
-            this.dESCRICAODataGridViewTextBoxColumn.Name = "dESCRICAODataGridViewTextBoxColumn";
-            // 
-            // lOTEDataGridViewTextBoxColumn
-            // 
-            this.lOTEDataGridViewTextBoxColumn.DataPropertyName = "LOTE";
-            this.lOTEDataGridViewTextBoxColumn.HeaderText = "LOTE";
-            this.lOTEDataGridViewTextBoxColumn.Name = "lOTEDataGridViewTextBoxColumn";
-            // 
-            // vALIDADEDataGridViewTextBoxColumn
-            // 
-            this.vALIDADEDataGridViewTextBoxColumn.DataPropertyName = "VALIDADE";
-            this.vALIDADEDataGridViewTextBoxColumn.HeaderText = "VALIDADE";
-            this.vALIDADEDataGridViewTextBoxColumn.Name = "vALIDADEDataGridViewTextBoxColumn";
-            // 
-            // qUANTIDADEDataGridViewTextBoxColumn
-            // 
-            this.qUANTIDADEDataGridViewTextBoxColumn.DataPropertyName = "QUANTIDADE";
-            this.qUANTIDADEDataGridViewTextBoxColumn.HeaderText = "QUANTIDADE";
-            this.qUANTIDADEDataGridViewTextBoxColumn.Name = "qUANTIDADEDataGridViewTextBoxColumn";
-            // 
-            // pRECOCOMPRADataGridViewTextBoxColumn
-            // 
-            this.pRECOCOMPRADataGridViewTextBoxColumn.DataPropertyName = "PRECOCOMPRA";
-            this.pRECOCOMPRADataGridViewTextBoxColumn.HeaderText = "PRECOCOMPRA";
-            this.pRECOCOMPRADataGridViewTextBoxColumn.Name = "pRECOCOMPRADataGridViewTextBoxColumn";
-            // 
-            // pRECOVENDADataGridViewTextBoxColumn
-            // 
-            this.pRECOVENDADataGridViewTextBoxColumn.DataPropertyName = "PRECOVENDA";
-            this.pRECOVENDADataGridViewTextBoxColumn.HeaderText = "PRECOVENDA";
-            this.pRECOVENDADataGridViewTextBoxColumn.Name = "pRECOVENDADataGridViewTextBoxColumn";
-            // 
-            // viewTabelaItensProdutoBindingSource
-            // 
-            this.viewTabelaItensProdutoBindingSource.DataMember = "ViewTabelaItensProduto";
-            this.viewTabelaItensProdutoBindingSource.DataSource = this.bDSAUDEMEDDataSet;
-            // 
-            // bDSAUDEMEDDataSet
-            // 
-            this.bDSAUDEMEDDataSet.DataSetName = "BDSAUDEMEDDataSet";
-            this.bDSAUDEMEDDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // viewTabelaItensProdutoTableAdapter
-            // 
-            this.viewTabelaItensProdutoTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BAIRROTableAdapter = null;
-            this.tableAdapterManager.CIDADETableAdapter = null;
-            this.tableAdapterManager.CLIENTETableAdapter = null;
-            this.tableAdapterManager.Connection = null;
-            this.tableAdapterManager.ENDERECOTableAdapter = null;
-            this.tableAdapterManager.FUNCIONARIOTableAdapter = null;
-            this.tableAdapterManager.ITEMPRODUTOTableAdapter = null;
-            this.tableAdapterManager.ITENSDEVENDATableAdapter = null;
-            this.tableAdapterManager.PRODUTOSDESCARTADOSTableAdapter = null;
-            this.tableAdapterManager.PRODUTOTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = SaudeMed.BDSAUDEMEDDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.USUARIOSTableAdapter = null;
-            this.tableAdapterManager.VENDATableAdapter = null;
             // 
             // frmProdutos
             // 
@@ -511,8 +421,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgDadosProdutos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.viewTabelaItensProdutoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bDSAUDEMEDDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -545,21 +453,10 @@
         private System.Windows.Forms.Button btnIncluir;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.DataGridView dtgDadosProdutos;
-        private BDSAUDEMEDDataSet bDSAUDEMEDDataSet;
-        private System.Windows.Forms.BindingSource viewTabelaItensProdutoBindingSource;
-        private BDSAUDEMEDDataSetTableAdapters.ViewTabelaItensProdutoTableAdapter viewTabelaItensProdutoTableAdapter;
-        private BDSAUDEMEDDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDITEMDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cODBARRASDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dESCRICAODataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lOTEDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vALIDADEDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qUANTIDADEDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pRECOCOMPRADataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pRECOVENDADataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnExcluirItens;
         private System.Windows.Forms.Button btnEditarItens;
         private System.Windows.Forms.Button btnLimparItens;
         private System.Windows.Forms.Button BtnIncluirItens;
+        private System.Windows.Forms.Button button1;
     }
 }
