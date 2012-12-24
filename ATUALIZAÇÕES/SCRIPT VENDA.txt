@@ -1,0 +1,52 @@
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('ITENSDEVENDA') and o.name = 'FK_ITENSDEV_REFERENCE_VENDA')
+alter table ITENSDEVENDA
+   drop constraint FK_ITENSDEV_REFERENCE_VENDA
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('VENDA') and o.name = 'FK_VENDA_REFERENCE_FUNCIONA')
+alter table VENDA
+   drop constraint FK_VENDA_REFERENCE_FUNCIONA
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('VENDA') and o.name = 'FK_VENDA_REFERENCE_CLIENTE')
+alter table VENDA
+   drop constraint FK_VENDA_REFERENCE_CLIENTE
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('VENDA')
+            and   type = 'U')
+   drop table VENDA
+go
+
+/*==============================================================*/
+/* Table: VENDA                                                 */
+/*==============================================================*/
+create table VENDA (
+   IDVENDA              int                  identity(1,1),
+   IDCLIENTE            int                  not null,
+   IDFUNCIONARIO        int                  not null,
+   DATAVENDA            date                 null,
+   SUBTOTAL             float                null,
+   DESCONTO             float                null,
+   TOTALVENDA           float                null,
+   constraint PK_VENDA primary key (IDVENDA)
+)
+go
+
+alter table VENDA
+   add constraint FK_VENDA_REFERENCE_FUNCIONA foreign key (IDFUNCIONARIO)
+      references FUNCIONARIO (IDFUNCIONARIO)
+go
+
+alter table VENDA
+   add constraint FK_VENDA_REFERENCE_CLIENTE foreign key (IDCLIENTE)
+      references CLIENTE (IDCLIENTE)
+go

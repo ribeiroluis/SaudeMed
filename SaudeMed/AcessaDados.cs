@@ -202,7 +202,7 @@ namespace SaudeMed
         }
 
 
-        public DataTable ItensProduto_RetornaDataTablePorLote(string lote, int idproduto)
+        public DataTable ItensProduto_RetornaDataTablePorLoteIDProduto(string lote, int idproduto)
         {
             ITEMPRODUTOTableAdapter item = new ITEMPRODUTOTableAdapter();
             DataTable tabela = item.RetornaDatatablePorLoteEIdProduto(lote, idproduto);
@@ -341,6 +341,25 @@ namespace SaudeMed
             DataTable tabela = view.RetornaDadosOrdenados();
             return tabela;
  
+        }
+
+        public string Venda_RetornaUltimaVenda()
+        {
+            VENDATableAdapter ven = new VENDATableAdapter();
+            var venda = ven.RetornaUltimaVenda();
+            return venda.ToString();
+        }
+
+        public void Venda_InsereVendaTemporaria(int idcliente, int idfuncionario)
+        {
+            VENDATableAdapter ven = new VENDATableAdapter();
+            ven.InsereVendaTemporaria(idcliente, idfuncionario);
+        }
+
+        public void Venda_DeletaVendaPorID(int idvenda)
+        {
+            VENDATableAdapter ven = new VENDATableAdapter();
+            ven.DeletaVendaPorId(idvenda);
         }
     }
 }

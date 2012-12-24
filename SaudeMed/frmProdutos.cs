@@ -426,7 +426,7 @@ namespace SaudeMed
             {
                 BloqueiaCamposItens();
                 TabelaRecebida = new DataTable();
-                TabelaRecebida = acessar.ItensProduto_RetornaDataTablePorLote(lote, idproduto);
+                TabelaRecebida = acessar.ItensProduto_RetornaDataTablePorLoteIDProduto(lote, idproduto);
                 Linhas = TabelaRecebida.Rows[0];
                 txIdItemProtudo.Text = Linhas[0].ToString();
                 txLote.Text = Linhas[2].ToString();

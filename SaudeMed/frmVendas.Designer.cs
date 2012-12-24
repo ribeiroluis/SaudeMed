@@ -29,9 +29,25 @@
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnLimparItens = new System.Windows.Forms.Button();
+            this.btn_Excluir = new System.Windows.Forms.Button();
+            this.txEstoque = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btn_Incluir = new System.Windows.Forms.Button();
+            this.txSubtotal = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txPrecoUnitario = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.numQuantidade = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbLote = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txDescricao = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txCodBarras = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnLimpar = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.txIdCliente = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,51 +57,202 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txTelefoneCelular = new System.Windows.Forms.MaskedTextBox();
-            this.btnLimpar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txPrecoUnitario = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dtgItensVenda = new System.Windows.Forms.DataGridView();
+            this.ITEM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCRICAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LOTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QUANTIDADE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRECOUNITARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SUBTOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txNumerVenda = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.btn_Sair = new System.Windows.Forms.Button();
+            this.txDesconto = new System.Windows.Forms.TextBox();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgItensVenda)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.btnLimparItens);
+            this.groupBox2.Controls.Add(this.btn_Excluir);
+            this.groupBox2.Controls.Add(this.txEstoque);
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.btn_Incluir);
+            this.groupBox2.Controls.Add(this.txSubtotal);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.txPrecoUnitario);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.numericUpDown1);
+            this.groupBox2.Controls.Add(this.numQuantidade);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.cbLote);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.txDescricao);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txCodBarras);
             this.groupBox2.Location = new System.Drawing.Point(14, 97);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1061, 127);
+            this.groupBox2.Size = new System.Drawing.Size(1007, 127);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Itens";
+            // 
+            // btnLimparItens
+            // 
+            this.btnLimparItens.Image = global::SaudeMed.Properties.Resources.clear16x16;
+            this.btnLimparItens.Location = new System.Drawing.Point(309, 88);
+            this.btnLimparItens.Name = "btnLimparItens";
+            this.btnLimparItens.Size = new System.Drawing.Size(42, 25);
+            this.btnLimparItens.TabIndex = 10;
+            this.btnLimparItens.UseVisualStyleBackColor = true;
+            this.btnLimparItens.Click += new System.EventHandler(this.btnLimparItens_Click);
+            // 
+            // btn_Excluir
+            // 
+            this.btn_Excluir.Enabled = false;
+            this.btn_Excluir.Image = global::SaudeMed.Properties.Resources.cancel;
+            this.btn_Excluir.Location = new System.Drawing.Point(260, 89);
+            this.btn_Excluir.Name = "btn_Excluir";
+            this.btn_Excluir.Size = new System.Drawing.Size(43, 25);
+            this.btn_Excluir.TabIndex = 14;
+            this.btn_Excluir.UseVisualStyleBackColor = true;
+            // 
+            // txEstoque
+            // 
+            this.txEstoque.Location = new System.Drawing.Point(895, 41);
+            this.txEstoque.Name = "txEstoque";
+            this.txEstoque.ReadOnly = true;
+            this.txEstoque.Size = new System.Drawing.Size(95, 25);
+            this.txEstoque.TabIndex = 13;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(892, 21);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(58, 17);
+            this.label15.TabIndex = 12;
+            this.label15.Text = "Estoque:";
+            // 
+            // btn_Incluir
+            // 
+            this.btn_Incluir.Image = global::SaudeMed.Properties.Resources._1356042729_1;
+            this.btn_Incluir.Location = new System.Drawing.Point(211, 89);
+            this.btn_Incluir.Name = "btn_Incluir";
+            this.btn_Incluir.Size = new System.Drawing.Size(43, 25);
+            this.btn_Incluir.TabIndex = 11;
+            this.btn_Incluir.UseVisualStyleBackColor = true;
+            this.btn_Incluir.Click += new System.EventHandler(this.btn_Incluir_Click);
+            // 
+            // txSubtotal
+            // 
+            this.txSubtotal.Location = new System.Drawing.Point(103, 89);
+            this.txSubtotal.Name = "txSubtotal";
+            this.txSubtotal.ReadOnly = true;
+            this.txSubtotal.Size = new System.Drawing.Size(88, 25);
+            this.txSubtotal.TabIndex = 11;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(100, 69);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(59, 17);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Subtotal:";
+            // 
+            // txPrecoUnitario
+            // 
+            this.txPrecoUnitario.Location = new System.Drawing.Point(6, 89);
+            this.txPrecoUnitario.Name = "txPrecoUnitario";
+            this.txPrecoUnitario.ReadOnly = true;
+            this.txPrecoUnitario.Size = new System.Drawing.Size(88, 25);
+            this.txPrecoUnitario.TabIndex = 9;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 69);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(71, 17);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Preço Unit:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(795, 21);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(33, 17);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Qtd:";
+            // 
+            // numQuantidade
+            // 
+            this.numQuantidade.Location = new System.Drawing.Point(798, 41);
+            this.numQuantidade.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numQuantidade.Name = "numQuantidade";
+            this.numQuantidade.ReadOnly = true;
+            this.numQuantidade.Size = new System.Drawing.Size(69, 25);
+            this.numQuantidade.TabIndex = 6;
+            this.numQuantidade.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numQuantidade.ValueChanged += new System.EventHandler(this.numQuantidade_ValueChanged);
+            this.numQuantidade.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numQuantidade_KeyDown);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(672, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(36, 17);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Lote:";
+            // 
+            // cbLote
+            // 
+            this.cbLote.Enabled = false;
+            this.cbLote.FormattingEnabled = true;
+            this.cbLote.Location = new System.Drawing.Point(675, 41);
+            this.cbLote.Name = "cbLote";
+            this.cbLote.Size = new System.Drawing.Size(108, 25);
+            this.cbLote.TabIndex = 4;
+            this.cbLote.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbLote_KeyDown);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(120, 21);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 17);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Descrição:";
+            // 
+            // txDescricao
+            // 
+            this.txDescricao.Location = new System.Drawing.Point(123, 41);
+            this.txDescricao.Name = "txDescricao";
+            this.txDescricao.ReadOnly = true;
+            this.txDescricao.Size = new System.Drawing.Size(546, 25);
+            this.txDescricao.TabIndex = 2;
             // 
             // label5
             // 
@@ -103,6 +270,7 @@
             this.txCodBarras.ReadOnly = true;
             this.txCodBarras.Size = new System.Drawing.Size(111, 25);
             this.txCodBarras.TabIndex = 0;
+            this.txCodBarras.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txCodBarras_KeyDown);
             // 
             // groupBox1
             // 
@@ -122,6 +290,16 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Image = global::SaudeMed.Properties.Resources.clear16x16;
+            this.btnLimpar.Location = new System.Drawing.Point(781, 42);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(42, 25);
+            this.btnLimpar.TabIndex = 10;
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // linkLabel1
             // 
@@ -212,135 +390,98 @@
             this.txTelefoneCelular.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.txTelefoneCelular.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txTelefoneCelular_KeyDown_1);
             // 
-            // btnLimpar
-            // 
-            this.btnLimpar.Image = global::SaudeMed.Properties.Resources.clear16x16;
-            this.btnLimpar.Location = new System.Drawing.Point(781, 42);
-            this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(42, 25);
-            this.btnLimpar.TabIndex = 10;
-            this.btnLimpar.UseVisualStyleBackColor = true;
-            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(123, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(493, 25);
-            this.textBox1.TabIndex = 2;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(120, 21);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 17);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Descrição:";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(622, 41);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(108, 25);
-            this.comboBox1.TabIndex = 4;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(619, 21);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(36, 17);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Lote:";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(745, 41);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.ReadOnly = true;
-            this.numericUpDown1.Size = new System.Drawing.Size(69, 25);
-            this.numericUpDown1.TabIndex = 6;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(742, 21);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 17);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Qtd:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(833, 21);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(71, 17);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Preço Unit:";
-            // 
-            // txPrecoUnitario
-            // 
-            this.txPrecoUnitario.Location = new System.Drawing.Point(836, 40);
-            this.txPrecoUnitario.Name = "txPrecoUnitario";
-            this.txPrecoUnitario.ReadOnly = true;
-            this.txPrecoUnitario.Size = new System.Drawing.Size(88, 25);
-            this.txPrecoUnitario.TabIndex = 9;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(930, 41);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(88, 25);
-            this.textBox2.TabIndex = 11;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(927, 21);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 17);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "Subtotal:";
-            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.dtgItensVenda);
             this.groupBox3.Location = new System.Drawing.Point(14, 230);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1061, 331);
+            this.groupBox3.Size = new System.Drawing.Size(1007, 331);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Medicamentos";
+            // 
+            // dtgItensVenda
+            // 
+            this.dtgItensVenda.AllowUserToAddRows = false;
+            this.dtgItensVenda.AllowUserToDeleteRows = false;
+            this.dtgItensVenda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dtgItensVenda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgItensVenda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ITEM,
+            this.DESCRICAO,
+            this.LOTE,
+            this.QUANTIDADE,
+            this.PRECOUNITARIO,
+            this.SUBTOTAL});
+            this.dtgItensVenda.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtgItensVenda.Location = new System.Drawing.Point(3, 21);
+            this.dtgItensVenda.Name = "dtgItensVenda";
+            this.dtgItensVenda.ReadOnly = true;
+            this.dtgItensVenda.Size = new System.Drawing.Size(1001, 307);
+            this.dtgItensVenda.TabIndex = 0;
+            // 
+            // ITEM
+            // 
+            this.ITEM.HeaderText = "Item";
+            this.ITEM.Name = "ITEM";
+            this.ITEM.ReadOnly = true;
+            this.ITEM.Width = 58;
+            // 
+            // DESCRICAO
+            // 
+            this.DESCRICAO.HeaderText = "Descrição medicamento";
+            this.DESCRICAO.Name = "DESCRICAO";
+            this.DESCRICAO.ReadOnly = true;
+            this.DESCRICAO.Width = 158;
+            // 
+            // LOTE
+            // 
+            this.LOTE.HeaderText = "Lote";
+            this.LOTE.Name = "LOTE";
+            this.LOTE.ReadOnly = true;
+            this.LOTE.Width = 58;
+            // 
+            // QUANTIDADE
+            // 
+            this.QUANTIDADE.HeaderText = "Quantidade";
+            this.QUANTIDADE.Name = "QUANTIDADE";
+            this.QUANTIDADE.ReadOnly = true;
+            this.QUANTIDADE.Width = 101;
+            // 
+            // PRECOUNITARIO
+            // 
+            this.PRECOUNITARIO.HeaderText = "Preço Unitário";
+            this.PRECOUNITARIO.Name = "PRECOUNITARIO";
+            this.PRECOUNITARIO.ReadOnly = true;
+            this.PRECOUNITARIO.Width = 106;
+            // 
+            // SUBTOTAL
+            // 
+            this.SUBTOTAL.HeaderText = "Subtotal";
+            this.SUBTOTAL.Name = "SUBTOTAL";
+            this.SUBTOTAL.ReadOnly = true;
+            this.SUBTOTAL.Width = 81;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(921, 19);
+            this.label11.Location = new System.Drawing.Point(936, 9);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(91, 21);
             this.label11.TabIndex = 11;
             this.label11.Text = "VENDA nº:";
             // 
-            // textBox3
+            // txNumerVenda
             // 
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.ForeColor = System.Drawing.Color.Red;
-            this.textBox3.Location = new System.Drawing.Point(925, 43);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(150, 29);
-            this.textBox3.TabIndex = 12;
+            this.txNumerVenda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txNumerVenda.ForeColor = System.Drawing.Color.Red;
+            this.txNumerVenda.Location = new System.Drawing.Point(877, 29);
+            this.txNumerVenda.Name = "txNumerVenda";
+            this.txNumerVenda.ReadOnly = true;
+            this.txNumerVenda.Size = new System.Drawing.Size(150, 29);
+            this.txNumerVenda.TabIndex = 12;
+            this.txNumerVenda.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox4
             // 
@@ -361,16 +502,6 @@
             this.label12.Size = new System.Drawing.Size(91, 21);
             this.label12.TabIndex = 13;
             this.label12.Text = "SUBTOTAL:";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.ForeColor = System.Drawing.Color.Red;
-            this.textBox5.Location = new System.Drawing.Point(313, 567);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(90, 29);
-            this.textBox5.TabIndex = 16;
             // 
             // label13
             // 
@@ -402,15 +533,51 @@
             this.textBox6.Size = new System.Drawing.Size(90, 29);
             this.textBox6.TabIndex = 18;
             // 
+            // btn_Sair
+            // 
+            this.btn_Sair.Image = global::SaudeMed.Properties.Resources.sair;
+            this.btn_Sair.Location = new System.Drawing.Point(894, 570);
+            this.btn_Sair.Name = "btn_Sair";
+            this.btn_Sair.Size = new System.Drawing.Size(127, 29);
+            this.btn_Sair.TabIndex = 11;
+            this.btn_Sair.Text = "Sair/Cancelar";
+            this.btn_Sair.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btn_Sair.UseVisualStyleBackColor = true;
+            this.btn_Sair.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txDesconto
+            // 
+            this.txDesconto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txDesconto.ForeColor = System.Drawing.Color.Red;
+            this.txDesconto.Location = new System.Drawing.Point(323, 567);
+            this.txDesconto.Name = "txDesconto";
+            this.txDesconto.ReadOnly = true;
+            this.txDesconto.Size = new System.Drawing.Size(90, 29);
+            this.txDesconto.TabIndex = 19;
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.ActiveLinkColor = System.Drawing.Color.Blue;
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(303, 573);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(14, 17);
+            this.linkLabel2.TabIndex = 11;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "?";
+            // 
             // frmVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1087, 608);
+            this.ClientSize = new System.Drawing.Size(1039, 608);
+            this.ControlBox = false;
+            this.Controls.Add(this.linkLabel2);
+            this.Controls.Add(this.txDesconto);
+            this.Controls.Add(this.btn_Sair);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txNumerVenda);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.textBox4);
@@ -418,13 +585,17 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmVendas";
             this.Text = "frmVendas";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgItensVenda)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -447,23 +618,37 @@
         private System.Windows.Forms.TextBox txCodBarras;
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numQuantidade;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbLote;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txDescricao;
+        private System.Windows.Forms.TextBox txSubtotal;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txPrecoUnitario;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txNumerVenda;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button btn_Sair;
+        private System.Windows.Forms.Button btn_Excluir;
+        private System.Windows.Forms.TextBox txEstoque;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btn_Incluir;
+        private System.Windows.Forms.DataGridView dtgItensVenda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ITEM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRICAO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LOTE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QUANTIDADE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRECOUNITARIO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SUBTOTAL;
+        private System.Windows.Forms.Button btnLimparItens;
+        private System.Windows.Forms.TextBox txDesconto;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }

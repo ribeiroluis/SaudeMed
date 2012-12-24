@@ -17,8 +17,8 @@ namespace SaudeMed
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new frmPesquisaCEP());
-            //Application.Run(new frmVendas(19));
-            Application.Run(new frmTelaSplash());
+            Application.Run(new frmVendas(19));
+            //Application.Run(new frmTelaSplash());
         }   
     }
 }

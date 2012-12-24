@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace SaudeMed
 {
@@ -13,7 +14,11 @@ namespace SaudeMed
     {
         AcessaDados acessar = new AcessaDados();
         int IdFuncionario;
-        public frmVendas( int idfuncionario)
+        int IDProduto;
+        float PrecoUnitario;
+        float Subtotal;
+
+        public frmVendas(int idfuncionario)
         {
             InitializeComponent();
             IdFuncionario = idfuncionario;
@@ -48,7 +53,7 @@ namespace SaudeMed
                 catch (Exception err)
                 {
                     MessageBox.Show(err.Message);
-                } 
+                }
             }
         }
 
@@ -158,6 +163,9 @@ namespace SaudeMed
                 txTelefoneCelular.ReadOnly = true;
                 txCodBarras.ReadOnly = false;
                 this.ActiveControl = txCodBarras;
+                acessar.Venda_InsereVendaTemporaria(int.Parse(txIdCliente.Text), IdFuncionario);
+                txNumerVenda.Text = acessar.Venda_RetornaUltimaVenda().PadLeft(6, '0'); //numeros a esquerda
+
             }
             catch (Exception err)
             {
@@ -174,7 +182,7 @@ namespace SaudeMed
                 {
                     if (TestaCliente(txNomeCliente.Text))
                     {
-                        PreencheCampos("", txNomeCliente.Text);                        
+                        PreencheCampos("", txNomeCliente.Text);
                     }
                     else
                     {
@@ -197,7 +205,7 @@ namespace SaudeMed
                             txTelefoneFixo.ReadOnly = false;
                             this.ActiveControl = txTelefoneFixo;
                         }
-                            
+
                     }
                 }
                 catch (Exception err)
@@ -229,7 +237,7 @@ namespace SaudeMed
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmTelaCliente cliente = new frmTelaCliente(IdFuncionario);            
+            frmTelaCliente cliente = new frmTelaCliente(IdFuncionario);
             cliente.ShowDialog();
             string nome = cliente.RetornaUltimoNome;
 
@@ -239,19 +247,191 @@ namespace SaudeMed
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
-            txIdCliente.Clear();
-            txTelefoneCelular.Clear();
-            txTelefoneFixo.Clear();
-            txNomeCliente.Clear();
-            txTelefoneFixo.ReadOnly = false;
-            this.ActiveControl = txTelefoneFixo;
+            try
+            {
+                DialogResult resultado = MessageBox.Show("Cancelar venda atual?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                if (resultado == System.Windows.Forms.DialogResult.Yes)
+                {
+                    txIdCliente.Clear();
+                    txTelefoneCelular.Clear();
+                    txTelefoneFixo.Clear();
+                    txNomeCliente.Clear();
+                    txTelefoneFixo.ReadOnly = false;
+                    this.ActiveControl = txTelefoneFixo;
+                    acessar.Venda_DeletaVendaPorID(int.Parse(txNumerVenda.Text));
+                    txNumerVenda.Clear();
+                    MessageBox.Show("Venda excluida com sucesso");
+                    btnLimparItens_Click(sender, e);
+
+                }
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txNumerVenda.Text.Equals(""))
+                    this.Close();
+                else
+                {
+                    btnLimpar_Click(sender, e);
+                    this.Close();
+                }
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
 
 
+        }
 
-        
+        private void AtualizaEstoque(int value)
+        {
 
+        }
 
+        private void txCodBarras_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (txCodBarras.Text.Equals(""))
+                    {
+                        txDescricao.ReadOnly = false;
+                        this.ActiveControl = txDescricao;
+                    }
+                    else
+                    {
+                        if (acessar.Produtos_RetornaSeExisteCodBarras(txCodBarras.Text))
+                        {
+                            DataTable tabela = acessar.Produtos_RetornaDatatableBuscaCodBarras(txCodBarras.Text);
+                            DataRow linhaProduto = tabela.Rows[0];
+                            txDescricao.Text = linhaProduto["DESCRICAO"].ToString();
+                            PrecoUnitario = float.Parse(linhaProduto["PRECOVENDA"].ToString());
+                            txPrecoUnitario.Text = PrecoUnitario.ToString("f2");
+                            cbLote.Enabled = true;
+                            IDProduto = (int)linhaProduto["IDPRODUTO"];
+                            PreencheLote((int)linhaProduto["IDPRODUTO"]);
+                            this.ActiveControl = cbLote;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Produto não cadastrado.");
+                            txCodBarras.Clear();
+                            this.ActiveControl = txCodBarras;
+                        }
+                    }
+                }
+                catch (Exception err)
+                {
+
+                    MessageBox.Show(err.Message);
+                }
+            }
+        }
+
+        private void btnLimparItens_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = txCodBarras;
+            txCodBarras.Clear();
+            txDescricao.Clear();
+            txDescricao.ReadOnly = true;
+            cbLote.Items.Clear();
+            cbLote.Refresh();
+            cbLote.Enabled = false;
+            numQuantidade.Value = 1;
+            numQuantidade.ReadOnly = true;
+            txEstoque.Clear();
+            txPrecoUnitario.Clear();
+            txSubtotal.Clear();
+        }
+
+        private void btn_Incluir_Click(object sender, EventArgs e)
+        {
+            txDesconto.ReadOnly = false;
+            btnLimparItens_Click(sender, e);
+        }
+
+        private void PreencheLote(int idproduto)
+        {
+            try
+            {
+                cbLote.Items.Clear();
+                DataTable Lotes = acessar.ItensProduto_RetornaLotes(idproduto);
+                for (int i = 0; i < Lotes.Rows.Count; i++)
+                {
+                    DataRow linha = Lotes.Rows[i];
+                    cbLote.Items.Add(linha["LOTE"].ToString());
+                }
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+
+        }
+
+        private void cbLote_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    DataTable tabela = acessar.ItensProduto_RetornaDataTablePorLoteIDProduto(cbLote.SelectedText, IDProduto);
+                    DataRow linha = tabela.Rows[0];
+                    txEstoque.Text = linha["QUANTIDADE"].ToString();
+                    numQuantidade.ReadOnly = false;
+                    this.ActiveControl = numQuantidade;
+                    numQuantidade.Maximum = decimal.Parse(txEstoque.Text);
+                }
+                catch (Exception err)
+                {
+
+                    MessageBox.Show(err.Message);
+                }
+            }
+        }
+
+        private void numQuantidade_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Subtotal = PrecoUnitario * (float)numQuantidade.Value;
+                txSubtotal.Text = Subtotal.ToString("f2");
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void numQuantidade_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    Subtotal = PrecoUnitario * (float)numQuantidade.Value;
+                    txSubtotal.Text = Subtotal.ToString("f2");
+                    this.ActiveControl = btn_Incluir;
+                }
+                catch (Exception err)
+                {
+
+                    MessageBox.Show(err.Message);
+                }
+            }
+        }
     }
 }
