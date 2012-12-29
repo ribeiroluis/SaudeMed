@@ -383,6 +383,33 @@ namespace SaudeMed
             item.AlteraQuantidadePorIdItemProduto(quantidade, iditemproduto);
         }
 
+        public int ItensVenda_RetornaQuantidadeEstoque(string lote, string Descricao)
+        {
+            ITEMPRODUTOTableAdapter itens = new ITEMPRODUTOTableAdapter();
+            int quantidade = (int)itens.RetornaQuantidadeEmEstoquePorDescricaoLote(Descricao, lote);
+            return quantidade;
+        }
+
+        public DataTable ItensVenda_RetornaDatatableListadeVenda(int idvenda)
+        {
+            ViewTabeladeVendasTableAdapter table = new ViewTabeladeVendasTableAdapter();
+            DataTable tabela = table.RetornaViewTabelaDeVenda(idvenda);
+            return tabela;
+        }
+
+        public int ItensVenda_RetornaIDItemProduto(string lote, int idproduto)
+        {
+            ITEMPRODUTOTableAdapter itens = new ITEMPRODUTOTableAdapter();
+            int id = (int)itens.RetornaIDItemProdutoPorIDProdutoLote(idproduto, lote);
+            return id;
+        }
+
+        public int ItensVenda_RetornaIDProduto(string descricao)
+        {
+            PRODUTOTableAdapter itens = new PRODUTOTableAdapter();
+            int id = (int)itens.RetornaIdProdutoPorDescricao(descricao);
+            return id;
+        }
     }
 }
         

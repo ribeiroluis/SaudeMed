@@ -59,6 +59,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txTelefoneCelular = new System.Windows.Forms.MaskedTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.DtgDados = new System.Windows.Forms.DataGridView();
             this.label11 = new System.Windows.Forms.Label();
             this.txNumerVenda = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -71,8 +72,8 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.DESCRICAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LOTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DtgDados = new System.Windows.Forms.DataGridView();
             this.dtgDESCRICAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtgLOTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtgQUANTIDADE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtgPRECOUNITARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtgSUBTOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -404,6 +405,29 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Medicamentos";
             // 
+            // DtgDados
+            // 
+            this.DtgDados.AllowUserToAddRows = false;
+            this.DtgDados.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.DtgDados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DtgDados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DtgDados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.DtgDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DtgDados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dtgDESCRICAO,
+            this.dtgLOTE,
+            this.dtgQUANTIDADE,
+            this.dtgPRECOUNITARIO,
+            this.dtgSUBTOTAL});
+            this.DtgDados.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DtgDados.Location = new System.Drawing.Point(3, 21);
+            this.DtgDados.Name = "DtgDados";
+            this.DtgDados.ReadOnly = true;
+            this.DtgDados.Size = new System.Drawing.Size(1007, 307);
+            this.DtgDados.TabIndex = 0;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -522,33 +546,19 @@
             this.LOTE.Name = "LOTE";
             this.LOTE.Width = 58;
             // 
-            // DtgDados
-            // 
-            this.DtgDados.AllowUserToAddRows = false;
-            this.DtgDados.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.DtgDados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DtgDados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.DtgDados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.DtgDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DtgDados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dtgDESCRICAO,
-            this.dtgQUANTIDADE,
-            this.dtgPRECOUNITARIO,
-            this.dtgSUBTOTAL});
-            this.DtgDados.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DtgDados.Location = new System.Drawing.Point(3, 21);
-            this.DtgDados.Name = "DtgDados";
-            this.DtgDados.ReadOnly = true;
-            this.DtgDados.Size = new System.Drawing.Size(1007, 307);
-            this.DtgDados.TabIndex = 0;
-            // 
             // dtgDESCRICAO
             // 
             this.dtgDESCRICAO.HeaderText = "Descrição";
             this.dtgDESCRICAO.Name = "dtgDESCRICAO";
             this.dtgDESCRICAO.ReadOnly = true;
             this.dtgDESCRICAO.Width = 90;
+            // 
+            // dtgLOTE
+            // 
+            this.dtgLOTE.HeaderText = "LOTE";
+            this.dtgLOTE.Name = "dtgLOTE";
+            this.dtgLOTE.ReadOnly = true;
+            this.dtgLOTE.Width = 63;
             // 
             // dtgQUANTIDADE
             // 
@@ -652,6 +662,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LOTE;
         private System.Windows.Forms.DataGridView DtgDados;
         private System.Windows.Forms.DataGridViewTextBoxColumn dtgDESCRICAO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dtgLOTE;
         private System.Windows.Forms.DataGridViewTextBoxColumn dtgQUANTIDADE;
         private System.Windows.Forms.DataGridViewTextBoxColumn dtgPRECOUNITARIO;
         private System.Windows.Forms.DataGridViewTextBoxColumn dtgSUBTOTAL;

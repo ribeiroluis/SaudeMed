@@ -263,6 +263,17 @@ namespace SaudeMed
                     this.ActiveControl = txTelefoneFixo;
                     acessar.Venda_DeletaVendaPorID(int.Parse(txNumerVenda.Text));
                     acessar.ItensVenda_DeletarVendaPorID(int.Parse(txNumerVenda.Text));
+                    for (int i = 0; i < DtgDados.Rows.Count; i++)
+                    {
+                        string lote = DtgDados["LOTE",i].Value.ToString();
+                        string descricao = DtgDados["DESCRICAO",i].Value.ToString();
+                        int quantEstoque = acessar.ItensVenda_RetornaQuantidadeEstoque(lote,descricao);
+                        int valor = (int)DtgDados["QUANTIDADE",i].Value;
+                        int idproduto = acessar.ItensVenda_RetornaIDProduto(descricao);
+                        int iditemproduto = acessar.ItensVenda_RetornaIDItemProduto(lote,idproduto);
+                        AtualizaEstoque(valor, iditemproduto, quantEstoque);
+                    }
+                    
                     txNumerVenda.Clear();
                     MessageBox.Show("Venda excluida com sucesso");
                     btnLimparItens_Click(sender, e);
@@ -506,13 +517,21 @@ namespace SaudeMed
         {
             try
             {   
-                acessar.ItensVenda_InserirVenda(int.Parse(txNumerVenda.Text), IDProduto, IDItemProtudo, PrecoUnitario, (int)Quantidade);
-                AtualizaEstoque((int)Quantidade, IDItemProtudo, int.Parse(txEstoque.Text));
+                acessar.ItensVenda_InserirVenda(int.Parse(txNumerVenda.Text), IDProduto, IDItemProtudo, PrecoUnitario, (int)Quantidade);                
+                AtualizaEstoque(((int)Quantidade*(-1)), IDItemProtudo, int.Parse(txEstoque.Text));
+                DataTable tabela = acessar.ItensVenda_RetornaDatatableListadeVenda(int.Parse(txNumerVenda.Text));
+                
+              nao limpou a tabela 
+                DtgDados.Rows.Clear();
+                DtgDados.DataSource = tabela;
+                
+                /*
                 DtgDados.Rows.Add();
                 DtgDados["dtgDESCRICAO", item].Value = txDescricao.Text;
                 DtgDados["dtgQUANTIDADE", item].Value = (int)numQuantidade.Value;
                 DtgDados["dtgPRECOUNITARIO", item].Value = txPrecoUnitario.Text;
                 DtgDados["dtgSUBTOTAL", item].Value = Subtotal;
+                 */
                 
 
 
@@ -531,10 +550,6 @@ namespace SaudeMed
             }
         }
 
-        private void InsereTabelaItensVenda()
-        {
-
-        }
 
         private void AtualizaEstoque(int value, int iditemproduto, int quantidadeEstoque)
         {
