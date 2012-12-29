@@ -103,7 +103,7 @@
             this.groupBox2.Controls.Add(this.txCodBarras);
             this.groupBox2.Location = new System.Drawing.Point(14, 97);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1007, 127);
+            this.groupBox2.Size = new System.Drawing.Size(1013, 127);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Itens";
@@ -248,11 +248,14 @@
             // 
             // txDescricao
             // 
+            this.txDescricao.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txDescricao.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txDescricao.Location = new System.Drawing.Point(123, 41);
             this.txDescricao.Name = "txDescricao";
             this.txDescricao.ReadOnly = true;
             this.txDescricao.Size = new System.Drawing.Size(546, 25);
             this.txDescricao.TabIndex = 2;
+            this.txDescricao.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txDescricao_KeyDown);
             // 
             // label5
             // 
@@ -395,7 +398,7 @@
             this.groupBox3.Controls.Add(this.dtgItensVenda);
             this.groupBox3.Location = new System.Drawing.Point(14, 230);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1007, 331);
+            this.groupBox3.Size = new System.Drawing.Size(1013, 331);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Medicamentos";
@@ -417,7 +420,7 @@
             this.dtgItensVenda.Location = new System.Drawing.Point(3, 21);
             this.dtgItensVenda.Name = "dtgItensVenda";
             this.dtgItensVenda.ReadOnly = true;
-            this.dtgItensVenda.Size = new System.Drawing.Size(1001, 307);
+            this.dtgItensVenda.Size = new System.Drawing.Size(1007, 307);
             this.dtgItensVenda.TabIndex = 0;
             // 
             // ITEM
@@ -466,7 +469,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(936, 9);
+            this.label11.Location = new System.Drawing.Point(936, 21);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(91, 21);
             this.label11.TabIndex = 11;
@@ -474,12 +477,14 @@
             // 
             // txNumerVenda
             // 
-            this.txNumerVenda.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txNumerVenda.Font = new System.Drawing.Font("Segoe UI", 16.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txNumerVenda.ForeColor = System.Drawing.Color.Red;
-            this.txNumerVenda.Location = new System.Drawing.Point(877, 29);
+            this.txNumerVenda.BackColor = System.Drawing.Color.White;
+            this.txNumerVenda.Location = new System.Drawing.Point(877, 45);
+            this.txNumerVenda.Multiline = true;
             this.txNumerVenda.Name = "txNumerVenda";
             this.txNumerVenda.ReadOnly = true;
-            this.txNumerVenda.Size = new System.Drawing.Size(150, 29);
+            this.txNumerVenda.Size = new System.Drawing.Size(150, 50);
             this.txNumerVenda.TabIndex = 12;
             this.txNumerVenda.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -536,9 +541,9 @@
             // btn_Sair
             // 
             this.btn_Sair.Image = global::SaudeMed.Properties.Resources.sair;
-            this.btn_Sair.Location = new System.Drawing.Point(894, 570);
+            this.btn_Sair.Location = new System.Drawing.Point(874, 573);
             this.btn_Sair.Name = "btn_Sair";
-            this.btn_Sair.Size = new System.Drawing.Size(127, 29);
+            this.btn_Sair.Size = new System.Drawing.Size(150, 29);
             this.btn_Sair.TabIndex = 11;
             this.btn_Sair.Text = "Sair/Cancelar";
             this.btn_Sair.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;

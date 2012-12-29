@@ -353,13 +353,28 @@ namespace SaudeMed
         public void Venda_InsereVendaTemporaria(int idcliente, int idfuncionario)
         {
             VENDATableAdapter ven = new VENDATableAdapter();
-            ven.InsereVendaTemporaria(idcliente, idfuncionario);
+            DateTime data = DateTime.Now;
+
+            ven.InsereVendaTemporaria(idcliente, idfuncionario,data.ToShortDateString());
         }
 
         public void Venda_DeletaVendaPorID(int idvenda)
         {
             VENDATableAdapter ven = new VENDATableAdapter();
             ven.DeletaVendaPorId(idvenda);
+        }
+
+        public void ItensVenda_InserirVenda(int idvenda, int idproduto, int iditemproduto, float precounitario, int quantidade)
+        {
+            ITENSDEVENDATableAdapter itens = new ITENSDEVENDATableAdapter();
+            float subtotal = quantidade*precounitario;
+            itens.Insert(idvenda, iditemproduto, idproduto, precounitario, quantidade, subtotal);
+        }
+
+        public void ItensVenda_DeletarVendaPorID(int idvenda)
+        {
+            ITENSDEVENDATableAdapter itens = new ITENSDEVENDATableAdapter();
+            itens.DeletaItensdeVendaPorIDVenda(idvenda);
         }
     }
 }

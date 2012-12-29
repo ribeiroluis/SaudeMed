@@ -9758,11 +9758,12 @@ SELECT IDVENDA, IDCLIENTE, IDFUNCIONARIO, DATAVENDA, SUBTOTAL, DESCONTO, TOTALVE
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idvenda", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDVENDA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "INSERT INTO VENDA\r\n                         (IDCLIENTE, IDFUNCIONARIO)\r\nVALUES   " +
-                "     (@idcliente,@idfuncionario)";
+            this._commandCollection[2].CommandText = "INSERT INTO VENDA\r\n                         (IDCLIENTE, IDFUNCIONARIO, DATAVENDA)" +
+                "\r\nVALUES        (@idcliente,@idfuncionario,@data)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idcliente", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDCLIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idfuncionario", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDFUNCIONARIO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@data", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "DATAVENDA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = "SELECT        MAX(IDVENDA) AS [ULTIMA VENDA]\r\nFROM            VENDA";
@@ -9948,10 +9949,16 @@ SELECT IDVENDA, IDCLIENTE, IDFUNCIONARIO, DATAVENDA, SUBTOTAL, DESCONTO, TOTALVE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsereVendaTemporaria(int idcliente, int idfuncionario) {
+        public virtual int InsereVendaTemporaria(int idcliente, int idfuncionario, string data) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             command.Parameters[0].Value = ((int)(idcliente));
             command.Parameters[1].Value = ((int)(idfuncionario));
+            if ((data == null)) {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[2].Value = ((string)(data));
+            }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -13354,12 +13361,17 @@ SELECT IDITENSVENDA, IDVENDA, IDITEMPRODUTO, IDPRODUTO, PRECOUNITARIO, QUANTIDAD
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT IDITENSVENDA, IDVENDA, IDITEMPRODUTO, IDPRODUTO, PRECOUNITARIO, QUANTIDADE" +
                 ", SUBTOTAL FROM dbo.ITENSDEVENDA";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "DELETE FROM ITENSDEVENDA\r\nWHERE        (IDVENDA = @idvenda)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idvenda", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDVENDA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13559,6 +13571,30 @@ SELECT IDITENSVENDA, IDVENDA, IDITEMPRODUTO, IDPRODUTO, PRECOUNITARIO, QUANTIDAD
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(int IDVENDA, global::System.Nullable<int> IDITEMPRODUTO, global::System.Nullable<int> IDPRODUTO, double PRECOUNITARIO, int QUANTIDADE, double SUBTOTAL, int Original_IDITENSVENDA, int Original_IDVENDA, global::System.Nullable<int> Original_IDITEMPRODUTO, global::System.Nullable<int> Original_IDPRODUTO, double Original_PRECOUNITARIO, int Original_QUANTIDADE, double Original_SUBTOTAL) {
             return this.Update(IDVENDA, IDITEMPRODUTO, IDPRODUTO, PRECOUNITARIO, QUANTIDADE, SUBTOTAL, Original_IDITENSVENDA, Original_IDVENDA, Original_IDITEMPRODUTO, Original_IDPRODUTO, Original_PRECOUNITARIO, Original_QUANTIDADE, Original_SUBTOTAL, Original_IDITENSVENDA);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeletaItensdeVendaPorIDVenda(int idvenda) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            command.Parameters[0].Value = ((int)(idvenda));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     

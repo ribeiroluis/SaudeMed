@@ -15,6 +15,7 @@ namespace SaudeMed
         AcessaDados acessar = new AcessaDados();
         int IdFuncionario;
         int IDProduto;
+        int IDItemProtudo;
         float PrecoUnitario;
         float Subtotal;
 
@@ -259,9 +260,11 @@ namespace SaudeMed
                     txTelefoneFixo.ReadOnly = false;
                     this.ActiveControl = txTelefoneFixo;
                     acessar.Venda_DeletaVendaPorID(int.Parse(txNumerVenda.Text));
+                    acessar.ItensVenda_DeletarVendaPorID(int.Parse(txNumerVenda.Text));
                     txNumerVenda.Clear();
                     MessageBox.Show("Venda excluida com sucesso");
                     btnLimparItens_Click(sender, e);
+                    this.ActiveControl = txTelefoneFixo;
 
                 }
             }
@@ -291,12 +294,7 @@ namespace SaudeMed
             }
 
 
-        }
-
-        private void AtualizaEstoque(int value)
-        {
-
-        }
+        }        
 
         private void txCodBarras_KeyDown(object sender, KeyEventArgs e)
         {
@@ -308,6 +306,7 @@ namespace SaudeMed
                     {
                         txDescricao.ReadOnly = false;
                         this.ActiveControl = txDescricao;
+                        GeraCustomSourceDescricao();
                     }
                     else
                     {
@@ -318,6 +317,7 @@ namespace SaudeMed
                             txDescricao.Text = linhaProduto["DESCRICAO"].ToString();
                             PrecoUnitario = float.Parse(linhaProduto["PRECOVENDA"].ToString());
                             txPrecoUnitario.Text = PrecoUnitario.ToString("f2");
+                            PrecoUnitario = float.Parse(txPrecoUnitario.Text);
                             cbLote.Enabled = true;
                             IDProduto = (int)linhaProduto["IDPRODUTO"];
                             PreencheLote((int)linhaProduto["IDPRODUTO"]);
@@ -357,8 +357,16 @@ namespace SaudeMed
 
         private void btn_Incluir_Click(object sender, EventArgs e)
         {
-            txDesconto.ReadOnly = false;
-            btnLimparItens_Click(sender, e);
+            try
+            {
+                txDesconto.ReadOnly = false;
+                btnLimparItens_Click(sender, e);
+                InsereItemDataGridView();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
         }
 
         private void PreencheLote(int idproduto)
@@ -390,6 +398,7 @@ namespace SaudeMed
                     DataTable tabela = acessar.ItensProduto_RetornaDataTablePorLoteIDProduto(cbLote.SelectedText, IDProduto);
                     DataRow linha = tabela.Rows[0];
                     txEstoque.Text = linha["QUANTIDADE"].ToString();
+                    IDItemProtudo = (int)linha["IDITEM"];
                     numQuantidade.ReadOnly = false;
                     this.ActiveControl = numQuantidade;
                     numQuantidade.Maximum = decimal.Parse(txEstoque.Text);
@@ -432,6 +441,84 @@ namespace SaudeMed
                     MessageBox.Show(err.Message);
                 }
             }
+        }
+
+        private void txDescricao_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+                    if (acessar.Produtos_RetornaSeExisteDescricao(txDescricao.Text))
+                    {
+                        DataTable tabela = acessar.Produtos_RetornaDatatableDescricao(txDescricao.Text);
+                        DataRow linhaProduto = tabela.Rows[0];
+                       
+                        txCodBarras.Text = linhaProduto["CODBARRAS"].ToString();
+                        txDescricao.Text = linhaProduto["DESCRICAO"].ToString();
+                        PrecoUnitario = float.Parse(linhaProduto["PRECOVENDA"].ToString());
+                        txPrecoUnitario.Text = PrecoUnitario.ToString("f2");
+                        PrecoUnitario = float.Parse(txPrecoUnitario.Text);
+                        cbLote.Enabled = true;
+                        IDProduto = (int)linhaProduto["IDPRODUTO"];
+                        PreencheLote((int)linhaProduto["IDPRODUTO"]);
+                        this.ActiveControl = cbLote;                         
+                    }
+                    else
+                    {
+                        MessageBox.Show("Produto não cadastrado.");
+                        txCodBarras.Clear();
+                        this.ActiveControl = txCodBarras;
+                    }
+                }
+                catch (Exception err)
+                {
+
+                    MessageBox.Show(err.Message);
+                }
+            }
+        }
+
+        private void GeraCustomSourceDescricao()
+        {
+            txDescricao.AutoCompleteCustomSource.Clear();
+            try
+            {
+                DataTable table = acessar.Produtos_RetornaDescricao();
+                foreach (DataRow row in table.Rows)
+                {
+                    string aux = (string)row[1];
+                    txDescricao.AutoCompleteCustomSource.Add(aux);
+                }
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void InsereItemDataGridView()
+        {
+            try
+            {
+                acessar.ItensVenda_InserirVenda(int.Parse(txNumerVenda.Text), IDProduto, IDItemProtudo, PrecoUnitario, (int)numQuantidade.Value);                
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void InsereTabelaItensVenda()
+        {
+ 
+        }
+        
+        private void AtualizaEstoque(int value)
+        {
+
         }
     }
 }
