@@ -18,6 +18,8 @@ namespace SaudeMed
         int IDItemProtudo;
         float PrecoUnitario;
         float Subtotal;
+        float Quantidade;
+        int item = 0;
 
         public frmVendas(int idfuncionario)
         {
@@ -294,7 +296,7 @@ namespace SaudeMed
             }
 
 
-        }        
+        }
 
         private void txCodBarras_KeyDown(object sender, KeyEventArgs e)
         {
@@ -360,8 +362,8 @@ namespace SaudeMed
             try
             {
                 txDesconto.ReadOnly = false;
-                btnLimparItens_Click(sender, e);
                 InsereItemDataGridView();
+                btnLimparItens_Click(sender, e);
             }
             catch (Exception err)
             {
@@ -417,6 +419,7 @@ namespace SaudeMed
             {
                 Subtotal = PrecoUnitario * (float)numQuantidade.Value;
                 txSubtotal.Text = Subtotal.ToString("f2");
+                Quantidade = (float)numQuantidade.Value;
             }
             catch (Exception err)
             {
@@ -434,6 +437,7 @@ namespace SaudeMed
                     Subtotal = PrecoUnitario * (float)numQuantidade.Value;
                     txSubtotal.Text = Subtotal.ToString("f2");
                     this.ActiveControl = btn_Incluir;
+                    Quantidade = (float)numQuantidade.Value;
                 }
                 catch (Exception err)
                 {
@@ -453,7 +457,7 @@ namespace SaudeMed
                     {
                         DataTable tabela = acessar.Produtos_RetornaDatatableDescricao(txDescricao.Text);
                         DataRow linhaProduto = tabela.Rows[0];
-                       
+
                         txCodBarras.Text = linhaProduto["CODBARRAS"].ToString();
                         txDescricao.Text = linhaProduto["DESCRICAO"].ToString();
                         PrecoUnitario = float.Parse(linhaProduto["PRECOVENDA"].ToString());
@@ -462,7 +466,7 @@ namespace SaudeMed
                         cbLote.Enabled = true;
                         IDProduto = (int)linhaProduto["IDPRODUTO"];
                         PreencheLote((int)linhaProduto["IDPRODUTO"]);
-                        this.ActiveControl = cbLote;                         
+                        this.ActiveControl = cbLote;
                     }
                     else
                     {
@@ -501,8 +505,24 @@ namespace SaudeMed
         private void InsereItemDataGridView()
         {
             try
-            {
-                acessar.ItensVenda_InserirVenda(int.Parse(txNumerVenda.Text), IDProduto, IDItemProtudo, PrecoUnitario, (int)numQuantidade.Value);                
+            {   
+                acessar.ItensVenda_InserirVenda(int.Parse(txNumerVenda.Text), IDProduto, IDItemProtudo, PrecoUnitario, (int)Quantidade);
+                AtualizaEstoque((int)Quantidade, IDItemProtudo, int.Parse(txEstoque.Text));
+                DtgDados.Rows.Add();
+                DtgDados["dtgDESCRICAO", item].Value = txDescricao.Text;
+                DtgDados["dtgQUANTIDADE", item].Value = (int)numQuantidade.Value;
+                DtgDados["dtgPRECOUNITARIO", item].Value = txPrecoUnitario.Text;
+                DtgDados["dtgSUBTOTAL", item].Value = Subtotal;
+                
+
+
+
+                item++;
+                
+
+
+
+
             }
             catch (Exception err)
             {
@@ -513,12 +533,23 @@ namespace SaudeMed
 
         private void InsereTabelaItensVenda()
         {
- 
-        }
-        
-        private void AtualizaEstoque(int value)
-        {
 
         }
+
+        private void AtualizaEstoque(int value, int iditemproduto, int quantidadeEstoque)
+        {
+            try
+            {
+                int valor = value + quantidadeEstoque;
+                acessar.ItensVenda_AtualizaEstoquePorIdItemProduto(iditemproduto, valor);
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+        }
+        
     }
 }
+        

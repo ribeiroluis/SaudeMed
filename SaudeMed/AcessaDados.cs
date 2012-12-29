@@ -376,6 +376,13 @@ namespace SaudeMed
             ITENSDEVENDATableAdapter itens = new ITENSDEVENDATableAdapter();
             itens.DeletaItensdeVendaPorIDVenda(idvenda);
         }
+
+        public void ItensVenda_AtualizaEstoquePorIdItemProduto(int iditemproduto, int quantidade)
+        {
+            ITEMPRODUTOTableAdapter item = new ITEMPRODUTOTableAdapter();
+            item.AlteraQuantidadePorIdItemProduto(quantidade, iditemproduto);
+        }
+
     }
 }
         

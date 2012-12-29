@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnLimparItens = new System.Windows.Forms.Button();
             this.btn_Excluir = new System.Windows.Forms.Button();
@@ -58,13 +59,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txTelefoneCelular = new System.Windows.Forms.MaskedTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dtgItensVenda = new System.Windows.Forms.DataGridView();
-            this.ITEM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESCRICAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LOTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QUANTIDADE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRECOUNITARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SUBTOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label11 = new System.Windows.Forms.Label();
             this.txNumerVenda = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -75,11 +69,18 @@
             this.btn_Sair = new System.Windows.Forms.Button();
             this.txDesconto = new System.Windows.Forms.TextBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.DESCRICAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LOTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DtgDados = new System.Windows.Forms.DataGridView();
+            this.dtgDESCRICAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtgQUANTIDADE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtgPRECOUNITARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtgSUBTOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgItensVenda)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DtgDados)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -395,75 +396,13 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dtgItensVenda);
+            this.groupBox3.Controls.Add(this.DtgDados);
             this.groupBox3.Location = new System.Drawing.Point(14, 230);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1013, 331);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Medicamentos";
-            // 
-            // dtgItensVenda
-            // 
-            this.dtgItensVenda.AllowUserToAddRows = false;
-            this.dtgItensVenda.AllowUserToDeleteRows = false;
-            this.dtgItensVenda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dtgItensVenda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgItensVenda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ITEM,
-            this.DESCRICAO,
-            this.LOTE,
-            this.QUANTIDADE,
-            this.PRECOUNITARIO,
-            this.SUBTOTAL});
-            this.dtgItensVenda.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtgItensVenda.Location = new System.Drawing.Point(3, 21);
-            this.dtgItensVenda.Name = "dtgItensVenda";
-            this.dtgItensVenda.ReadOnly = true;
-            this.dtgItensVenda.Size = new System.Drawing.Size(1007, 307);
-            this.dtgItensVenda.TabIndex = 0;
-            // 
-            // ITEM
-            // 
-            this.ITEM.HeaderText = "Item";
-            this.ITEM.Name = "ITEM";
-            this.ITEM.ReadOnly = true;
-            this.ITEM.Width = 58;
-            // 
-            // DESCRICAO
-            // 
-            this.DESCRICAO.HeaderText = "Descrição medicamento";
-            this.DESCRICAO.Name = "DESCRICAO";
-            this.DESCRICAO.ReadOnly = true;
-            this.DESCRICAO.Width = 158;
-            // 
-            // LOTE
-            // 
-            this.LOTE.HeaderText = "Lote";
-            this.LOTE.Name = "LOTE";
-            this.LOTE.ReadOnly = true;
-            this.LOTE.Width = 58;
-            // 
-            // QUANTIDADE
-            // 
-            this.QUANTIDADE.HeaderText = "Quantidade";
-            this.QUANTIDADE.Name = "QUANTIDADE";
-            this.QUANTIDADE.ReadOnly = true;
-            this.QUANTIDADE.Width = 101;
-            // 
-            // PRECOUNITARIO
-            // 
-            this.PRECOUNITARIO.HeaderText = "Preço Unitário";
-            this.PRECOUNITARIO.Name = "PRECOUNITARIO";
-            this.PRECOUNITARIO.ReadOnly = true;
-            this.PRECOUNITARIO.Width = 106;
-            // 
-            // SUBTOTAL
-            // 
-            this.SUBTOTAL.HeaderText = "Subtotal";
-            this.SUBTOTAL.Name = "SUBTOTAL";
-            this.SUBTOTAL.ReadOnly = true;
-            this.SUBTOTAL.Width = 81;
             // 
             // label11
             // 
@@ -477,9 +416,9 @@
             // 
             // txNumerVenda
             // 
+            this.txNumerVenda.BackColor = System.Drawing.Color.White;
             this.txNumerVenda.Font = new System.Drawing.Font("Segoe UI", 16.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txNumerVenda.ForeColor = System.Drawing.Color.Red;
-            this.txNumerVenda.BackColor = System.Drawing.Color.White;
             this.txNumerVenda.Location = new System.Drawing.Point(877, 45);
             this.txNumerVenda.Multiline = true;
             this.txNumerVenda.Name = "txNumerVenda";
@@ -571,6 +510,67 @@
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "?";
             // 
+            // DESCRICAO
+            // 
+            this.DESCRICAO.HeaderText = "Descrição medicamento";
+            this.DESCRICAO.Name = "DESCRICAO";
+            this.DESCRICAO.Width = 158;
+            // 
+            // LOTE
+            // 
+            this.LOTE.HeaderText = "Lote";
+            this.LOTE.Name = "LOTE";
+            this.LOTE.Width = 58;
+            // 
+            // DtgDados
+            // 
+            this.DtgDados.AllowUserToAddRows = false;
+            this.DtgDados.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DtgDados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DtgDados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DtgDados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.DtgDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DtgDados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dtgDESCRICAO,
+            this.dtgQUANTIDADE,
+            this.dtgPRECOUNITARIO,
+            this.dtgSUBTOTAL});
+            this.DtgDados.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DtgDados.Location = new System.Drawing.Point(3, 21);
+            this.DtgDados.Name = "DtgDados";
+            this.DtgDados.ReadOnly = true;
+            this.DtgDados.Size = new System.Drawing.Size(1007, 307);
+            this.DtgDados.TabIndex = 0;
+            // 
+            // dtgDESCRICAO
+            // 
+            this.dtgDESCRICAO.HeaderText = "Descrição";
+            this.dtgDESCRICAO.Name = "dtgDESCRICAO";
+            this.dtgDESCRICAO.ReadOnly = true;
+            this.dtgDESCRICAO.Width = 90;
+            // 
+            // dtgQUANTIDADE
+            // 
+            this.dtgQUANTIDADE.HeaderText = "Quantidade";
+            this.dtgQUANTIDADE.Name = "dtgQUANTIDADE";
+            this.dtgQUANTIDADE.ReadOnly = true;
+            this.dtgQUANTIDADE.Width = 101;
+            // 
+            // dtgPRECOUNITARIO
+            // 
+            this.dtgPRECOUNITARIO.HeaderText = "Preco unitário";
+            this.dtgPRECOUNITARIO.Name = "dtgPRECOUNITARIO";
+            this.dtgPRECOUNITARIO.ReadOnly = true;
+            this.dtgPRECOUNITARIO.Width = 114;
+            // 
+            // dtgSUBTOTAL
+            // 
+            this.dtgSUBTOTAL.HeaderText = "Subtotal";
+            this.dtgSUBTOTAL.Name = "dtgSUBTOTAL";
+            this.dtgSUBTOTAL.ReadOnly = true;
+            this.dtgSUBTOTAL.Width = 81;
+            // 
             // frmVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -600,7 +600,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgItensVenda)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DtgDados)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -645,15 +645,15 @@
         private System.Windows.Forms.TextBox txEstoque;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btn_Incluir;
-        private System.Windows.Forms.DataGridView dtgItensVenda;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ITEM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRICAO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LOTE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QUANTIDADE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRECOUNITARIO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SUBTOTAL;
         private System.Windows.Forms.Button btnLimparItens;
         private System.Windows.Forms.TextBox txDesconto;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRICAO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LOTE;
+        private System.Windows.Forms.DataGridView DtgDados;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dtgDESCRICAO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dtgQUANTIDADE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dtgPRECOUNITARIO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dtgSUBTOTAL;
     }
 }
