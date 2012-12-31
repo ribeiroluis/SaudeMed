@@ -59,10 +59,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txTelefoneCelular = new System.Windows.Forms.MaskedTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.DtgDados = new System.Windows.Forms.DataGridView();
+            this.DtgDadosVenda = new System.Windows.Forms.DataGridView();
             this.label11 = new System.Windows.Forms.Label();
             this.txNumerVenda = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txSubtotalGeral = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -72,16 +72,11 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.DESCRICAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LOTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtgDESCRICAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtgLOTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtgQUANTIDADE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtgPRECOUNITARIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtgSUBTOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DtgDados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DtgDadosVenda)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -397,7 +392,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.DtgDados);
+            this.groupBox3.Controls.Add(this.DtgDadosVenda);
             this.groupBox3.Location = new System.Drawing.Point(14, 230);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1013, 331);
@@ -405,34 +400,28 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Medicamentos";
             // 
-            // DtgDados
+            // DtgDadosVenda
             // 
-            this.DtgDados.AllowUserToAddRows = false;
-            this.DtgDados.AllowUserToDeleteRows = false;
+            this.DtgDadosVenda.AllowUserToAddRows = false;
+            this.DtgDadosVenda.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.DtgDados.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DtgDados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.DtgDados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.DtgDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DtgDados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dtgDESCRICAO,
-            this.dtgLOTE,
-            this.dtgQUANTIDADE,
-            this.dtgPRECOUNITARIO,
-            this.dtgSUBTOTAL});
-            this.DtgDados.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DtgDados.Location = new System.Drawing.Point(3, 21);
-            this.DtgDados.Name = "DtgDados";
-            this.DtgDados.ReadOnly = true;
-            this.DtgDados.Size = new System.Drawing.Size(1007, 307);
-            this.DtgDados.TabIndex = 0;
+            this.DtgDadosVenda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DtgDadosVenda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DtgDadosVenda.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
+            this.DtgDadosVenda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DtgDadosVenda.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DtgDadosVenda.Location = new System.Drawing.Point(3, 21);
+            this.DtgDadosVenda.Name = "DtgDadosVenda";
+            this.DtgDadosVenda.ReadOnly = true;
+            this.DtgDadosVenda.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.DtgDadosVenda.Size = new System.Drawing.Size(1007, 307);
+            this.DtgDadosVenda.TabIndex = 0;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(936, 21);
+            this.label11.Location = new System.Drawing.Point(936, 17);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(91, 21);
             this.label11.TabIndex = 11;
@@ -443,7 +432,7 @@
             this.txNumerVenda.BackColor = System.Drawing.Color.White;
             this.txNumerVenda.Font = new System.Drawing.Font("Segoe UI", 16.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txNumerVenda.ForeColor = System.Drawing.Color.Red;
-            this.txNumerVenda.Location = new System.Drawing.Point(877, 45);
+            this.txNumerVenda.Location = new System.Drawing.Point(877, 41);
             this.txNumerVenda.Multiline = true;
             this.txNumerVenda.Name = "txNumerVenda";
             this.txNumerVenda.ReadOnly = true;
@@ -451,15 +440,15 @@
             this.txNumerVenda.TabIndex = 12;
             this.txNumerVenda.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox4
+            // txSubtotalGeral
             // 
-            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.ForeColor = System.Drawing.Color.Red;
-            this.textBox4.Location = new System.Drawing.Point(105, 567);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(90, 29);
-            this.textBox4.TabIndex = 14;
+            this.txSubtotalGeral.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txSubtotalGeral.ForeColor = System.Drawing.Color.Red;
+            this.txSubtotalGeral.Location = new System.Drawing.Point(105, 567);
+            this.txSubtotalGeral.Name = "txSubtotalGeral";
+            this.txSubtotalGeral.ReadOnly = true;
+            this.txSubtotalGeral.Size = new System.Drawing.Size(90, 29);
+            this.txSubtotalGeral.TabIndex = 14;
             // 
             // label12
             // 
@@ -546,41 +535,6 @@
             this.LOTE.Name = "LOTE";
             this.LOTE.Width = 58;
             // 
-            // dtgDESCRICAO
-            // 
-            this.dtgDESCRICAO.HeaderText = "Descrição";
-            this.dtgDESCRICAO.Name = "dtgDESCRICAO";
-            this.dtgDESCRICAO.ReadOnly = true;
-            this.dtgDESCRICAO.Width = 90;
-            // 
-            // dtgLOTE
-            // 
-            this.dtgLOTE.HeaderText = "LOTE";
-            this.dtgLOTE.Name = "dtgLOTE";
-            this.dtgLOTE.ReadOnly = true;
-            this.dtgLOTE.Width = 63;
-            // 
-            // dtgQUANTIDADE
-            // 
-            this.dtgQUANTIDADE.HeaderText = "Quantidade";
-            this.dtgQUANTIDADE.Name = "dtgQUANTIDADE";
-            this.dtgQUANTIDADE.ReadOnly = true;
-            this.dtgQUANTIDADE.Width = 101;
-            // 
-            // dtgPRECOUNITARIO
-            // 
-            this.dtgPRECOUNITARIO.HeaderText = "Preco unitário";
-            this.dtgPRECOUNITARIO.Name = "dtgPRECOUNITARIO";
-            this.dtgPRECOUNITARIO.ReadOnly = true;
-            this.dtgPRECOUNITARIO.Width = 114;
-            // 
-            // dtgSUBTOTAL
-            // 
-            this.dtgSUBTOTAL.HeaderText = "Subtotal";
-            this.dtgSUBTOTAL.Name = "dtgSUBTOTAL";
-            this.dtgSUBTOTAL.ReadOnly = true;
-            this.dtgSUBTOTAL.Width = 81;
-            // 
             // frmVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -595,7 +549,7 @@
             this.Controls.Add(this.txNumerVenda);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txSubtotalGeral);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -610,7 +564,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DtgDados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DtgDadosVenda)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -645,7 +599,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txNumerVenda;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txSubtotalGeral;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
@@ -660,11 +614,6 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRICAO;
         private System.Windows.Forms.DataGridViewTextBoxColumn LOTE;
-        private System.Windows.Forms.DataGridView DtgDados;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dtgDESCRICAO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dtgLOTE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dtgQUANTIDADE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dtgPRECOUNITARIO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dtgSUBTOTAL;
+        private System.Windows.Forms.DataGridView DtgDadosVenda;
     }
 }

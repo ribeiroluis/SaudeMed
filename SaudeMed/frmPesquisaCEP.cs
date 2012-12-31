@@ -25,6 +25,18 @@ namespace SaudeMed
             {
 
                 dtgCep.DataSource = acessar.CEP_RetornCEPEnderecoCidadeBairroPorEndereco(txEndereco.Text);
+                int rowNumber = 1;
+                foreach (DataGridViewRow row in dtgCep.Rows)
+                {
+                    if (row.IsNewRow) continue;
+                    row.HeaderCell.Value = rowNumber.ToString();
+                    rowNumber++;
+                }
+                dtgCep.AutoResizeRowHeadersWidth(
+                    DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
+
+                dtgCep.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+
             }
             catch (Exception err)
             {

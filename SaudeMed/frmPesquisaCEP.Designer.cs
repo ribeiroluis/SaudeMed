@@ -40,7 +40,7 @@
             // 
             this.dtgCep.AllowUserToAddRows = false;
             this.dtgCep.AllowUserToDeleteRows = false;
-            this.dtgCep.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtgCep.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dtgCep.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgCep.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dtgCep.Location = new System.Drawing.Point(0, 105);

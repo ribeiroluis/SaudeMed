@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using SaudeMed.BDSAUDEMEDDataSetTableAdapters;
 
 namespace SaudeMed
 {
@@ -19,7 +20,6 @@ namespace SaudeMed
         float PrecoUnitario;
         float Subtotal;
         float Quantidade;
-        int item = 0;
 
         public frmVendas(int idfuncionario)
         {
@@ -168,6 +168,7 @@ namespace SaudeMed
                 this.ActiveControl = txCodBarras;
                 acessar.Venda_InsereVendaTemporaria(int.Parse(txIdCliente.Text), IdFuncionario);
                 txNumerVenda.Text = acessar.Venda_RetornaUltimaVenda().PadLeft(6, '0'); //numeros a esquerda
+                VizualizaDataGridView();
 
             }
             catch (Exception err)
@@ -261,18 +262,12 @@ namespace SaudeMed
                     txNomeCliente.Clear();
                     txTelefoneFixo.ReadOnly = false;
                     this.ActiveControl = txTelefoneFixo;
+
+                    //deleta tabela venda
                     acessar.Venda_DeletaVendaPorID(int.Parse(txNumerVenda.Text));
+                    
+                    //deleta tabela itens venda
                     acessar.ItensVenda_DeletarVendaPorID(int.Parse(txNumerVenda.Text));
-                    for (int i = 0; i < DtgDados.Rows.Count; i++)
-                    {
-                        string lote = DtgDados["LOTE",i].Value.ToString();
-                        string descricao = DtgDados["DESCRICAO",i].Value.ToString();
-                        int quantEstoque = acessar.ItensVenda_RetornaQuantidadeEstoque(lote,descricao);
-                        int valor = (int)DtgDados["QUANTIDADE",i].Value;
-                        int idproduto = acessar.ItensVenda_RetornaIDProduto(descricao);
-                        int iditemproduto = acessar.ItensVenda_RetornaIDItemProduto(lote,idproduto);
-                        AtualizaEstoque(valor, iditemproduto, quantEstoque);
-                    }
                     
                     txNumerVenda.Clear();
                     MessageBox.Show("Venda excluida com sucesso");
@@ -288,6 +283,12 @@ namespace SaudeMed
             }
         }
 
+        
+        /// <summary>
+        /// Botao sair e cancelar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -445,10 +446,20 @@ namespace SaudeMed
             {
                 try
                 {
-                    Subtotal = PrecoUnitario * (float)numQuantidade.Value;
-                    txSubtotal.Text = Subtotal.ToString("f2");
-                    this.ActiveControl = btn_Incluir;
-                    Quantidade = (float)numQuantidade.Value;
+
+                    if (txEstoque.Text.Equals("0"))
+                    {
+                        MessageBox.Show("Não há itens em estoque.");
+                        btn_Incluir.Enabled = false;
+                    }
+                    else
+                    {
+                        Subtotal = PrecoUnitario * (float)numQuantidade.Value;
+                        txSubtotal.Text = Subtotal.ToString("f2");
+                        this.ActiveControl = btn_Incluir;
+                        Quantidade = (float)numQuantidade.Value;
+                        btn_Incluir.Enabled = true;
+                    }
                 }
                 catch (Exception err)
                 {
@@ -516,32 +527,10 @@ namespace SaudeMed
         private void InsereItemDataGridView()
         {
             try
-            {   
-                acessar.ItensVenda_InserirVenda(int.Parse(txNumerVenda.Text), IDProduto, IDItemProtudo, PrecoUnitario, (int)Quantidade);                
-                AtualizaEstoque(((int)Quantidade*(-1)), IDItemProtudo, int.Parse(txEstoque.Text));
-                DataTable tabela = acessar.ItensVenda_RetornaDatatableListadeVenda(int.Parse(txNumerVenda.Text));
-                
-              nao limpou a tabela 
-                DtgDados.Rows.Clear();
-                DtgDados.DataSource = tabela;
-                
-                /*
-                DtgDados.Rows.Add();
-                DtgDados["dtgDESCRICAO", item].Value = txDescricao.Text;
-                DtgDados["dtgQUANTIDADE", item].Value = (int)numQuantidade.Value;
-                DtgDados["dtgPRECOUNITARIO", item].Value = txPrecoUnitario.Text;
-                DtgDados["dtgSUBTOTAL", item].Value = Subtotal;
-                 */
-                
-
-
-
-                item++;
-                
-
-
-
-
+            {
+                acessar.ItensVenda_InserirVenda(int.Parse(txNumerVenda.Text), IDProduto, IDItemProtudo, PrecoUnitario, (int)Quantidade);
+                AtualizaEstoque(((int)Quantidade * (-1)), IDItemProtudo, int.Parse(txEstoque.Text));
+                VizualizaDataGridView();
             }
             catch (Exception err)
             {
@@ -549,7 +538,6 @@ namespace SaudeMed
                 MessageBox.Show(err.Message);
             }
         }
-
 
         private void AtualizaEstoque(int value, int iditemproduto, int quantidadeEstoque)
         {
@@ -564,7 +552,46 @@ namespace SaudeMed
                 MessageBox.Show(err.Message);
             }
         }
-        
+
+        private void VizualizaDataGridView()
+        {
+            try
+            {
+                float soma = 0;
+
+                ViewTabeladeVendasTableAdapter vendas = new ViewTabeladeVendasTableAdapter();
+                DtgDadosVenda.DataSource = vendas.RetornaViewTabelaDeVenda(int.Parse(txNumerVenda.Text));
+
+                int rowNumber = 1;
+                foreach (DataGridViewRow row in DtgDadosVenda.Rows)
+                {
+                    if (row.IsNewRow) continue;
+                    row.HeaderCell.Value = rowNumber.ToString();
+                    rowNumber++;
+                }
+                DtgDadosVenda.AutoResizeRowHeadersWidth(
+                    DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
+
+                DtgDadosVenda.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+
+
+                for (int i = 0; i < DtgDadosVenda.Rows.Count; i++)
+                {
+                    float valor = float.Parse(DtgDadosVenda["PRECOUNITARIO", i].Value.ToString());
+                    DtgDadosVenda["PRECOUNITARIO", i].Value = valor.ToString("f2");
+                    
+                    valor = float.Parse(DtgDadosVenda["SUBTOTAL", i].Value.ToString());
+                    DtgDadosVenda["SUBTOTAL", i].Value = valor.ToString("f2");
+                    soma = soma + valor;
+                }
+
+                txSubtotalGeral.Text = soma.ToString();
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+        }
     }
 }
-        
