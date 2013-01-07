@@ -343,6 +343,13 @@ namespace SaudeMed
  
         }
 
+        public DataTable ItensProdutos_ViewitensProdutosPorDescricao(string descricao)
+        {
+            ViewTabelaItensProdutoTableAdapter view = new ViewTabelaItensProdutoTableAdapter();
+            DataTable tabela = view.RetornaDataTabledosProdutosCadastradosPorDescricao(descricao);
+            return tabela;
+        }
+
         public string Venda_RetornaUltimaVenda()
         {
             VENDATableAdapter ven = new VENDATableAdapter();

@@ -47,6 +47,15 @@ namespace SaudeMed
                             LiberaCamposItens();
                             this.ActiveControl = txLote;
                             GeracustomSourceLote();
+                            dtgDadosProdutos.DataSource = acessar.ItensProdutos_ViewitensProdutosPorDescricao(txDescricao.Text);
+                            for (int i = 0; i < dtgDadosProdutos.Rows.Count; i++)
+                            {
+                                float valor = float.Parse(dtgDadosProdutos["PRECOCOMPRA", i].Value.ToString());
+                                dtgDadosProdutos["PRECOCOMPRA", i].Value = valor.ToString("f2");
+
+                                valor = float.Parse(dtgDadosProdutos["PRECOVENDA", i].Value.ToString());
+                                dtgDadosProdutos["PRECOVENDA", i].Value = valor.ToString("f2");
+                            }
                         }
                         else
                         {
@@ -82,6 +91,15 @@ namespace SaudeMed
                             this.ActiveControl = txLote;
                             LiberaCamposItens();
                             GeracustomSourceLote();
+                            dtgDadosProdutos.DataSource = acessar.ItensProdutos_ViewitensProdutosPorDescricao(txDescricao.Text);
+                            for (int i = 0; i < dtgDadosProdutos.Rows.Count; i++)
+                            {
+                                float valor = float.Parse(dtgDadosProdutos["PRECOCOMPRA", i].Value.ToString());
+                                dtgDadosProdutos["PRECOCOMPRA", i].Value = valor.ToString("f2");
+
+                                valor = float.Parse(dtgDadosProdutos["PRECOVENDA", i].Value.ToString());
+                                dtgDadosProdutos["PRECOVENDA", i].Value = valor.ToString("f2");
+                            }
                         }
                     }
                     else
@@ -156,11 +174,24 @@ namespace SaudeMed
 
         }
 
+        private void CarregaProdutosPorDescricao()
+        {
+ 
+        }
+
         private void frmProdutos_Load(object sender, EventArgs e)
         {
             try
             {
-                dtgDadosProdutos.DataSource = acessar.ItensProtutos_ViewItensProdutos();             
+                dtgDadosProdutos.DataSource = acessar.ItensProtutos_ViewItensProdutos();
+                for (int i = 0; i < dtgDadosProdutos.Rows.Count; i++)
+                {
+                    float valor = float.Parse(dtgDadosProdutos["PRECOCOMPRA", i].Value.ToString());
+                    dtgDadosProdutos["PRECOCOMPRA", i].Value = valor.ToString("f2");
+
+                    valor = float.Parse(dtgDadosProdutos["PRECOVENDA", i].Value.ToString());
+                    dtgDadosProdutos["PRECOVENDA", i].Value = valor.ToString("f2");
+                }
                 txDescricao.AutoCompleteCustomSource.Clear();
                 GeraCustomSource();
             }

@@ -44,6 +44,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lbNomeUsuario = new System.Windows.Forms.Label();
             this.lbDataHora = new System.Windows.Forms.Label();
+            this.vendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.arquivoToolStripMenuItem,
+            this.vendaToolStripMenuItem,
             this.relatoriosToolStripMenuItem,
             this.ajudaToolStripMenuItem,
             this.sobreToolStripMenuItem});
@@ -163,6 +165,12 @@
             this.lbDataHora.TabIndex = 2;
             this.lbDataHora.Text = "Olá ?????";
             // 
+            // vendaToolStripMenuItem
+            // 
+            this.vendaToolStripMenuItem.Name = "vendaToolStripMenuItem";
+            this.vendaToolStripMenuItem.Size = new System.Drawing.Size(52, 19);
+            this.vendaToolStripMenuItem.Text = "Venda";
+            // 
             // frmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -205,5 +213,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lbNomeUsuario;
         private System.Windows.Forms.Label lbDataHora;
+        private System.Windows.Forms.ToolStripMenuItem vendaToolStripMenuItem;
     }
 }

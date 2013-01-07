@@ -14361,7 +14361,7 @@ SELECT IDITENSVENDA, IDVENDA, IDITEMPRODUTO, IDPRODUTO, PRECOUNITARIO, QUANTIDAD
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT IDITEM, CODBARRAS, DESCRICAO, LOTE, VALIDADE, QUANTIDADE, PRECOCOMPRA, PRE" +
@@ -14372,6 +14372,13 @@ SELECT IDITENSVENDA, IDVENDA, IDITEMPRODUTO, IDPRODUTO, PRECOUNITARIO, QUANTIDAD
             this._commandCollection[1].CommandText = "SELECT        IDITEM, CODBARRAS, DESCRICAO, LOTE, VALIDADE, QUANTIDADE, PRECOCOMP" +
                 "RA, PRECOVENDA\r\nFROM            ViewTabelaItensProduto\r\nORDER BY DESCRICAO";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT        IDITEM, CODBARRAS, DESCRICAO, LOTE, VALIDADE, QUANTIDADE, PRECOCOMP" +
+                "RA, PRECOVENDA\r\nFROM            ViewTabelaItensProduto\r\nWHERE        (DESCRICAO " +
+                "= @descricao)\r\nORDER BY LOTE";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@descricao", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "DESCRICAO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14404,6 +14411,23 @@ SELECT IDITENSVENDA, IDVENDA, IDITEMPRODUTO, IDPRODUTO, PRECOUNITARIO, QUANTIDAD
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual BDSAUDEMEDDataSet.ViewTabelaItensProdutoDataTable RetornaDadosOrdenados() {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            BDSAUDEMEDDataSet.ViewTabelaItensProdutoDataTable dataTable = new BDSAUDEMEDDataSet.ViewTabelaItensProdutoDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual BDSAUDEMEDDataSet.ViewTabelaItensProdutoDataTable RetornaDataTabledosProdutosCadastradosPorDescricao(string descricao) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((descricao == null)) {
+                throw new global::System.ArgumentNullException("descricao");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(descricao));
+            }
             BDSAUDEMEDDataSet.ViewTabelaItensProdutoDataTable dataTable = new BDSAUDEMEDDataSet.ViewTabelaItensProdutoDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
