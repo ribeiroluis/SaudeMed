@@ -28,6 +28,8 @@ create table TIPOVENDA (
    IDTIPOPAGAMENTO      int                  null,
    DATA                 date                 not null,
    VALOR                float                not null,
+   PONTOREFERENCIA      varchar(250)         null,
+   TIPOVENDA            varchar(100)         not null,
    constraint PK_TIPOVENDA primary key (IDTIPOVENDA)
 )
 go

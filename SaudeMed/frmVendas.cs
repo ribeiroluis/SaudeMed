@@ -184,33 +184,40 @@ namespace SaudeMed
             {
                 try
                 {
-                    if (TestaCliente(txNomeCliente.Text))
-                    {
-                        PreencheCampos("", txNomeCliente.Text);
-                    }
+                    if (txNomeCliente.Text.Equals(""))
+                        MessageBox.Show("Digite algo...");
+
                     else
                     {
-                        DialogResult resultado = MessageBox.Show("Cliente não cadastrado, realizar cadastro?", "Aviso", MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Warning);
-                        if (resultado == System.Windows.Forms.DialogResult.Yes)
+                        if (TestaCliente(txNomeCliente.Text))
                         {
-                            frmTelaCliente cliente = new frmTelaCliente(IdFuncionario);
-                            cliente.RecebeDadosClientes(txTelefoneCelular.Text, txTelefoneFixo.Text, txNomeCliente.Text);
-                            cliente.ShowDialog();
-                            if (TestaCliente(txNomeCliente.Text))
-                                PreencheCampos("", txNomeCliente.Text);
+                            PreencheCampos("", txNomeCliente.Text);
                         }
                         else
                         {
-                            txIdCliente.Clear();
-                            txTelefoneCelular.Clear();
-                            txTelefoneFixo.Clear();
-                            txNomeCliente.Clear();
-                            txTelefoneFixo.ReadOnly = false;
-                            this.ActiveControl = txTelefoneFixo;
-                        }
+                            DialogResult resultado = MessageBox.Show("Cliente não cadastrado, realizar cadastro?", "Aviso", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning);
+                            if (resultado == System.Windows.Forms.DialogResult.Yes)
+                            {
+                                frmTelaCliente cliente = new frmTelaCliente(IdFuncionario);
+                                cliente.RecebeDadosClientes(txTelefoneCelular.Text, txTelefoneFixo.Text, txNomeCliente.Text);
+                                cliente.ShowDialog();
+                                if (TestaCliente(txNomeCliente.Text))
+                                    PreencheCampos("", txNomeCliente.Text);
+                            }
+                            else
+                            {
+                                txIdCliente.Clear();
+                                txTelefoneCelular.Clear();
+                                txTelefoneFixo.Clear();
+                                txNomeCliente.Clear();
+                                txTelefoneFixo.ReadOnly = false;
+                                this.ActiveControl = txTelefoneFixo;
+                            }
 
+                        }
                     }
+                    
                 }
                 catch (Exception err)
                 {
@@ -257,18 +264,33 @@ namespace SaudeMed
                 if (txNumerVenda.Text.Equals(""))
                 {
                     MessageBox.Show("Não há venda para ser cancelada");
+                    btnLimparItens_Click(sender, e);
+                    txIdCliente.Clear();
+                    txTelefoneCelular.Clear();
+                    txTelefoneFixo.Clear();
+                    txNomeCliente.Clear();
+                    txTelefoneFixo.ReadOnly = false;
+                    this.ActiveControl = txTelefoneFixo;
+                    txTelefoneCelular.ReadOnly = true;
+                    txNomeCliente.ReadOnly = true;
+
+                    
                 }
                 else
                 {
                     DialogResult resultado = MessageBox.Show("Cancelar venda atual?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
                     if (resultado == System.Windows.Forms.DialogResult.Yes)
                     {
+                        txSubtotalGeral.Clear();
+                        txTotalGeral.Clear();
+                        txDesconto.Clear();
                         txIdCliente.Clear();
                         txTelefoneCelular.Clear();
                         txTelefoneFixo.Clear();
                         txNomeCliente.Clear();
                         txTelefoneFixo.ReadOnly = false;
                         this.ActiveControl = txTelefoneFixo;
+                        txDesconto.Clear();
 
                         //deleta tabela venda
                         acessar.Venda_DeletaVendaPorID(int.Parse(txNumerVenda.Text));
@@ -319,11 +341,12 @@ namespace SaudeMed
             try
             {
                 if (txNumerVenda.Text.Equals(""))
+                {
                     this.Close();
+                }
                 else
                 {
-                    btnLimpar_Click(sender, e);
-                    txSubtotalGeral.Clear();
+                    btnLimpar_Click(sender, e);                    
                 }
             }
             catch (Exception err)
@@ -387,8 +410,11 @@ namespace SaudeMed
             cbLote.ResetText();
             cbLote.SelectedText = "";
             cbLote.Enabled = false;
-            numQuantidade.ResetText();
-            //numQuantidade.Value = 1;
+            this.numQuantidade.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             numQuantidade.ReadOnly = true;
             txEstoque.Clear();
             txPrecoUnitario.Clear();
@@ -459,10 +485,20 @@ namespace SaudeMed
                     DataRow linha = tabela.Rows[0];
                     txEstoque.Text = linha["QUANTIDADE"].ToString();
                     IDItemProtudo = (int)linha["IDITEM"];
-                    numQuantidade.ReadOnly = false;
-                    numQuantidade.
-                    this.ActiveControl = numQuantidade;
-                    numQuantidade.Maximum = decimal.Parse(txEstoque.Text);
+
+                    if(int.Parse(txEstoque.Text)<1)
+                    {
+                        MessageBox.Show("Não há itens em estoque para o lote selecionado");
+                        btnLimparItens_Click(sender, e);
+
+                    }
+                    else
+                    {
+                        numQuantidade.ReadOnly = false;
+                        this.ActiveControl = numQuantidade;
+                        this.numQuantidade.Value = new decimal(new int[] {1,0,0,0});
+                        numQuantidade.Maximum = decimal.Parse(txEstoque.Text);
+                    }
                 }
                 catch (Exception err)
                 {
@@ -622,7 +658,6 @@ namespace SaudeMed
             try
             {
                 float soma = 0;
-
                 ViewTabeladeVendasTableAdapter vendas = new ViewTabeladeVendasTableAdapter();
                 DtgDadosVenda.DataSource = vendas.RetornaViewTabelaDeVenda(int.Parse(txNumerVenda.Text));
 
@@ -649,7 +684,9 @@ namespace SaudeMed
                     soma = soma + valor;
                 }
 
-                txSubtotalGeral.Text = soma.ToString();
+                txSubtotalGeral.Text = soma.ToString("c");
+                txTotalGeral.Text = soma.ToString("c");
+
             }
             catch (Exception err)
             {
@@ -709,7 +746,22 @@ namespace SaudeMed
                     DialogResult resultado = MessageBox.Show("Deseja encerrar a venda?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (resultado == System.Windows.Forms.DialogResult.Yes)
                     {
+                        
+                        double subtotal = 0;
+                        for (int i = 0; i < DtgDadosVenda.Rows.Count; i++)
+                        {
+                            subtotal = subtotal + double.Parse(DtgDadosVenda["SUBTOTAL", i].Value.ToString());
+                        }
+                        int idvenda = int.Parse(txNumerVenda.Text);
+                        double _desconto = double.Parse(txDesconto.Text);
 
+                        acessar.Venda_AtualizaVendaFinalizaPorIDVenda(idvenda, subtotal, _desconto);
+                        //frmTipodeVenda venda = new frmTipodeVenda();
+                        //venda.ShowDialog();
+                        MessageBox.Show("Venda Registrada com sucesso!");
+                        LimpaVenda();
+
+                        
                     }
                     else
                     {
@@ -751,6 +803,119 @@ namespace SaudeMed
 
                 MessageBox.Show(err.Message);
             }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                float total = 0;
+                for (int i = 0; i < DtgDadosVenda.Rows.Count; i++)
+                {
+                    total = total + float.Parse(DtgDadosVenda["SUBTOTAL", i].Value.ToString());
+                }
+
+                float porcento = PesquisaDesconto() / total;
+
+                MessageBox.Show("O desconto máximo nesta compra é de: \n" + PesquisaDesconto().ToString("c") + " ou " + porcento.ToString("P"));
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private float PesquisaDesconto()
+        {
+            float soma = 0;
+            for (int i = 0; i < DtgDadosVenda.Rows.Count; i++)
+            {
+                string lote = DtgDadosVenda["LOTE",i].Value.ToString();
+                int idproduto = acessar.ItensVenda_RetornaIDProduto(DtgDadosVenda["DESCRICAO",i].Value.ToString());
+                int iditemproduto = acessar.ItensVenda_RetornaIDItemProduto(lote, idproduto);
+                int quantidade = int.Parse(DtgDadosVenda["QUANTIDADE", i].Value.ToString());
+                soma = soma + (acessar.ItensVenda_RetornaDescontoMaximoPorIDITemProduto(iditemproduto) * quantidade);
+            }
+
+            return soma;
+
+        }
+
+        private void txDesconto_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    float total = 0;
+                    for (int i = 0; i < DtgDadosVenda.Rows.Count; i++)
+                    {
+                        total = total + float.Parse(DtgDadosVenda["SUBTOTAL", i].Value.ToString());
+                    }
+
+                    float desconto = float.Parse(txDesconto.Text);
+
+                    if (Convert.ToInt32(desconto) > Convert.ToInt32(PesquisaDesconto()))
+                    {
+                        DialogResult resultado = MessageBox.Show("Desconto superior ao pré-estabelecido. Confirmar?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                        if (resultado == System.Windows.Forms.DialogResult.Yes)
+                        {
+                            txTotalGeral.Text = (total - desconto).ToString("c");
+                            this.ActiveControl = btnEncerrarVenda;
+                        }
+                        else
+                        {
+                            txDesconto.Clear();
+                            txTotalGeral.Text = total.ToString("c");
+                        }
+                    }
+                    else
+                    {
+                        txTotalGeral.Text = (total - desconto).ToString("c");
+                        this.ActiveControl = btnEncerrarVenda;
+                    }
+
+                    
+                }
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void LimpaVenda()
+        {
+            txSubtotalGeral.Clear();
+            txTotalGeral.Clear();
+            txDesconto.Clear();
+            txIdCliente.Clear();
+            txTelefoneCelular.Clear();
+            txTelefoneFixo.Clear();
+            txNomeCliente.Clear();
+            txTelefoneFixo.ReadOnly = false;
+            this.ActiveControl = txTelefoneFixo;
+            txNomeCliente.ReadOnly = true;
+            txTelefoneCelular.ReadOnly = true;
+            txDescricao.ReadOnly = true;
+            cbLote.Enabled = false;
+            txCodBarras.ReadOnly = true;
+            numQuantidade.ReadOnly = true;
+            txEstoque.ReadOnly = true;
+            txCodBarras.Clear();
+            txEstoque.Clear();
+            cbLote.ResetText();
+            numQuantidade.ResetText();
+            txPrecoUnitario.Clear();
+            txPrecoUnitario.ReadOnly = true;
+            txSubtotal.Clear();
+            txSubtotal.ReadOnly = true;
+            DataTable tabelaVazia = new DataTable();
+            DtgDadosVenda.DataSource = tabelaVazia;
+            txNumerVenda.Clear();
+            this.ActiveControl = txTelefoneFixo;
         }
     }
 }

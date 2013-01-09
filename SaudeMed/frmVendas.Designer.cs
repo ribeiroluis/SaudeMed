@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnLimparItens = new System.Windows.Forms.Button();
             this.btn_Excluir = new System.Windows.Forms.Button();
@@ -66,7 +66,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txTotalGeral = new System.Windows.Forms.TextBox();
             this.txDesconto = new System.Windows.Forms.TextBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.DESCRICAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -411,8 +411,8 @@
             // 
             this.DtgDadosVenda.AllowUserToAddRows = false;
             this.DtgDadosVenda.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.DtgDadosVenda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DtgDadosVenda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.DtgDadosVenda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DtgDadosVenda.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.DtgDadosVenda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -488,15 +488,15 @@
             this.label14.TabIndex = 17;
             this.label14.Text = "TOTAL:";
             // 
-            // textBox6
+            // txTotalGeral
             // 
-            this.textBox6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.ForeColor = System.Drawing.Color.Red;
-            this.textBox6.Location = new System.Drawing.Point(511, 567);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(90, 29);
-            this.textBox6.TabIndex = 18;
+            this.txTotalGeral.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txTotalGeral.ForeColor = System.Drawing.Color.Red;
+            this.txTotalGeral.Location = new System.Drawing.Point(511, 567);
+            this.txTotalGeral.Name = "txTotalGeral";
+            this.txTotalGeral.ReadOnly = true;
+            this.txTotalGeral.Size = new System.Drawing.Size(90, 29);
+            this.txTotalGeral.TabIndex = 18;
             // 
             // txDesconto
             // 
@@ -507,6 +507,7 @@
             this.txDesconto.ReadOnly = true;
             this.txDesconto.Size = new System.Drawing.Size(90, 29);
             this.txDesconto.TabIndex = 19;
+            this.txDesconto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txDesconto_KeyDown);
             // 
             // linkLabel2
             // 
@@ -518,6 +519,7 @@
             this.linkLabel2.TabIndex = 11;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "?";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // DESCRICAO
             // 
@@ -565,7 +567,7 @@
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.txDesconto);
             this.Controls.Add(this.btn_Sair);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.txTotalGeral);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txNumerVenda);
             this.Controls.Add(this.label13);
@@ -626,7 +628,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txTotalGeral;
         private System.Windows.Forms.Button btn_Sair;
         private System.Windows.Forms.Button btn_Excluir;
         private System.Windows.Forms.TextBox txEstoque;

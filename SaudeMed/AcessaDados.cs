@@ -423,6 +423,22 @@ namespace SaudeMed
             ITENSDEVENDATableAdapter itens = new ITENSDEVENDATableAdapter();
             itens.DeletaItensVendaPorIdProdutoeQuantidade(idproduto, quantidade);
         }
+
+        public float ItensVenda_RetornaDescontoMaximoPorIDITemProduto(int iditemproduto)
+        {
+            ViewTabeladeVendasTableAdapter view = new ViewTabeladeVendasTableAdapter();
+            float valor = float.Parse(view.RetornaDescontoMaximoPorIdItemProduto(iditemproduto).ToString());
+            return valor;
+
+        }
+
+        public void Venda_AtualizaVendaFinalizaPorIDVenda(int idvenda, double subtotal, double desconto)
+        {
+            VENDATableAdapter venda = new VENDATableAdapter();
+            double total = subtotal - desconto;
+            venda.AtualizaVendaPorIDVenda(subtotal, desconto, total, idvenda);
+        }
+
     }
 }
         
