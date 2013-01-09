@@ -224,6 +224,7 @@
     <None Include="Resources\logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\1357685245_cart-checkout.png" />
     <None Include="Resources\cancel.png" />
     <None Include="Resources\out.png" />
     <None Include="Resources\clear16x16.png" />

@@ -417,6 +417,12 @@ namespace SaudeMed
             int id = (int)itens.RetornaIdProdutoPorDescricao(descricao);
             return id;
         }
+
+        public void ItensVenda_DeletaItensVendaIDProdutoQuantidade(int idproduto, int quantidade)
+        {
+            ITENSDEVENDATableAdapter itens = new ITENSDEVENDATableAdapter();
+            itens.DeletaItensVendaPorIdProdutoeQuantidade(idproduto, quantidade);
+        }
     }
 }
         

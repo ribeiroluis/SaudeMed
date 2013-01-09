@@ -1,0 +1,43 @@
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('TIPOVENDA') and o.name = 'FK_TIPOVEND_REFERENCE_VENDA')
+alter table TIPOVENDA
+   drop constraint FK_TIPOVEND_REFERENCE_VENDA
+go
+
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('TIPOVENDA') and o.name = 'FK_TIPOVEND_REFERENCE_FORMAPAG')
+alter table TIPOVENDA
+   drop constraint FK_TIPOVEND_REFERENCE_FORMAPAG
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('TIPOVENDA')
+            and   type = 'U')
+   drop table TIPOVENDA
+go
+
+/*==============================================================*/
+/* Table: TIPOVENDA                                             */
+/*==============================================================*/
+create table TIPOVENDA (
+   IDTIPOVENDA          int                  identity(1,1),
+   IDVENDA              int                  not null,
+   IDTIPOPAGAMENTO      int                  null,
+   DATA                 date                 not null,
+   VALOR                float                not null,
+   constraint PK_TIPOVENDA primary key (IDTIPOVENDA)
+)
+go
+
+alter table TIPOVENDA
+   add constraint FK_TIPOVEND_REFERENCE_VENDA foreign key (IDVENDA)
+      references VENDA (IDVENDA)
+go
+
+alter table TIPOVENDA
+   add constraint FK_TIPOVEND_REFERENCE_FORMAPAG foreign key (IDTIPOPAGAMENTO)
+      references FORMAPAGAMENTO (IDTIPOPAGAMENTO)
+go

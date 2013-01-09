@@ -1,0 +1,25 @@
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('TIPOVENDA') and o.name = 'FK_TIPOVEND_REFERENCE_FORMAPAG')
+alter table TIPOVENDA
+   drop constraint FK_TIPOVEND_REFERENCE_FORMAPAG
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('FORMAPAGAMENTO')
+            and   type = 'U')
+   drop table FORMAPAGAMENTO
+go
+
+/*==============================================================*/
+/* Table: FORMAPAGAMENTO                                        */
+/*==============================================================*/
+create table FORMAPAGAMENTO (
+   IDTIPOPAGAMENTO      int                  identity(1,1),
+   DESCRICAO            varchar(250)         not null,
+   PARCELAS             int                  not null
+      constraint CKC_PARCELAS_FORMAPAG check (PARCELAS between 1 and 10),
+   constraint PK_FORMAPAGAMENTO primary key (IDTIPOPAGAMENTO)
+)
+go

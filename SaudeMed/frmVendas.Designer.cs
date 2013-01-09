@@ -67,11 +67,12 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox6 = new System.Windows.Forms.TextBox();
-            this.btn_Sair = new System.Windows.Forms.Button();
             this.txDesconto = new System.Windows.Forms.TextBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.DESCRICAO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LOTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEncerrarVenda = new System.Windows.Forms.Button();
+            this.btn_Sair = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -110,8 +111,10 @@
             this.btnLimparItens.Image = global::SaudeMed.Properties.Resources.clear16x16;
             this.btnLimparItens.Location = new System.Drawing.Point(309, 88);
             this.btnLimparItens.Name = "btnLimparItens";
-            this.btnLimparItens.Size = new System.Drawing.Size(42, 25);
+            this.btnLimparItens.Size = new System.Drawing.Size(56, 25);
             this.btnLimparItens.TabIndex = 10;
+            this.btnLimparItens.Text = "F5 - ";
+            this.btnLimparItens.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLimparItens.UseVisualStyleBackColor = true;
             this.btnLimparItens.Click += new System.EventHandler(this.btnLimparItens_Click);
             // 
@@ -124,6 +127,7 @@
             this.btn_Excluir.Size = new System.Drawing.Size(43, 25);
             this.btn_Excluir.TabIndex = 14;
             this.btn_Excluir.UseVisualStyleBackColor = true;
+            this.btn_Excluir.Click += new System.EventHandler(this.btn_Excluir_Click);
             // 
             // txEstoque
             // 
@@ -231,6 +235,7 @@
             this.cbLote.Location = new System.Drawing.Point(675, 41);
             this.cbLote.Name = "cbLote";
             this.cbLote.Size = new System.Drawing.Size(108, 25);
+            this.cbLote.Sorted = true;
             this.cbLote.TabIndex = 4;
             this.cbLote.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbLote_KeyDown);
             // 
@@ -294,10 +299,12 @@
             // btnLimpar
             // 
             this.btnLimpar.Image = global::SaudeMed.Properties.Resources.clear16x16;
-            this.btnLimpar.Location = new System.Drawing.Point(781, 42);
+            this.btnLimpar.Location = new System.Drawing.Point(769, 42);
             this.btnLimpar.Name = "btnLimpar";
-            this.btnLimpar.Size = new System.Drawing.Size(42, 25);
+            this.btnLimpar.Size = new System.Drawing.Size(59, 25);
             this.btnLimpar.TabIndex = 10;
+            this.btnLimpar.Text = "F4 - ";
+            this.btnLimpar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLimpar.UseVisualStyleBackColor = true;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
@@ -416,6 +423,7 @@
             this.DtgDadosVenda.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.DtgDadosVenda.Size = new System.Drawing.Size(1007, 307);
             this.DtgDadosVenda.TabIndex = 0;
+            this.DtgDadosVenda.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DtgDadosVenda_CellMouseClick);
             // 
             // label11
             // 
@@ -490,18 +498,6 @@
             this.textBox6.Size = new System.Drawing.Size(90, 29);
             this.textBox6.TabIndex = 18;
             // 
-            // btn_Sair
-            // 
-            this.btn_Sair.Image = global::SaudeMed.Properties.Resources.sair;
-            this.btn_Sair.Location = new System.Drawing.Point(874, 573);
-            this.btn_Sair.Name = "btn_Sair";
-            this.btn_Sair.Size = new System.Drawing.Size(150, 29);
-            this.btn_Sair.TabIndex = 11;
-            this.btn_Sair.Text = "Sair/Cancelar";
-            this.btn_Sair.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btn_Sair.UseVisualStyleBackColor = true;
-            this.btn_Sair.Click += new System.EventHandler(this.button1_Click);
-            // 
             // txDesconto
             // 
             this.txDesconto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -535,12 +531,37 @@
             this.LOTE.Name = "LOTE";
             this.LOTE.Width = 58;
             // 
+            // btnEncerrarVenda
+            // 
+            this.btnEncerrarVenda.Image = global::SaudeMed.Properties.Resources._1357685245_cart_checkout;
+            this.btnEncerrarVenda.Location = new System.Drawing.Point(687, 567);
+            this.btnEncerrarVenda.Name = "btnEncerrarVenda";
+            this.btnEncerrarVenda.Size = new System.Drawing.Size(150, 29);
+            this.btnEncerrarVenda.TabIndex = 20;
+            this.btnEncerrarVenda.Text = "F10 - Encerrar";
+            this.btnEncerrarVenda.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnEncerrarVenda.UseVisualStyleBackColor = true;
+            this.btnEncerrarVenda.Click += new System.EventHandler(this.btnEncerrarVenda_Click);
+            // 
+            // btn_Sair
+            // 
+            this.btn_Sair.Image = global::SaudeMed.Properties.Resources.sair;
+            this.btn_Sair.Location = new System.Drawing.Point(877, 567);
+            this.btn_Sair.Name = "btn_Sair";
+            this.btn_Sair.Size = new System.Drawing.Size(150, 29);
+            this.btn_Sair.TabIndex = 11;
+            this.btn_Sair.Text = "F4 - Sair/Cancelar";
+            this.btn_Sair.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btn_Sair.UseVisualStyleBackColor = true;
+            this.btn_Sair.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1039, 608);
             this.ControlBox = false;
+            this.Controls.Add(this.btnEncerrarVenda);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.txDesconto);
             this.Controls.Add(this.btn_Sair);
@@ -554,10 +575,12 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmVendas";
             this.Text = "frmVendas";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmVendas_KeyDown);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantidade)).EndInit();
@@ -615,5 +638,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRICAO;
         private System.Windows.Forms.DataGridViewTextBoxColumn LOTE;
         private System.Windows.Forms.DataGridView DtgDadosVenda;
+        private System.Windows.Forms.Button btnEncerrarVenda;
     }
 }

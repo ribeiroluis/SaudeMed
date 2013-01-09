@@ -36,6 +36,7 @@
             this.SubMenuGerenciarProdutos = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatoriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubMenuFechamentoDia = new System.Windows.Forms.ToolStripMenuItem();
             this.SubMenuQuantItens = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,7 +45,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lbNomeUsuario = new System.Windows.Forms.Label();
             this.lbDataHora = new System.Windows.Forms.Label();
-            this.vendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,6 +108,13 @@
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
+            // vendaToolStripMenuItem
+            // 
+            this.vendaToolStripMenuItem.Name = "vendaToolStripMenuItem";
+            this.vendaToolStripMenuItem.Size = new System.Drawing.Size(52, 19);
+            this.vendaToolStripMenuItem.Text = "Venda";
+            this.vendaToolStripMenuItem.Click += new System.EventHandler(this.vendaToolStripMenuItem_Click);
+            // 
             // relatoriosToolStripMenuItem
             // 
             this.relatoriosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -164,12 +171,6 @@
             this.lbDataHora.Size = new System.Drawing.Size(62, 17);
             this.lbDataHora.TabIndex = 2;
             this.lbDataHora.Text = "Olá ?????";
-            // 
-            // vendaToolStripMenuItem
-            // 
-            this.vendaToolStripMenuItem.Name = "vendaToolStripMenuItem";
-            this.vendaToolStripMenuItem.Size = new System.Drawing.Size(52, 19);
-            this.vendaToolStripMenuItem.Text = "Venda";
             // 
             // frmMenuPrincipal
             // 

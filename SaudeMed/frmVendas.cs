@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SaudeMed.BDSAUDEMEDDataSetTableAdapters;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,8 +8,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Collections;
-using SaudeMed.BDSAUDEMEDDataSetTableAdapters;
 
 namespace SaudeMed
 {
@@ -253,28 +253,52 @@ namespace SaudeMed
         {
             try
             {
-                DialogResult resultado = MessageBox.Show("Cancelar venda atual?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
-                if (resultado == System.Windows.Forms.DialogResult.Yes)
+
+                if (txNumerVenda.Text.Equals(""))
                 {
-                    txIdCliente.Clear();
-                    txTelefoneCelular.Clear();
-                    txTelefoneFixo.Clear();
-                    txNomeCliente.Clear();
-                    txTelefoneFixo.ReadOnly = false;
-                    this.ActiveControl = txTelefoneFixo;
-
-                    //deleta tabela venda
-                    acessar.Venda_DeletaVendaPorID(int.Parse(txNumerVenda.Text));
-                    
-                    //deleta tabela itens venda
-                    acessar.ItensVenda_DeletarVendaPorID(int.Parse(txNumerVenda.Text));
-                    
-                    txNumerVenda.Clear();
-                    MessageBox.Show("Venda excluida com sucesso");
-                    btnLimparItens_Click(sender, e);
-                    this.ActiveControl = txTelefoneFixo;
-
+                    MessageBox.Show("Não há venda para ser cancelada");
                 }
+                else
+                {
+                    DialogResult resultado = MessageBox.Show("Cancelar venda atual?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                    if (resultado == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        txIdCliente.Clear();
+                        txTelefoneCelular.Clear();
+                        txTelefoneFixo.Clear();
+                        txNomeCliente.Clear();
+                        txTelefoneFixo.ReadOnly = false;
+                        this.ActiveControl = txTelefoneFixo;
+
+                        //deleta tabela venda
+                        acessar.Venda_DeletaVendaPorID(int.Parse(txNumerVenda.Text));
+
+                        //deleta tabela itens venda
+                        acessar.ItensVenda_DeletarVendaPorID(int.Parse(txNumerVenda.Text));
+                        for (int i = 0; i < DtgDadosVenda.Rows.Count; i++)
+                        {
+                            int _valor = int.Parse(DtgDadosVenda["QUANTIDADE", i].Value.ToString());
+                            int _idproduto = acessar.ItensVenda_RetornaIDProduto(DtgDadosVenda["DESCRICAO", i].Value.ToString());
+                            int _iditemproduto = acessar.ItensVenda_RetornaIDItemProduto(DtgDadosVenda["LOTE", i].Value.ToString(), _idproduto);
+                            int _quantidadeEstoque = acessar.ItensVenda_RetornaQuantidadeEstoque(DtgDadosVenda["LOTE", i].Value.ToString(), DtgDadosVenda["DESCRICAO", i].Value.ToString());
+                            AtualizaEstoque(_valor, _iditemproduto, _quantidadeEstoque);
+                        }
+
+                        DataTable tabelaVazia = new DataTable();
+
+                        DtgDadosVenda.DataSource = tabelaVazia;
+                        txNumerVenda.Clear();
+
+                        MessageBox.Show("Venda excluida com sucesso");
+                        btnLimparItens_Click(sender, e);
+                        this.ActiveControl = txTelefoneFixo;
+
+                    }
+                }
+             
+                
+                
+                
             }
             catch (Exception err)
             {
@@ -283,12 +307,13 @@ namespace SaudeMed
             }
         }
 
-        
+
         /// <summary>
         /// Botao sair e cancelar
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -298,7 +323,7 @@ namespace SaudeMed
                 else
                 {
                     btnLimpar_Click(sender, e);
-                    this.Close();
+                    txSubtotalGeral.Clear();
                 }
             }
             catch (Exception err)
@@ -335,7 +360,6 @@ namespace SaudeMed
                             cbLote.Enabled = true;
                             IDProduto = (int)linhaProduto["IDPRODUTO"];
                             PreencheLote((int)linhaProduto["IDPRODUTO"]);
-                            this.ActiveControl = cbLote;
                         }
                         else
                         {
@@ -360,9 +384,11 @@ namespace SaudeMed
             txDescricao.Clear();
             txDescricao.ReadOnly = true;
             cbLote.Items.Clear();
-            cbLote.Refresh();
+            cbLote.ResetText();
+            cbLote.SelectedText = "";
             cbLote.Enabled = false;
-            numQuantidade.Value = 1;
+            numQuantidade.ResetText();
+            //numQuantidade.Value = 1;
             numQuantidade.ReadOnly = true;
             txEstoque.Clear();
             txPrecoUnitario.Clear();
@@ -387,13 +413,33 @@ namespace SaudeMed
         {
             try
             {
-                cbLote.Items.Clear();
+                cbLote.Items.Clear();                
+                cbLote.ResetText();
+                cbLote.SelectedText = "";
+
                 DataTable Lotes = acessar.ItensProduto_RetornaLotes(idproduto);
+
                 for (int i = 0; i < Lotes.Rows.Count; i++)
                 {
                     DataRow linha = Lotes.Rows[i];
                     cbLote.Items.Add(linha["LOTE"].ToString());
                 }
+                if (Lotes.Rows.Count < 1)
+                {
+                    MessageBox.Show("Não há itens cadastrado para o produto.");
+                    txCodBarras.Clear();
+                    txDescricao.Clear();
+                    txPrecoUnitario.Clear();
+                    cbLote.Items.Clear();
+                    cbLote.SelectedText = "";
+                    this.ActiveControl = txCodBarras;
+                }
+                else
+                {
+                    this.ActiveControl = cbLote;
+
+                }
+
             }
             catch (Exception err)
             {
@@ -414,6 +460,7 @@ namespace SaudeMed
                     txEstoque.Text = linha["QUANTIDADE"].ToString();
                     IDItemProtudo = (int)linha["IDITEM"];
                     numQuantidade.ReadOnly = false;
+                    numQuantidade.
                     this.ActiveControl = numQuantidade;
                     numQuantidade.Maximum = decimal.Parse(txEstoque.Text);
                 }
@@ -451,6 +498,21 @@ namespace SaudeMed
                     {
                         MessageBox.Show("Não há itens em estoque.");
                         btn_Incluir.Enabled = false;
+                        txCodBarras.Clear();
+                        txDescricao.Clear();
+                        numQuantidade.Minimum = 1;
+                        numQuantidade.Value = 1;
+                        txEstoque.Clear();
+                        cbLote.Items.Clear();
+                        cbLote.ResetText();
+                        cbLote.SelectedText = "";
+                        cbLote.Enabled = false;
+                        txPrecoUnitario.Clear();
+                        txSubtotal.Clear();
+                        this.ActiveControl = txCodBarras;
+                        txCodBarras.ReadOnly = false;
+                        txDescricao.ReadOnly = true;
+
                     }
                     else
                     {
@@ -488,7 +550,6 @@ namespace SaudeMed
                         cbLote.Enabled = true;
                         IDProduto = (int)linhaProduto["IDPRODUTO"];
                         PreencheLote((int)linhaProduto["IDPRODUTO"]);
-                        this.ActiveControl = cbLote;
                     }
                     else
                     {
@@ -516,7 +577,6 @@ namespace SaudeMed
                     string aux = (string)row[1];
                     txDescricao.AutoCompleteCustomSource.Add(aux);
                 }
-
             }
             catch (Exception err)
             {
@@ -524,6 +584,10 @@ namespace SaudeMed
             }
         }
 
+
+        /// <summary>
+        /// Insere itens no data grind e insere na tabela vendas, atualiza estoque
+        /// </summary>
         private void InsereItemDataGridView()
         {
             try
@@ -579,7 +643,7 @@ namespace SaudeMed
                 {
                     float valor = float.Parse(DtgDadosVenda["PRECOUNITARIO", i].Value.ToString());
                     DtgDadosVenda["PRECOUNITARIO", i].Value = valor.ToString("f2");
-                    
+
                     valor = float.Parse(DtgDadosVenda["SUBTOTAL", i].Value.ToString());
                     DtgDadosVenda["SUBTOTAL", i].Value = valor.ToString("f2");
                     soma = soma + valor;
@@ -593,5 +657,102 @@ namespace SaudeMed
                 MessageBox.Show(err.Message);
             }
         }
+
+        private void DtgDadosVenda_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                btn_Excluir.Enabled = true;
+                int num = DtgDadosVenda.CurrentRow.Index +1;
+
+                MessageBox.Show("Item selecionado: " + num.ToString() + "\n" + DtgDadosVenda.CurrentRow.Cells["DESCRICAO"].Value.ToString());
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void frmVendas_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.F10: btnEncerrarVenda_Click(sender, e);
+                        break;
+                    case Keys.F4: button1_Click(sender,e);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+
+        }
+
+        private void btnEncerrarVenda_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txIdCliente.Text.Equals("") || DtgDadosVenda.Rows.Count < 1)
+                {
+                    MessageBox.Show("Não há venda para ser encerrada, verifique o nome ou itens...");
+                }
+                else
+                {
+                    DialogResult resultado = MessageBox.Show("Deseja encerrar a venda?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (resultado == System.Windows.Forms.DialogResult.Yes)
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cancelado pelo usuário");
+                        this.ActiveControl = txCodBarras;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+        }
+
+        private void btn_Excluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult resultado = MessageBox.Show("Excluir item selecionado?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Stop);
+                if (resultado == System.Windows.Forms.DialogResult.Yes)
+                {
+                    int idproduto = acessar.ItensVenda_RetornaIDProduto(DtgDadosVenda.CurrentRow.Cells["DESCRICAO"].Value.ToString());
+                    int quantidade = int.Parse(DtgDadosVenda.CurrentRow.Cells["QUANTIDADE"].Value.ToString());
+                    string lote = DtgDadosVenda.CurrentRow.Cells["LOTE"].Value.ToString();
+                    int estoque = acessar.ItensVenda_RetornaQuantidadeEstoque(lote, DtgDadosVenda.CurrentRow.Cells["DESCRICAO"].Value.ToString());
+                    int iditemproduto = acessar.ItensVenda_RetornaIDItemProduto(lote,idproduto);
+
+                    AtualizaEstoque(quantidade, iditemproduto, estoque);
+
+                    acessar.ItensVenda_DeletaItensVendaIDProdutoQuantidade(idproduto, quantidade);
+
+                    MessageBox.Show("Item excluido.");
+                    btn_Excluir.Enabled = false;
+                }
+                VizualizaDataGridView();
+            }
+            catch (Exception err)
+            {
+
+                MessageBox.Show(err.Message);
+            }
+        }
     }
 }
+                    
+                

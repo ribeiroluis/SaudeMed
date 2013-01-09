@@ -63,5 +63,11 @@ namespace SaudeMed
             frmProdutos produtos = new frmProdutos(IDFUNCIONARIO);
             produtos.ShowDialog();
         }
+
+        private void vendaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmVendas venda = new frmVendas(IDFUNCIONARIO);
+            venda.ShowDialog();
+        }
     }
 }
