@@ -105,7 +105,7 @@ namespace SaudeMed
                 float valorparcelado = ValorVenda / parcelas;
                 for (int i = 0; i < parcelas; i++)
                 {
-                    pagamentoparcelado.InserePagamentoParcelado(IDVenda, (i + 1), valorparcelado, ValorVenda, hora.ToShortDateString());                    
+                    pagamentoparcelado.InserePagamentoParcelado(IDVenda, (i + 1), valorparcelado, ValorVenda, hora.ToShortDateString(), parcelas);                    
                     hora = hora.AddMonths(1);
                 }
                 this.Close();

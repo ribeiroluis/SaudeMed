@@ -22,6 +22,7 @@ create table PAGAMENTO (
    VALORPARCELADO       float                not null,
    VALORTOTAL           float                not null,
    DATA                 date                 not null,
+   QUANTPARCELAS        int                  not null,
    constraint PK_PAGAMENTO primary key (IDPAGAMENTO)
 )
 go

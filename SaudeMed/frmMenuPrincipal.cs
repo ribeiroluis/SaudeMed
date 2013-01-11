@@ -69,5 +69,11 @@ namespace SaudeMed
             frmVendas venda = new frmVendas(IDFUNCIONARIO);
             venda.ShowDialog();
         }
+
+        private void SubMenuFechamentoDia_Click(object sender, EventArgs e)
+        {
+            frmRelatorioFechamentoDia relatoriodia = new frmRelatorioFechamentoDia();
+            relatoriodia.ShowDialog();
+        }
     }
 }

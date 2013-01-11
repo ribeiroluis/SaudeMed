@@ -39,6 +39,7 @@
             this.vendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatoriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubMenuFechamentoDia = new System.Windows.Forms.ToolStripMenuItem();
+            this.fechamentoMêsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SubMenuQuantItens = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,6 +120,7 @@
             // 
             this.relatoriosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SubMenuFechamentoDia,
+            this.fechamentoMêsToolStripMenuItem,
             this.SubMenuQuantItens});
             this.relatoriosToolStripMenuItem.Name = "relatoriosToolStripMenuItem";
             this.relatoriosToolStripMenuItem.Size = new System.Drawing.Size(71, 19);
@@ -129,6 +131,13 @@
             this.SubMenuFechamentoDia.Name = "SubMenuFechamentoDia";
             this.SubMenuFechamentoDia.Size = new System.Drawing.Size(180, 22);
             this.SubMenuFechamentoDia.Text = "Fechamento do dia";
+            this.SubMenuFechamentoDia.Click += new System.EventHandler(this.SubMenuFechamentoDia_Click);
+            // 
+            // fechamentoMêsToolStripMenuItem
+            // 
+            this.fechamentoMêsToolStripMenuItem.Name = "fechamentoMêsToolStripMenuItem";
+            this.fechamentoMêsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.fechamentoMêsToolStripMenuItem.Text = "Fechamento Mês";
             // 
             // SubMenuQuantItens
             // 
@@ -215,5 +224,6 @@
         private System.Windows.Forms.Label lbNomeUsuario;
         private System.Windows.Forms.Label lbDataHora;
         private System.Windows.Forms.ToolStripMenuItem vendaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fechamentoMêsToolStripMenuItem;
     }
 }

@@ -97,6 +97,12 @@
     <Compile Include="frmCadastrarUsuario.Designer.cs">
       <DependentUpon>frmCadastrarUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRelatorioFechamentoDia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRelatorioFechamentoDia.Designer.cs">
+      <DependentUpon>frmRelatorioFechamentoDia.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTipodeVenda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     <EmbeddedResource Include="frmCadastrarUsuario.resx">
       <DependentUpon>frmCadastrarUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmRelatorioFechamentoDia.resx">
+      <DependentUpon>frmRelatorioFechamentoDia.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTipodeVenda.resx">
       <DependentUpon>frmTipodeVenda.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\1357779861_printer.png" />
+    <None Include="Resources\1357951992_tick_circle.png" />
     <Content Include="saudemedicone.ico" />
     <None Include="Resources\1357685245_cart-checkout.png" />
     <None Include="Resources\cancel.png" />

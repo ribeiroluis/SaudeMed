@@ -103,6 +103,16 @@ namespace SaudeMed.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1357951992_tick_circle {
+            get {
+                object obj = ResourceManager.GetObject("1357951992_tick_circle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _out {
             get {
                 object obj = ResourceManager.GetObject("out", resourceCulture);
