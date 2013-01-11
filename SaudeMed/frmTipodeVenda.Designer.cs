@@ -36,7 +36,7 @@
             this.fORMAPAGAMENTOTableAdapter = new SaudeMed.BDSAUDEMEDDataSetTableAdapters.FORMAPAGAMENTOTableAdapter();
             this.cbParcelas = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnImprimir = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cbTipodeVenda = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -54,10 +54,10 @@
             this.cbFormadePagamento.FormattingEnabled = true;
             this.cbFormadePagamento.Location = new System.Drawing.Point(160, 105);
             this.cbFormadePagamento.Name = "cbFormadePagamento";
-            this.cbFormadePagamento.Size = new System.Drawing.Size(211, 25);
+            this.cbFormadePagamento.Size = new System.Drawing.Size(154, 25);
             this.cbFormadePagamento.TabIndex = 0;
             this.cbFormadePagamento.ValueMember = "IDTIPOPAGAMENTO";
-            this.cbFormadePagamento.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
+            this.cbFormadePagamento.SelectedValueChanged += new System.EventHandler(this.FormadePagamento_SelectedValueChanged);
             // 
             // fORMAPAGAMENTOBindingSource
             // 
@@ -96,7 +96,7 @@
             "8",
             "9",
             "10"});
-            this.cbParcelas.Location = new System.Drawing.Point(466, 105);
+            this.cbParcelas.Location = new System.Drawing.Point(385, 105);
             this.cbParcelas.Name = "cbParcelas";
             this.cbParcelas.Size = new System.Drawing.Size(94, 25);
             this.cbParcelas.TabIndex = 2;
@@ -105,24 +105,24 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(401, 108);
+            this.label2.Location = new System.Drawing.Point(320, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Parcelas:";
             this.label2.Visible = false;
             // 
-            // button1
+            // btnImprimir
             // 
-            this.button1.Image = global::SaudeMed.Properties.Resources._1357779861_printer;
-            this.button1.Location = new System.Drawing.Point(456, 310);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 29);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Imprimir";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnImprimir.Image = global::SaudeMed.Properties.Resources._1357779861_printer;
+            this.btnImprimir.Location = new System.Drawing.Point(209, 264);
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Size = new System.Drawing.Size(104, 29);
+            this.btnImprimir.TabIndex = 4;
+            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnImprimir.UseVisualStyleBackColor = true;
+            this.btnImprimir.Click += new System.EventHandler(this.BtnImprimir_Click);
             // 
             // label3
             // 
@@ -168,7 +168,7 @@
             this.txPontodeReferencia.Location = new System.Drawing.Point(160, 164);
             this.txPontodeReferencia.Multiline = true;
             this.txPontodeReferencia.Name = "txPontodeReferencia";
-            this.txPontodeReferencia.Size = new System.Drawing.Size(400, 45);
+            this.txPontodeReferencia.Size = new System.Drawing.Size(319, 81);
             this.txPontodeReferencia.TabIndex = 9;
             this.txPontodeReferencia.Visible = false;
             // 
@@ -186,7 +186,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 351);
+            this.ClientSize = new System.Drawing.Size(492, 351);
             this.ControlBox = false;
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txPontodeReferencia);
@@ -194,7 +194,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbTipodeVenda);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbParcelas);
             this.Controls.Add(this.label1);
@@ -220,7 +220,7 @@
         private BDSAUDEMEDDataSetTableAdapters.FORMAPAGAMENTOTableAdapter fORMAPAGAMENTOTableAdapter;
         private System.Windows.Forms.ComboBox cbParcelas;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbTipodeVenda;
         private System.Windows.Forms.Label label4;

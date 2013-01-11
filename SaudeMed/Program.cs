@@ -16,7 +16,7 @@ namespace SaudeMed
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-           Application.Run(new frmTipodeVenda(1000,97.56));
+           Application.Run(new frmTipodeVenda(3106,52.56f));
             //Application.Run(new frmVendas(19));
             //Application.Run(new frmTelaSplash());
         }   

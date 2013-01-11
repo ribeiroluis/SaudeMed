@@ -1,0 +1,32 @@
+if exists (select 1
+   from sys.sysreferences r join sys.sysobjects o on (o.id = r.constid and o.type = 'F')
+   where r.fkeyid = object_id('PAGAMENTO') and o.name = 'FK_PAGAMENT_REFERENCE_VENDA')
+alter table PAGAMENTO
+   drop constraint FK_PAGAMENT_REFERENCE_VENDA
+go
+
+if exists (select 1
+            from  sysobjects
+           where  id = object_id('PAGAMENTO')
+            and   type = 'U')
+   drop table PAGAMENTO
+go
+
+/*==============================================================*/
+/* Table: PAGAMENTO                                             */
+/*==============================================================*/
+create table PAGAMENTO (
+   IDPAGAMENTO          int                  identity(1,1),
+   IDVENDA              int                  not null,
+   NUMPARCELA           int                  not null,
+   VALORPARCELADO       float                not null,
+   VALORTOTAL           float                not null,
+   DATA                 date                 not null,
+   constraint PK_PAGAMENTO primary key (IDPAGAMENTO)
+)
+go
+
+alter table PAGAMENTO
+   add constraint FK_PAGAMENT_REFERENCE_VENDA foreign key (IDVENDA)
+      references VENDA (IDVENDA)
+go

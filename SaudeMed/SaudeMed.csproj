@@ -79,7 +79,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BDSAUDEMEDDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Cliente.cs" />
     <Compile Include="ComponenteTextbox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -164,14 +163,8 @@
     <Compile Include="frmVendas.Designer.cs">
       <DependentUpon>frmVendas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Funcionario.cs" />
-    <Compile Include="ItensdeVenda.cs" />
-    <Compile Include="ItensProduto.cs" />
-    <Compile Include="Pessoa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Protudo.cs" />
-    <Compile Include="Venda.cs" />
     <EmbeddedResource Include="ComponenteTextbox.resx">
       <DependentUpon>ComponenteTextbox.cs</DependentUpon>
     </EmbeddedResource>
