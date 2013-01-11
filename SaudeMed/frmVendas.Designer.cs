@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnLimparItens = new System.Windows.Forms.Button();
             this.btn_Excluir = new System.Windows.Forms.Button();
@@ -411,8 +411,8 @@
             // 
             this.DtgDadosVenda.AllowUserToAddRows = false;
             this.DtgDadosVenda.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.DtgDadosVenda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DtgDadosVenda.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DtgDadosVenda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DtgDadosVenda.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.DtgDadosVenda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -472,17 +472,17 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(208, 570);
+            this.label13.Location = new System.Drawing.Point(227, 570);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(99, 21);
+            this.label13.Size = new System.Drawing.Size(132, 21);
             this.label13.TabIndex = 15;
-            this.label13.Text = "DESCONTO:";
+            this.label13.Text = "(F7) DESCONTO:";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(445, 570);
+            this.label14.Location = new System.Drawing.Point(489, 570);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(60, 21);
             this.label14.TabIndex = 17;
@@ -492,7 +492,7 @@
             // 
             this.txTotalGeral.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txTotalGeral.ForeColor = System.Drawing.Color.Red;
-            this.txTotalGeral.Location = new System.Drawing.Point(511, 567);
+            this.txTotalGeral.Location = new System.Drawing.Point(555, 567);
             this.txTotalGeral.Name = "txTotalGeral";
             this.txTotalGeral.ReadOnly = true;
             this.txTotalGeral.Size = new System.Drawing.Size(90, 29);
@@ -502,7 +502,7 @@
             // 
             this.txDesconto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txDesconto.ForeColor = System.Drawing.Color.Red;
-            this.txDesconto.Location = new System.Drawing.Point(323, 567);
+            this.txDesconto.Location = new System.Drawing.Point(380, 567);
             this.txDesconto.Name = "txDesconto";
             this.txDesconto.ReadOnly = true;
             this.txDesconto.Size = new System.Drawing.Size(90, 29);
@@ -513,7 +513,7 @@
             // 
             this.linkLabel2.ActiveLinkColor = System.Drawing.Color.Blue;
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(303, 573);
+            this.linkLabel2.Location = new System.Drawing.Point(365, 564);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(14, 17);
             this.linkLabel2.TabIndex = 11;

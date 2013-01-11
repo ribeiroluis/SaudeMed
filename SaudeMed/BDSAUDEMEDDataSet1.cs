@@ -9,6 +9,10 @@
 }
 
 namespace SaudeMed.BDSAUDEMEDDataSetTableAdapters {
+    partial class ViewTabelaItensProdutoTableAdapter
+    {
+    }
+
     partial class ITEMPRODUTOTableAdapter
     {
     }

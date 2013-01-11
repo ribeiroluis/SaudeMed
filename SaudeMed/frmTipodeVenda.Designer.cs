@@ -43,6 +43,7 @@
             this.txValorVenda = new System.Windows.Forms.TextBox();
             this.txPontodeReferencia = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.lbParcelas = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fORMAPAGAMENTOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bDSAUDEMEDDataSet)).BeginInit();
             this.SuspendLayout();
@@ -101,6 +102,7 @@
             this.cbParcelas.Size = new System.Drawing.Size(94, 25);
             this.cbParcelas.TabIndex = 2;
             this.cbParcelas.Visible = false;
+            this.cbParcelas.TextChanged += new System.EventHandler(this.cbParcelas_TextChanged);
             // 
             // label2
             // 
@@ -182,12 +184,22 @@
             this.label5.Text = "Ponto de referência:";
             this.label5.Visible = false;
             // 
+            // lbParcelas
+            // 
+            this.lbParcelas.AutoSize = true;
+            this.lbParcelas.Location = new System.Drawing.Point(320, 46);
+            this.lbParcelas.Name = "lbParcelas";
+            this.lbParcelas.Size = new System.Drawing.Size(75, 17);
+            this.lbParcelas.TabIndex = 11;
+            this.lbParcelas.Text = "N x R$ 0,00";
+            // 
             // frmTipodeVenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 351);
             this.ControlBox = false;
+            this.Controls.Add(this.lbParcelas);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txPontodeReferencia);
             this.Controls.Add(this.txValorVenda);
@@ -227,5 +239,6 @@
         private System.Windows.Forms.TextBox txValorVenda;
         private System.Windows.Forms.TextBox txPontodeReferencia;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbParcelas;
     }
 }

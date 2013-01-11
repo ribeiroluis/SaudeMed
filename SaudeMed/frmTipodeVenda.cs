@@ -126,6 +126,7 @@ namespace SaudeMed
                 {
                     label2.Visible = true;
                     cbParcelas.Visible = true;
+                    lbParcelas.Visible = false;
                 }
                 else
                 {
@@ -140,6 +141,14 @@ namespace SaudeMed
 
                 MessageBox.Show(err.Message);
             }
+        }
+
+        private void cbParcelas_TextChanged(object sender, EventArgs e)
+        {
+            lbParcelas.Visible = true;
+            int parcela = int.Parse(cbParcelas.Text);
+            float valorparcela = ValorVenda / parcela;
+            lbParcelas.Text = cbParcelas.Text + " x " + valorparcela.ToString("c");
         }
     }
 }

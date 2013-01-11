@@ -418,10 +418,10 @@ namespace SaudeMed
             return id;
         }
 
-        public void ItensVenda_DeletaItensVendaIDProdutoQuantidade(int idproduto, int quantidade)
+        public void ItensVenda_DeletaItensVendaIDItemVenda(int iditemVenda)
         {
             ITENSDEVENDATableAdapter itens = new ITENSDEVENDATableAdapter();
-            itens.DeletaItensVendaPorIdProdutoeQuantidade(idproduto, quantidade);
+            itens.DeletaItensVendaPorIdItemVenda(iditemVenda);
         }
 
         public float ItensVenda_RetornaDescontoMaximoPorIDITemProduto(int iditemproduto)
@@ -432,11 +432,11 @@ namespace SaudeMed
 
         }
 
-        public void Venda_AtualizaVendaFinalizaPorIDVenda(int idvenda, double subtotal, double desconto)
+        public void Venda_AtualizaVendaFinalizaPorIDVenda(int idvenda, double subtotal, double desconto, int idcliente)
         {
             VENDATableAdapter venda = new VENDATableAdapter();
             double total = subtotal - desconto;
-            venda.AtualizaVendaPorIDVenda(subtotal, desconto, total, idvenda);
+            venda.AtualizaVendaPorIDVenda(subtotal, desconto, total, idcliente, idvenda);
         }
 
     }

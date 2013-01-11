@@ -33,7 +33,7 @@ namespace SaudeMed
             if (e.KeyCode == Keys.Enter)
             {
                 try
-                {
+                {                    
                     if (txTelefoneFixo.Text.Equals(""))
                     {
                         txTelefoneCelular.ReadOnly = false;
@@ -668,11 +668,14 @@ namespace SaudeMed
                     row.HeaderCell.Value = rowNumber.ToString();
                     rowNumber++;
                 }
-                DtgDadosVenda.AutoResizeRowHeadersWidth(
-                    DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
-
+                DtgDadosVenda.AutoResizeRowHeadersWidth(DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders);
+                
                 DtgDadosVenda.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-
+                DtgDadosVenda.Columns["IDITENSVENDA"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                DtgDadosVenda.Columns["IDITENSVENDA"].Width = 0;
+                DataGridViewColumn coluna = DtgDadosVenda.Columns["IDITENSVENDA"];
+                coluna.Width = 0;
+                
 
                 for (int i = 0; i < DtgDadosVenda.Rows.Count; i++)
                 {
@@ -721,6 +724,8 @@ namespace SaudeMed
                         break;
                     case Keys.F4: button1_Click(sender,e);
                         break;
+                    case Keys.F7: LinkLabelDesconto();
+                        break;
                     default:
                         break;
                 }
@@ -753,15 +758,29 @@ namespace SaudeMed
                             subtotal = subtotal + double.Parse(DtgDadosVenda["SUBTOTAL", i].Value.ToString());
                         }
                         int idvenda = int.Parse(txNumerVenda.Text);
-                        double _desconto = double.Parse(txDesconto.Text);
 
-                        acessar.Venda_AtualizaVendaFinalizaPorIDVenda(idvenda, subtotal, _desconto);
-                        //frmTipodeVenda venda = new frmTipodeVenda();
-                        //venda.ShowDialog();
-                        MessageBox.Show("Venda Registrada com sucesso!");
-                        LimpaVenda();
+                        double _desconto;
 
                         
+                        if (txDesconto.Text.Equals(""))
+                            _desconto = 0;
+                        else
+                            _desconto = double.Parse(txDesconto.Text);
+
+                        int _idcliente = int.Parse(txIdCliente.Text);
+
+                        acessar.Venda_AtualizaVendaFinalizaPorIDVenda(idvenda, subtotal, _desconto, _idcliente);
+                        
+
+                        float totalcompra = ((float)subtotal -(float)_desconto);
+
+                        frmTipodeVenda venda = new frmTipodeVenda(idvenda, totalcompra);
+                        
+                        venda.ShowDialog();
+                        
+                        MessageBox.Show("Venda Registrada com sucesso!");
+                        
+                        LimpaVenda();                        
                     }
                     else
                     {
@@ -788,11 +807,9 @@ namespace SaudeMed
                     string lote = DtgDadosVenda.CurrentRow.Cells["LOTE"].Value.ToString();
                     int estoque = acessar.ItensVenda_RetornaQuantidadeEstoque(lote, DtgDadosVenda.CurrentRow.Cells["DESCRICAO"].Value.ToString());
                     int iditemproduto = acessar.ItensVenda_RetornaIDItemProduto(lote,idproduto);
-
+                    int iditensvena = int.Parse(DtgDadosVenda.CurrentRow.Cells["IDITENSVENDA"].Value.ToString());
                     AtualizaEstoque(quantidade, iditemproduto, estoque);
-
-                    acessar.ItensVenda_DeletaItensVendaIDProdutoQuantidade(idproduto, quantidade);
-
+                    acessar.ItensVenda_DeletaItensVendaIDItemVenda(iditensvena);
                     MessageBox.Show("Item excluido.");
                     btn_Excluir.Enabled = false;
                 }
@@ -807,6 +824,11 @@ namespace SaudeMed
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            LinkLabelDesconto();
+        }
+
+        private void LinkLabelDesconto()
+        {
             try
             {
                 float total = 0;
@@ -818,12 +840,15 @@ namespace SaudeMed
                 float porcento = PesquisaDesconto() / total;
 
                 MessageBox.Show("O desconto máximo nesta compra é de: \n" + PesquisaDesconto().ToString("c") + " ou " + porcento.ToString("P"));
+                this.ActiveControl = txDesconto;
+                txDesconto.Text = "0,00";                    
             }
             catch (Exception err)
             {
 
                 MessageBox.Show(err.Message);
             }
+ 
         }
 
         private float PesquisaDesconto()
@@ -856,7 +881,13 @@ namespace SaudeMed
 
                     float desconto = float.Parse(txDesconto.Text);
 
-                    if (Convert.ToInt32(desconto) > Convert.ToInt32(PesquisaDesconto()))
+                    float descontomaximo = PesquisaDesconto();
+
+                    float verificardesconto = descontomaximo - desconto;
+
+                    int valor = Convert.ToInt32(verificardesconto);
+
+                    if (valor < 0)
                     {
                         DialogResult resultado = MessageBox.Show("Desconto superior ao pré-estabelecido. Confirmar?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                         if (resultado == System.Windows.Forms.DialogResult.Yes)

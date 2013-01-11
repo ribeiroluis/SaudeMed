@@ -5940,6 +5940,8 @@ namespace SaudeMed {
             
             private global::System.Data.DataColumn columnSUBTOTAL;
             
+            private global::System.Data.DataColumn columnIDITENSVENDA;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ViewTabeladeVendasDataTable() {
@@ -6015,6 +6017,14 @@ namespace SaudeMed {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IDITENSVENDAColumn {
+                get {
+                    return this.columnIDITENSVENDA;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6057,10 +6067,18 @@ namespace SaudeMed {
                         LOTE,
                         QUANTIDADE,
                         PRECOUNITARIO,
-                        SUBTOTAL};
+                        SUBTOTAL,
+                        null};
                 rowViewTabeladeVendasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowViewTabeladeVendasRow);
                 return rowViewTabeladeVendasRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ViewTabeladeVendasRow FindByIDITENSVENDA(int IDITENSVENDA) {
+                return ((ViewTabeladeVendasRow)(this.Rows.Find(new object[] {
+                            IDITENSVENDA})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6085,6 +6103,7 @@ namespace SaudeMed {
                 this.columnQUANTIDADE = base.Columns["QUANTIDADE"];
                 this.columnPRECOUNITARIO = base.Columns["PRECOUNITARIO"];
                 this.columnSUBTOTAL = base.Columns["SUBTOTAL"];
+                this.columnIDITENSVENDA = base.Columns["IDITENSVENDA"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6100,6 +6119,10 @@ namespace SaudeMed {
                 base.Columns.Add(this.columnPRECOUNITARIO);
                 this.columnSUBTOTAL = new global::System.Data.DataColumn("SUBTOTAL", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSUBTOTAL);
+                this.columnIDITENSVENDA = new global::System.Data.DataColumn("IDITENSVENDA", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIDITENSVENDA);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIDITENSVENDA}, true));
                 this.columnDESCRICAO.AllowDBNull = false;
                 this.columnDESCRICAO.MaxLength = 500;
                 this.columnLOTE.AllowDBNull = false;
@@ -6107,6 +6130,12 @@ namespace SaudeMed {
                 this.columnQUANTIDADE.AllowDBNull = false;
                 this.columnPRECOUNITARIO.AllowDBNull = false;
                 this.columnSUBTOTAL.AllowDBNull = false;
+                this.columnIDITENSVENDA.AutoIncrement = true;
+                this.columnIDITENSVENDA.AutoIncrementSeed = -1;
+                this.columnIDITENSVENDA.AutoIncrementStep = -1;
+                this.columnIDITENSVENDA.AllowDBNull = false;
+                this.columnIDITENSVENDA.ReadOnly = true;
+                this.columnIDITENSVENDA.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9559,6 +9588,17 @@ namespace SaudeMed {
                     this[this.tableViewTabeladeVendas.SUBTOTALColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int IDITENSVENDA {
+                get {
+                    return ((int)(this[this.tableViewTabeladeVendas.IDITENSVENDAColumn]));
+                }
+                set {
+                    this[this.tableViewTabeladeVendas.IDITENSVENDAColumn] = value;
+                }
+            }
         }
         
         /// <summary>
@@ -11780,11 +11820,13 @@ SELECT IDVENDA, IDCLIENTE, IDFUNCIONARIO, DATAVENDA, SUBTOTAL, DESCONTO, TOTALVE
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "UPDATE       VENDA\r\nSET                SUBTOTAL = @subtotal, DESCONTO = @desconto" +
-                ", TOTALVENDA = @total\r\nWHERE        (IDVENDA = @idvenda)";
+                ", TOTALVENDA = @total, IDCLIENTE = @idcliente\r\nWHERE        (IDVENDA = @idvenda)" +
+                "";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@subtotal", global::System.Data.SqlDbType.Float, 8, global::System.Data.ParameterDirection.Input, 0, 0, "SUBTOTAL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@desconto", global::System.Data.SqlDbType.Float, 8, global::System.Data.ParameterDirection.Input, 0, 0, "DESCONTO", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@total", global::System.Data.SqlDbType.Float, 8, global::System.Data.ParameterDirection.Input, 0, 0, "TOTALVENDA", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idcliente", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDCLIENTE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idvenda", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDVENDA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
@@ -11960,7 +12002,7 @@ SELECT IDVENDA, IDCLIENTE, IDFUNCIONARIO, DATAVENDA, SUBTOTAL, DESCONTO, TOTALVE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int AtualizaVendaPorIDVenda(global::System.Nullable<double> subtotal, global::System.Nullable<double> desconto, global::System.Nullable<double> total, int idvenda) {
+        public virtual int AtualizaVendaPorIDVenda(global::System.Nullable<double> subtotal, global::System.Nullable<double> desconto, global::System.Nullable<double> total, int idcliente, int idvenda) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             if ((subtotal.HasValue == true)) {
                 command.Parameters[0].Value = ((double)(subtotal.Value));
@@ -11980,7 +12022,8 @@ SELECT IDVENDA, IDCLIENTE, IDFUNCIONARIO, DATAVENDA, SUBTOTAL, DESCONTO, TOTALVE
             else {
                 command.Parameters[2].Value = global::System.DBNull.Value;
             }
-            command.Parameters[3].Value = ((int)(idvenda));
+            command.Parameters[3].Value = ((int)(idcliente));
+            command.Parameters[4].Value = ((int)(idvenda));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -15623,11 +15666,9 @@ SELECT IDITENSVENDA, IDVENDA, IDITEMPRODUTO, IDPRODUTO, PRECOUNITARIO, QUANTIDAD
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idvenda", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDVENDA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "DELETE FROM ITENSDEVENDA\r\nWHERE        (IDPRODUTO = @idproduto) AND (QUANTIDADE =" +
-                " @qtd)";
+            this._commandCollection[2].CommandText = "DELETE FROM ITENSDEVENDA\r\nWHERE        (IDITENSVENDA = @iditemvenda)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idproduto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDPRODUTO", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@qtd", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "QUANTIDADE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@iditemvenda", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "IDITENSVENDA", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15857,15 +15898,9 @@ SELECT IDITENSVENDA, IDVENDA, IDITEMPRODUTO, IDPRODUTO, PRECOUNITARIO, QUANTIDAD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
-        public virtual int DeletaItensVendaPorIdProdutoeQuantidade(global::System.Nullable<int> idproduto, int qtd) {
+        public virtual int DeletaItensVendaPorIdItemVenda(int iditemvenda) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
-            if ((idproduto.HasValue == true)) {
-                command.Parameters[0].Value = ((int)(idproduto.Value));
-            }
-            else {
-                command.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            command.Parameters[1].Value = ((int)(qtd));
+            command.Parameters[0].Value = ((int)(iditemvenda));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17316,6 +17351,7 @@ SELECT IDEXCLUSAO, IDPRODUTO, IDITEM, QUANTIDADE, DATA, IDFUNCIONARIO, MOTIVO FR
             tableMapping.ColumnMappings.Add("QUANTIDADE", "QUANTIDADE");
             tableMapping.ColumnMappings.Add("PRECOUNITARIO", "PRECOUNITARIO");
             tableMapping.ColumnMappings.Add("SUBTOTAL", "SUBTOTAL");
+            tableMapping.ColumnMappings.Add("IDITENSVENDA", "IDITENSVENDA");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -17332,7 +17368,8 @@ SELECT IDEXCLUSAO, IDPRODUTO, IDITEM, QUANTIDADE, DATA, IDFUNCIONARIO, MOTIVO FR
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        PRODUTO.DESCRICAO, ITEMPRODUTO.LOTE, ITENSDEVENDA.QUANTIDADE, ITENSDEVENDA.PRECOUNITARIO, ITENSDEVENDA.SUBTOTAL
+            this._commandCollection[0].CommandText = @"SELECT        PRODUTO.DESCRICAO, ITEMPRODUTO.LOTE, ITENSDEVENDA.QUANTIDADE, ITENSDEVENDA.PRECOUNITARIO, ITENSDEVENDA.SUBTOTAL, 
+                         ITENSDEVENDA.IDITENSVENDA
 FROM            ITENSDEVENDA INNER JOIN
                          ITEMPRODUTO ON ITENSDEVENDA.IDITEMPRODUTO = ITEMPRODUTO.IDITEM INNER JOIN
                          PRODUTO ON ITENSDEVENDA.IDPRODUTO = PRODUTO.IDPRODUTO AND ITEMPRODUTO.IDPRODUTO = PRODUTO.IDPRODUTO
