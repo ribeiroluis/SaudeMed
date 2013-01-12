@@ -100,6 +100,7 @@
             this.txLogin.Name = "txLogin";
             this.txLogin.Size = new System.Drawing.Size(163, 25);
             this.txLogin.TabIndex = 12;
+            this.txLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txLogin_KeyDown);
             // 
             // txSenha
             // 
@@ -108,6 +109,7 @@
             this.txSenha.PasswordChar = '*';
             this.txSenha.Size = new System.Drawing.Size(163, 25);
             this.txSenha.TabIndex = 13;
+            this.txSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txSenha_KeyDown);
             // 
             // frmTelaLogin
             // 

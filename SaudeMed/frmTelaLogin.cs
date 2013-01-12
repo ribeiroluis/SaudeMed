@@ -17,6 +17,7 @@ namespace SaudeMed
         public frmTelaLogin()
         {
             InitializeComponent();
+            this.ActiveControl = txLogin;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -46,6 +47,22 @@ namespace SaudeMed
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                this.ActiveControl = txSenha;
+        }
+
+        private void txSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                this.ActiveControl = btnConfirmar;
+                btnConfirmar_Click(sender, e);
+
+            }
         }
     }
 }

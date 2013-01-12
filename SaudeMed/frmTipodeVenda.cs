@@ -150,6 +150,31 @@ namespace SaudeMed
             float valorparcela = ValorVenda / parcela;
             lbParcelas.Text = cbParcelas.Text + " x " + valorparcela.ToString("c");
         }
+
+        private void cbFormadePagamento_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (cbParcelas.Visible)
+                    this.ActiveControl = cbParcelas;
+                else if (txPontodeReferencia.Visible)
+                    this.ActiveControl = txPontodeReferencia;
+                else
+                    this.ActiveControl = btnImprimir;
+                    
+            }
+        }
+
+        private void cbParcelas_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {   
+                if (txPontodeReferencia.Visible)
+                    this.ActiveControl = txPontodeReferencia;
+                else
+                    this.ActiveControl = btnImprimir;
+            }
+        }
     }
 }
 

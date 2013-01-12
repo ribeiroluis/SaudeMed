@@ -59,6 +59,7 @@
             this.cbFormadePagamento.TabIndex = 0;
             this.cbFormadePagamento.ValueMember = "IDTIPOPAGAMENTO";
             this.cbFormadePagamento.SelectedValueChanged += new System.EventHandler(this.FormadePagamento_SelectedValueChanged);
+            this.cbFormadePagamento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbFormadePagamento_KeyDown);
             // 
             // fORMAPAGAMENTOBindingSource
             // 
@@ -103,6 +104,7 @@
             this.cbParcelas.TabIndex = 2;
             this.cbParcelas.Visible = false;
             this.cbParcelas.TextChanged += new System.EventHandler(this.cbParcelas_TextChanged);
+            this.cbParcelas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cbParcelas_KeyDown);
             // 
             // label2
             // 

@@ -75,5 +75,16 @@ namespace SaudeMed
             frmRelatorioFechamentoDia relatoriodia = new frmRelatorioFechamentoDia();
             relatoriodia.ShowDialog();
         }
+
+        private void frmMenuPrincipal_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F10: vendaToolStripMenuItem_Click(sender, e);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

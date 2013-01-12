@@ -45,6 +45,7 @@
             // 
             this.DtgDados.AllowUserToAddRows = false;
             this.DtgDados.AllowUserToDeleteRows = false;
+            this.DtgDados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.DtgDados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DtgDados.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DtgDados.Location = new System.Drawing.Point(0, 94);

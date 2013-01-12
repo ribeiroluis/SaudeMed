@@ -112,8 +112,8 @@
             // vendaToolStripMenuItem
             // 
             this.vendaToolStripMenuItem.Name = "vendaToolStripMenuItem";
-            this.vendaToolStripMenuItem.Size = new System.Drawing.Size(52, 19);
-            this.vendaToolStripMenuItem.Text = "Venda";
+            this.vendaToolStripMenuItem.Size = new System.Drawing.Size(81, 19);
+            this.vendaToolStripMenuItem.Text = "Venda (F10)";
             this.vendaToolStripMenuItem.Click += new System.EventHandler(this.vendaToolStripMenuItem_Click);
             // 
             // relatoriosToolStripMenuItem
@@ -192,6 +192,7 @@
             this.Controls.Add(this.lbNomeUsuario);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.MaximumSize = new System.Drawing.Size(800, 600);
@@ -199,6 +200,7 @@
             this.Name = "frmMenuPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SaudeMed - \"De mãos dadas com a saúde\"";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMenuPrincipal_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
