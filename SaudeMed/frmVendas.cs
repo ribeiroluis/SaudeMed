@@ -370,7 +370,7 @@ namespace SaudeMed
                     {
                         txDescricao.ReadOnly = false;
                         this.ActiveControl = txDescricao;
-                        GeraCustomSourceDescricao();
+                        //GeraCustomSourceDescricao();
                         CarregaQuantidade();
                     }
                     else
@@ -965,6 +965,11 @@ namespace SaudeMed
             DtgDadosVenda.DataSource = tabelaVazia;
             txNumerVenda.Clear();
             this.ActiveControl = txTelefoneFixo;
+        }
+
+        private void frmVendas_Load(object sender, EventArgs e)
+        {
+            GeraCustomSourceDescricao();
         }
     }
 }

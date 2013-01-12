@@ -183,7 +183,7 @@ namespace SaudeMed
         {
             try
             {
-                dtgDadosProdutos.DataSource = acessar.ItensProtutos_ViewItensProdutos();
+                /*dtgDadosProdutos.DataSource = acessar.ItensProtutos_ViewItensProdutos();
                 for (int i = 0; i < dtgDadosProdutos.Rows.Count; i++)
                 {
                     float valor = float.Parse(dtgDadosProdutos["PRECOCOMPRA", i].Value.ToString());
@@ -191,7 +191,8 @@ namespace SaudeMed
 
                     valor = float.Parse(dtgDadosProdutos["PRECOVENDA", i].Value.ToString());
                     dtgDadosProdutos["PRECOVENDA", i].Value = valor.ToString("f2");
-                }
+                }*/
+
                 txDescricao.AutoCompleteCustomSource.Clear();
                 GeraCustomSource();
             }
@@ -287,7 +288,9 @@ namespace SaudeMed
             txCompra.Clear();
             txPrecoVenda.Clear();
             txDescontoMaximo.Clear();
-            frmProdutos_Load(sender, e);
+            DataTable tabela = new DataTable();
+            dtgDadosProdutos.DataSource = tabela;
+            //frmProdutos_Load(sender, e);
             txLote.Enabled = false;
             txQuantidade.Enabled = false;
             DateValidade.Enabled = false;
@@ -542,7 +545,8 @@ namespace SaudeMed
                     MessageBox.Show("Item inserido com sucesso!");
                 }
                 GeracustomSourceLote();
-                frmProdutos_Load(sender, e);
+                CarregaPorDescricao();
+                //frmProdutos_Load(sender, e);
                 BtnIncluirItens.Text = "Incluir";
                 BtnIncluirItens.Enabled = false;
                 btnLimparItens_Click(sender, e);
@@ -553,6 +557,20 @@ namespace SaudeMed
             {
 
                 MessageBox.Show(err.Message);
+            }
+        }
+
+
+        private void CarregaPorDescricao()
+        {
+            dtgDadosProdutos.DataSource = acessar.ItensProdutos_ViewitensProdutosPorDescricao(txDescricao.Text);
+            for (int i = 0; i < dtgDadosProdutos.Rows.Count; i++)
+            {
+                float valor = float.Parse(dtgDadosProdutos["PRECOCOMPRA", i].Value.ToString());
+                dtgDadosProdutos["PRECOCOMPRA", i].Value = valor.ToString("f2");
+
+                valor = float.Parse(dtgDadosProdutos["PRECOVENDA", i].Value.ToString());
+                dtgDadosProdutos["PRECOVENDA", i].Value = valor.ToString("f2");
             }
         }
 
@@ -622,7 +640,8 @@ namespace SaudeMed
                     btnExcluirItens.Enabled = false;
                     btnLimparItens_Click(sender, e);
                     this.ActiveControl = txLote;
-                    frmProdutos_Load(sender, e);
+                    //frmProdutos_Load(sender, e);
+                    CarregaPorDescricao();
                 }
             }
             catch (Exception err)

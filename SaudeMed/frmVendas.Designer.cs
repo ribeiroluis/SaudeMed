@@ -582,6 +582,7 @@
             this.MinimizeBox = false;
             this.Name = "frmVendas";
             this.Text = "frmVendas";
+            this.Load += new System.EventHandler(this.frmVendas_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmVendas_KeyDown);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
