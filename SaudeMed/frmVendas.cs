@@ -211,6 +211,8 @@ namespace SaudeMed
                                 txTelefoneCelular.Clear();
                                 txTelefoneFixo.Clear();
                                 txNomeCliente.Clear();
+                                txTelefoneCelular.ReadOnly = true;
+                                txNomeCliente.ReadOnly = true;
                                 txTelefoneFixo.ReadOnly = false;
                                 this.ActiveControl = txTelefoneFixo;
                             }
@@ -369,6 +371,7 @@ namespace SaudeMed
                         txDescricao.ReadOnly = false;
                         this.ActiveControl = txDescricao;
                         GeraCustomSourceDescricao();
+                        CarregaQuantidade();
                     }
                     else
                     {
@@ -383,6 +386,7 @@ namespace SaudeMed
                             cbLote.Enabled = true;
                             IDProduto = (int)linhaProduto["IDPRODUTO"];
                             PreencheLote((int)linhaProduto["IDPRODUTO"]);
+                            CarregaQuantidade();
                         }
                         else
                         {
@@ -398,6 +402,16 @@ namespace SaudeMed
                     MessageBox.Show(err.Message);
                 }
             }
+        }
+
+
+        private void CarregaQuantidade()
+        {
+            this.numQuantidade.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
         }
 
         private void btnLimparItens_Click(object sender, EventArgs e)
@@ -462,6 +476,8 @@ namespace SaudeMed
                 }
                 else
                 {
+                    string lote = cbLote.Items[0].ToString();
+                    cbLote.SelectedText = lote;
                     this.ActiveControl = cbLote;
 
                 }
@@ -586,12 +602,14 @@ namespace SaudeMed
                         cbLote.Enabled = true;
                         IDProduto = (int)linhaProduto["IDPRODUTO"];
                         PreencheLote((int)linhaProduto["IDPRODUTO"]);
+                        CarregaQuantidade();
                     }
                     else
                     {
                         MessageBox.Show("Produto não cadastrado.");
                         txCodBarras.Clear();
                         this.ActiveControl = txCodBarras;
+                        CarregaQuantidade();
                     }
                 }
                 catch (Exception err)

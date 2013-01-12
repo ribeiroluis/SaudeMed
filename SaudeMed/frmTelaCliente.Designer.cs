@@ -60,6 +60,7 @@
             this.txNomeCliente = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnSair = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -69,10 +70,10 @@
             // TabControl
             // 
             this.TabControl.Controls.Add(this.tabPage2);
-            this.TabControl.Location = new System.Drawing.Point(12, 203);
+            this.TabControl.Location = new System.Drawing.Point(12, 229);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(885, 366);
+            this.TabControl.Size = new System.Drawing.Size(885, 337);
             this.TabControl.TabIndex = 0;
             // 
             // tabPage2
@@ -82,7 +83,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(877, 336);
+            this.tabPage2.Size = new System.Drawing.Size(877, 307);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Histórico Cliente";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -96,8 +97,9 @@
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(871, 330);
+            this.dataGridView1.Size = new System.Drawing.Size(871, 301);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label16
             // 
@@ -192,7 +194,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txTelefoneCelular);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 38);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(885, 185);
             this.groupBox1.TabIndex = 7;
@@ -410,16 +412,31 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Nome:";
             // 
+            // btnSair
+            // 
+            this.btnSair.Image = global::SaudeMed.Properties.Resources._out;
+            this.btnSair.Location = new System.Drawing.Point(811, 8);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(81, 32);
+            this.btnSair.TabIndex = 41;
+            this.btnSair.Text = "F4 - Sair";
+            this.btnSair.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSair.UseVisualStyleBackColor = true;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
+            // 
             // frmTelaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(909, 578);
+            this.Controls.Add(this.btnSair);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.TabControl);
+            this.KeyPreview = true;
             this.Name = "frmTelaCliente";
             this.Text = "SAUDEMED - CLIENTES";
             this.Load += new System.EventHandler(this.frmTelaVendas_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmTelaCliente_KeyDown);
             this.TabControl.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -464,6 +481,7 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btnSair;
 
     }
 }

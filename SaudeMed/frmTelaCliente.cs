@@ -441,6 +441,27 @@ namespace SaudeMed
                 MessageBox.Show("Operação cancelada pelo usuário");
 
             btnLimpar_Click(sender, e);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void frmTelaCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F4: this.Close();
+                    break;                
+                default:
+                    break;
+            }
         }       
 
     }
