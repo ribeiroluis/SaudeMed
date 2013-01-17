@@ -430,7 +430,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txIdProduto;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txDescricao;
+        public System.Windows.Forms.TextBox txDescricao;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txCodigoBarras;
         private System.Windows.Forms.Label label3;

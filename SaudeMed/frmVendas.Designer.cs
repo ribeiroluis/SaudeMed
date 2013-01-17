@@ -548,11 +548,11 @@
             // btn_Sair
             // 
             this.btn_Sair.Image = global::SaudeMed.Properties.Resources.sair;
-            this.btn_Sair.Location = new System.Drawing.Point(877, 567);
+            this.btn_Sair.Location = new System.Drawing.Point(843, 567);
             this.btn_Sair.Name = "btn_Sair";
-            this.btn_Sair.Size = new System.Drawing.Size(150, 29);
+            this.btn_Sair.Size = new System.Drawing.Size(184, 29);
             this.btn_Sair.TabIndex = 11;
-            this.btn_Sair.Text = "F4 - Sair/Cancelar";
+            this.btn_Sair.Text = "ESC - Sair/Cancelar";
             this.btn_Sair.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btn_Sair.UseVisualStyleBackColor = true;
             this.btn_Sair.Click += new System.EventHandler(this.button1_Click);
@@ -617,7 +617,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cbLote;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txDescricao;
+        public System.Windows.Forms.TextBox txDescricao;
         private System.Windows.Forms.TextBox txSubtotal;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txPrecoUnitario;

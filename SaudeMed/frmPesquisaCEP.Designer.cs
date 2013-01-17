@@ -56,9 +56,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 17);
+            this.label1.Size = new System.Drawing.Size(264, 17);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Endereco, ou parte dele:";
+            this.label1.Text = "Endereco, ou parte dele e pressione enter...";
             // 
             // txEndereco
             // 
@@ -67,6 +67,7 @@
             this.txEndereco.Size = new System.Drawing.Size(670, 25);
             this.txEndereco.TabIndex = 0;
             this.txEndereco.TextChanged += new System.EventHandler(this.txEndereco_TextChanged);
+            this.txEndereco.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txEndereco_KeyDown);
             // 
             // frmPesquisaCEP
             // 

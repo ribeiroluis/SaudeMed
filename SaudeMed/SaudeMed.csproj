@@ -97,6 +97,12 @@
     <Compile Include="frmCadastrarUsuario.Designer.cs">
       <DependentUpon>frmCadastrarUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCarregando.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCarregando.Designer.cs">
+      <DependentUpon>frmCarregando.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRelatorioFechamentoDia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCadastrarUsuario.resx">
       <DependentUpon>frmCadastrarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCarregando.resx">
+      <DependentUpon>frmCarregando.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRelatorioFechamentoDia.resx">
       <DependentUpon>frmRelatorioFechamentoDia.cs</DependentUpon>

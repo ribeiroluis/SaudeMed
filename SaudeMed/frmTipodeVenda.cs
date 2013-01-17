@@ -12,10 +12,9 @@ namespace SaudeMed
 {
     public partial class frmTipodeVenda : frmModelo
     {
-        string TipoVenda;
-        string PontodeReferencia;
         float ValorVenda;
         int IDVenda;
+        AcessaDados acessar = new AcessaDados();
 
         public frmTipodeVenda(int IdVenda, float Valor)
         {
@@ -26,6 +25,8 @@ namespace SaudeMed
 
         private void frmTipodeVenda_Load(object sender, EventArgs e)
         {
+            // TODO: esta linha de código carrega dados na tabela 'bDSAUDEMEDDataSet.FUNCIONARIO'. Você pode movê-la ou removê-la conforme necessário.
+            this.fUNCIONARIOTableAdapter.Fill(this.bDSAUDEMEDDataSet.FUNCIONARIO);
             try
             {
                 // TODO: esta linha de código carrega dados na tabela 'bDSAUDEMEDDataSet.FORMAPAGAMENTO'. Você pode movê-la ou removê-la conforme necessário.
@@ -36,7 +37,7 @@ namespace SaudeMed
                 this.ActiveControl = cbTipodeVenda;
                 txValorVenda.Text = ValorVenda.ToString("c");
                 cbTipodeVenda.SelectedText = "BALCAO";
-
+                cbFuncionario.SelectedValue = acessar.TipoVenda_RetornaIDFuncionarioVenda(IDVenda);
             }
             catch (Exception err)
             {
@@ -108,6 +109,9 @@ namespace SaudeMed
                     pagamentoparcelado.InserePagamentoParcelado(IDVenda, (i + 1), valorparcelado, ValorVenda, hora.ToShortDateString(), parcelas);                    
                     hora = hora.AddMonths(1);
                 }
+                int idfuncionario = (int)cbFuncionario.SelectedValue;
+                acessar.TipoVenda_AtualizaIDFuncionario(IDVenda, idfuncionario);
+
                 this.Close();
             }
             catch (Exception err)
@@ -156,11 +160,9 @@ namespace SaudeMed
             if (e.KeyCode == Keys.Enter)
             {
                 if (cbParcelas.Visible)
-                    this.ActiveControl = cbParcelas;
-                else if (txPontodeReferencia.Visible)
-                    this.ActiveControl = txPontodeReferencia;
+                    this.ActiveControl = cbParcelas;                
                 else
-                    this.ActiveControl = btnImprimir;
+                    this.ActiveControl = cbFuncionario;
                     
             }
         }
@@ -168,7 +170,26 @@ namespace SaudeMed
         private void cbParcelas_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-            {   
+            {
+                this.ActiveControl = cbFuncionario;                
+            }
+        }
+
+        private void frmTipodeVenda_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F10: BtnImprimir_Click(sender, e);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void cbFuncionario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
                 if (txPontodeReferencia.Visible)
                     this.ActiveControl = txPontodeReferencia;
                 else

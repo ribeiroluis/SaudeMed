@@ -12,8 +12,7 @@ namespace SaudeMed
     public partial class frmCadastraFuncionario : frmModelo
     {
 
-        AcessaDados acessar = new AcessaDados();
-        DataRow LinhaSelecionada;
+        AcessaDados acessar = new AcessaDados();        
 
         public frmCadastraFuncionario()
         {

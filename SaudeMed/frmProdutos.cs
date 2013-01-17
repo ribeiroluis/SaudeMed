@@ -100,6 +100,7 @@ namespace SaudeMed
                                 valor = float.Parse(dtgDadosProdutos["PRECOVENDA", i].Value.ToString());
                                 dtgDadosProdutos["PRECOVENDA", i].Value = valor.ToString("f2");
                             }
+                            this.ActiveControl = txLote;
                         }
                     }
                     else
@@ -193,8 +194,8 @@ namespace SaudeMed
                     dtgDadosProdutos["PRECOVENDA", i].Value = valor.ToString("f2");
                 }*/
 
-                txDescricao.AutoCompleteCustomSource.Clear();
-                GeraCustomSource();
+                //txDescricao.AutoCompleteCustomSource.Clear();
+                //GeraCustomSource();
             }
             catch (Exception err)
             {
@@ -208,6 +209,8 @@ namespace SaudeMed
         {
             try
             {
+                frmCarregando carregando = new frmCarregando();
+                carregando.Show();
                 DataTable table = acessar.Produtos_RetornaDescricao();
 
                 foreach (DataRow row in table.Rows)
@@ -215,7 +218,7 @@ namespace SaudeMed
                     string aux = (string)row[1];
                     txDescricao.AutoCompleteCustomSource.Add(aux);
                 }
-
+                carregando.Close();
             }
             catch (Exception err)
             {
@@ -262,6 +265,7 @@ namespace SaudeMed
                     acessar.Produtos_InserirNovo(descricao, codbarras, compra, venda, desconto);
                     btnListar_Click(sender, e);
                     MessageBox.Show("Inserido com sucesso!");
+                    GeraCustomSource();
                 }
 
                 //this.ActiveControl = txCodigoBarras;

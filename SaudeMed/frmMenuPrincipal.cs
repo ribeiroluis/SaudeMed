@@ -61,15 +61,49 @@ namespace SaudeMed
         private void SubMenuGerenciarProdutos_Click(object sender, EventArgs e)
         {
             frmProdutos produtos = new frmProdutos(IDFUNCIONARIO);
+            try
+            {
+                frmCarregando carregar = new frmCarregando();
+                carregar.Show();
+                DataTable table = acessar.Produtos_RetornaDescricao();
+                foreach (DataRow row in table.Rows)
+                {
+                    string aux = (string)row[1];
+                    produtos.txDescricao.AutoCompleteCustomSource.Add(aux);
+                }
+                carregar.Close();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
             produtos.ShowDialog();
         }
 
         private void vendaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmVendas venda = new frmVendas(IDFUNCIONARIO);
+            venda.txDescricao.AutoCompleteCustomSource.Clear();
+            try
+            {
+                DataTable table = acessar.Produtos_RetornaDescricao();
+                frmCarregando carregar = new frmCarregando();
+                carregar.Show();
+                foreach (DataRow row in table.Rows)
+                {
+                    string aux = (string)row[1];
+                    venda.txDescricao.AutoCompleteCustomSource.Add(aux);
+                }
+                carregar.Close();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            
             venda.ShowDialog();
         }
-
         private void SubMenuFechamentoDia_Click(object sender, EventArgs e)
         {
             frmRelatorioFechamentoDia relatoriodia = new frmRelatorioFechamentoDia();
@@ -81,6 +115,8 @@ namespace SaudeMed
             switch (e.KeyCode)
             {
                 case Keys.F10: vendaToolStripMenuItem_Click(sender, e);
+                    break;
+                case Keys.Escape: this.Close();
                     break;
                 default:
                     break;

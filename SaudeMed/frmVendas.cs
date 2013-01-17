@@ -740,9 +740,11 @@ namespace SaudeMed
                 {
                     case Keys.F10: btnEncerrarVenda_Click(sender, e);
                         break;
-                    case Keys.F4: button1_Click(sender,e);
+                    case Keys.Escape: button1_Click(sender,e);
                         break;
                     case Keys.F7: LinkLabelDesconto();
+                        break;
+                    case Keys.F5: btnLimparItens_Click(sender,e);
                         break;
                     default:
                         break;
@@ -969,7 +971,7 @@ namespace SaudeMed
 
         private void frmVendas_Load(object sender, EventArgs e)
         {
-            GeraCustomSourceDescricao();
+            //GeraCustomSourceDescricao();
         }
     }
 }

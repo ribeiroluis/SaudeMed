@@ -439,6 +439,19 @@ namespace SaudeMed
             venda.AtualizaVendaPorIDVenda(subtotal, desconto, total, idcliente, idvenda);
         }
 
+        public int TipoVenda_RetornaIDFuncionarioVenda(int idvenda)
+        {
+            VENDATableAdapter venda = new VENDATableAdapter();
+            int idfuncionario = (int)venda.RetornaIDFuncionarioPorIDVenda(idvenda);
+            return idfuncionario;
+        }
+
+        public void TipoVenda_AtualizaIDFuncionario(int idvenda, int idfuncionario)
+        {
+            VENDATableAdapter venda = new VENDATableAdapter();
+            venda.AlteraIdFuncionario(idfuncionario, idvenda);
+        }
+
     }
 }
         

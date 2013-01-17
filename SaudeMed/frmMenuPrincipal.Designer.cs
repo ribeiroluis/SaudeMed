@@ -106,7 +106,7 @@
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
-            this.sairToolStripMenuItem.Text = "Sair";
+            this.sairToolStripMenuItem.Text = "ESC - Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // vendaToolStripMenuItem

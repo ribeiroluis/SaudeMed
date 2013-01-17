@@ -12,10 +12,11 @@ namespace SaudeMed
         /// </summary>
         [STAThread]
         static void Main()
-        {  
+        {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmTelaSplash());
-        }   
+            //Application.Run(new frmTipodeVenda(31,15.58f));
+        }
     }
 }
