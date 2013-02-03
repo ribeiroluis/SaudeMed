@@ -103,6 +103,12 @@
     <Compile Include="frmCarregando.Designer.cs">
       <DependentUpon>frmCarregando.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmImprimirNotaFiscal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImprimirNotaFiscal.Designer.cs">
+      <DependentUpon>frmImprimirNotaFiscal.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRelatorioFechamentoDia.cs">
       <SubType>Form</SubType>
     </Compile>
