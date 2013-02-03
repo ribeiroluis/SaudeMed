@@ -281,7 +281,7 @@ SELECT IDVENDA, IDCLIENTE, IDFUNCIONARIO, DATAVENDA, SUBTOTAL, DESCONTO, TOTALVE
               <Mapping SourceColumn="TOTALVENDA" DataSetColumn="TOTALVENDA" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="AlteraIdFuncionario" Modifier="Public" Name="AlteraIdFuncionario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="AlteraIdFuncionario">
+              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="AlteraIdFuncionario" Modifier="Public" Name="AlteraIdFuncionario" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="AlteraIdFuncionario">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       VENDA
@@ -294,7 +294,7 @@ WHERE        (IDVENDA = @_idvenda)</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="AtualizaVendaPorIDVenda" Modifier="Public" Name="AtualizaVendaPorIDVenda" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="AtualizaVendaPorIDVenda">
+              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="AtualizaVendaPorIDVenda" Modifier="Public" Name="AtualizaVendaPorIDVenda" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="AtualizaVendaPorIDVenda">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       VENDA
@@ -310,7 +310,7 @@ WHERE        (IDVENDA = @idvenda)</CommandText>
                   </DbCommand>
                 </UpdateCommand>
               </DbSource>
-              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeletaVendaPorId" Modifier="Public" Name="DeletaVendaPorId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="DeletaVendaPorId">
+              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeletaVendaPorId" Modifier="Public" Name="DeletaVendaPorId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="DeletaVendaPorId">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM VENDA
@@ -321,7 +321,7 @@ WHERE        (IDVENDA = @idvenda)</CommandText>
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsereVendaTemporaria" Modifier="Public" Name="InsereVendaTemporaria" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="InsereVendaTemporaria">
+              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsereVendaTemporaria" Modifier="Public" Name="InsereVendaTemporaria" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="InsereVendaTemporaria">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO VENDA
@@ -347,7 +347,7 @@ WHERE        (IDVENDA = @_idvenda)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="RetornaUltimaVenda" Modifier="Public" Name="RetornaUltimaVenda" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="RetornaUltimaVenda">
+              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="RetornaUltimaVenda" Modifier="Public" Name="RetornaUltimaVenda" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy5" UserSourceName="RetornaUltimaVenda">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        MAX(IDVENDA) AS [ULTIMA VENDA]
@@ -1758,6 +1758,62 @@ WHERE        (DATA = @data)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="RetornaTotalVendaPeriodo" Modifier="Public" Name="RetornaTotalVendaPeriodo" QueryType="Scalar" ScalarCallRetval="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="RetornaTotalVendaPeriodo">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        SUM(TOTALVENDA) AS TOTAL
+FROM            ViewRelatorioVendas
+WHERE        (DATA &gt;= @datainicio) AND (DATA &lt;= @datafim)
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="datainicio" ColumnName="DATA" DataSourceName="BDSAUDEMED.dbo.ViewRelatorioVendas" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@datainicio" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="DATA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="datafim" ColumnName="DATA" DataSourceName="BDSAUDEMED.dbo.ViewRelatorioVendas" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@datafim" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="DATA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ViewRelatorioVendasPeriodoDataSetTableAdapterTableAdapter" GeneratorDataComponentClassName="ViewRelatorioVendasPeriodoDataSetTableAdapterTableAdapter" Name="ViewRelatorioVendasPeriodoDataSetTableAdapter" UserDataComponentName="ViewRelatorioVendasPeriodoDataSetTableAdapterTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        PRODUTO.DESCRICAO, SUM(ITENSDEVENDA.QUANTIDADE) AS QUANTIDADE, SUM(ITENSDEVENDA.SUBTOTAL) AS SUBTOTAL, VENDA.DATAVENDA
+FROM            ITENSDEVENDA INNER JOIN
+                         PRODUTO ON ITENSDEVENDA.IDPRODUTO = PRODUTO.IDPRODUTO INNER JOIN
+                         VENDA ON ITENSDEVENDA.IDVENDA = VENDA.IDVENDA
+GROUP BY PRODUTO.DESCRICAO, ITENSDEVENDA.QUANTIDADE, ITENSDEVENDA.SUBTOTAL, VENDA.DATAVENDA
+ORDER BY PRODUTO.DESCRICAO</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="DESCRICAO" DataSetColumn="DESCRICAO" />
+              <Mapping SourceColumn="QUANTIDADE" DataSetColumn="QUANTIDADE" />
+              <Mapping SourceColumn="SUBTOTAL" DataSetColumn="SUBTOTAL" />
+              <Mapping SourceColumn="DATAVENDA" DataSetColumn="DATAVENDA" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="StringConexaoBDSaudeMed (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="RetornaDataTablePeridodo" GetMethodModifier="Public" GetMethodName="RetornaDataTablePeridodo" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="RetornaDataTablePeridodo" UserSourceName="RetornaDataTablePeridodo">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        PRODUTO.DESCRICAO, SUM(ITENSDEVENDA.QUANTIDADE) AS QUANTIDADE, SUM(ITENSDEVENDA.SUBTOTAL) AS SUBTOTAL, VENDA.DATAVENDA
+FROM            ITENSDEVENDA INNER JOIN
+                         PRODUTO ON ITENSDEVENDA.IDPRODUTO = PRODUTO.IDPRODUTO INNER JOIN
+                         VENDA ON ITENSDEVENDA.IDVENDA = VENDA.IDVENDA
+WHERE        (VENDA.DATAVENDA &gt;= @datainicio) AND (VENDA.DATAVENDA &lt;= @datafim)
+GROUP BY PRODUTO.DESCRICAO, ITENSDEVENDA.QUANTIDADE, ITENSDEVENDA.SUBTOTAL, VENDA.DATAVENDA
+ORDER BY PRODUTO.DESCRICAO</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="datainicio" ColumnName="DATAVENDA" DataSourceName="BDSAUDEMED.dbo.VENDA" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@datainicio" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="DATAVENDA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="datafim" ColumnName="DATAVENDA" DataSourceName="BDSAUDEMED.dbo.VENDA" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@datafim" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="DATAVENDA" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
             </Sources>
           </TableAdapter>
         </Tables>
@@ -2289,6 +2345,22 @@ WHERE        (DATA = @data)</CommandText>
               </xs:element>
               <xs:element name="QUANTPARCELAS" msprop:Generator_ColumnVarNameInTable="columnQUANTPARCELAS" msprop:Generator_ColumnPropNameInRow="QUANTPARCELAS" msprop:Generator_ColumnPropNameInTable="QUANTPARCELASColumn" msprop:Generator_UserColumnName="QUANTPARCELAS" type="xs:int" />
               <xs:element name="VALORPARCELADO" msprop:Generator_ColumnVarNameInTable="columnVALORPARCELADO" msprop:Generator_ColumnPropNameInRow="VALORPARCELADO" msprop:Generator_ColumnPropNameInTable="VALORPARCELADOColumn" msprop:Generator_UserColumnName="VALORPARCELADO" type="xs:double" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ViewRelatorioVendasPeriodoDataSetTableAdapter" msprop:Generator_TableClassName="ViewRelatorioVendasPeriodoDataSetTableAdapterDataTable" msprop:Generator_TableVarName="tableViewRelatorioVendasPeriodoDataSetTableAdapter" msprop:Generator_TablePropName="ViewRelatorioVendasPeriodoDataSetTableAdapter" msprop:Generator_RowDeletingName="ViewRelatorioVendasPeriodoDataSetTableAdapterRowDeleting" msprop:Generator_RowChangingName="ViewRelatorioVendasPeriodoDataSetTableAdapterRowChanging" msprop:Generator_RowEvHandlerName="ViewRelatorioVendasPeriodoDataSetTableAdapterRowChangeEventHandler" msprop:Generator_RowDeletedName="ViewRelatorioVendasPeriodoDataSetTableAdapterRowDeleted" msprop:Generator_UserTableName="ViewRelatorioVendasPeriodoDataSetTableAdapter" msprop:Generator_RowChangedName="ViewRelatorioVendasPeriodoDataSetTableAdapterRowChanged" msprop:Generator_RowEvArgName="ViewRelatorioVendasPeriodoDataSetTableAdapterRowChangeEvent" msprop:Generator_RowClassName="ViewRelatorioVendasPeriodoDataSetTableAdapterRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DESCRICAO" msprop:Generator_ColumnVarNameInTable="columnDESCRICAO" msprop:Generator_ColumnPropNameInRow="DESCRICAO" msprop:Generator_ColumnPropNameInTable="DESCRICAOColumn" msprop:Generator_UserColumnName="DESCRICAO">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="QUANTIDADE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnQUANTIDADE" msprop:Generator_ColumnPropNameInRow="QUANTIDADE" msprop:Generator_ColumnPropNameInTable="QUANTIDADEColumn" msprop:Generator_UserColumnName="QUANTIDADE" type="xs:int" minOccurs="0" />
+              <xs:element name="SUBTOTAL" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSUBTOTAL" msprop:Generator_ColumnPropNameInRow="SUBTOTAL" msprop:Generator_ColumnPropNameInTable="SUBTOTALColumn" msprop:Generator_UserColumnName="SUBTOTAL" type="xs:double" minOccurs="0" />
+              <xs:element name="DATAVENDA" msprop:Generator_ColumnVarNameInTable="columnDATAVENDA" msprop:Generator_ColumnPropNameInRow="DATAVENDA" msprop:Generator_ColumnPropNameInTable="DATAVENDAColumn" msprop:Generator_UserColumnName="DATAVENDA" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

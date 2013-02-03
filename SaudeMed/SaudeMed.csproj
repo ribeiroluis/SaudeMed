@@ -103,6 +103,12 @@
     <Compile Include="frmCarregando.Designer.cs">
       <DependentUpon>frmCarregando.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFechamentoPeriodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFechamentoPeriodo.Designer.cs">
+      <DependentUpon>frmFechamentoPeriodo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmImprimirNotaFiscal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +201,9 @@
     <EmbeddedResource Include="frmCarregando.resx">
       <DependentUpon>frmCarregando.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmFechamentoPeriodo.resx">
+      <DependentUpon>frmFechamentoPeriodo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRelatorioFechamentoDia.resx">
       <DependentUpon>frmRelatorioFechamentoDia.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,6 +280,7 @@
   <ItemGroup>
     <None Include="Resources\1357779861_printer.png" />
     <None Include="Resources\1357951992_tick_circle.png" />
+    <None Include="Resources\search.png" />
     <Content Include="saudemedicone.ico" />
     <None Include="Resources\1357685245_cart-checkout.png" />
     <None Include="Resources\cancel.png" />

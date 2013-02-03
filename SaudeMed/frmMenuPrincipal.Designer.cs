@@ -129,20 +129,21 @@
             // SubMenuFechamentoDia
             // 
             this.SubMenuFechamentoDia.Name = "SubMenuFechamentoDia";
-            this.SubMenuFechamentoDia.Size = new System.Drawing.Size(180, 22);
+            this.SubMenuFechamentoDia.Size = new System.Drawing.Size(191, 22);
             this.SubMenuFechamentoDia.Text = "Fechamento do dia";
             this.SubMenuFechamentoDia.Click += new System.EventHandler(this.SubMenuFechamentoDia_Click);
             // 
             // fechamentoMêsToolStripMenuItem
             // 
             this.fechamentoMêsToolStripMenuItem.Name = "fechamentoMêsToolStripMenuItem";
-            this.fechamentoMêsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fechamentoMêsToolStripMenuItem.Text = "Fechamento Mês";
+            this.fechamentoMêsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.fechamentoMêsToolStripMenuItem.Text = "Fechamento Peridodo";
+            this.fechamentoMêsToolStripMenuItem.Click += new System.EventHandler(this.fechamentoMêsToolStripMenuItem_Click);
             // 
             // SubMenuQuantItens
             // 
             this.SubMenuQuantItens.Name = "SubMenuQuantItens";
-            this.SubMenuQuantItens.Size = new System.Drawing.Size(180, 22);
+            this.SubMenuQuantItens.Size = new System.Drawing.Size(191, 22);
             this.SubMenuQuantItens.Text = "Quantidade de Itens";
             // 
             // ajudaToolStripMenuItem
@@ -198,7 +199,6 @@
             this.MaximumSize = new System.Drawing.Size(800, 600);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "frmMenuPrincipal";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SaudeMed - \"De mãos dadas com a saúde\"";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMenuPrincipal_KeyDown);
             this.menuStrip1.ResumeLayout(false);

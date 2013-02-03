@@ -122,5 +122,11 @@ namespace SaudeMed
                     break;
             }
         }
+
+        private void fechamentoMêsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmFechamentoPeriodo periodo = new frmFechamentoPeriodo();
+            periodo.ShowDialog();
+        }
     }
 }
